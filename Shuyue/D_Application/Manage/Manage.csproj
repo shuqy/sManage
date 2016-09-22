@@ -569,7 +569,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\ControllerBase\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\A_Model\ManageEF\ManageEF.csproj">
