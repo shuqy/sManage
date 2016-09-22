@@ -13,6 +13,12 @@ managebase.data.initPage = function () {
         var id = $(this).closest("td").data("Id");
         managebase.data.add(id);
     });
+    //删除菜单
+    $(".smContent").on("click", ".smDel", function (e) {
+        e.preventDefault();
+        var id = $(this).closest("td").data("Id");
+        managebase.data.delete(id);
+    });
 }
 managebase.data.add = function (id) {
     window.location.href = "/menu/edit?parentId=" + id;
@@ -20,6 +26,23 @@ managebase.data.add = function (id) {
 managebase.data.edit = function (id) {
     window.location.href = "/menu/edit/" + id;
 }
+managebase.data.delete = function (id) {
+    $.dialog.confirm('你确定要删除这个菜单吗？', function () {
+        $.post("/menu/delete", { id: id }, function (d) {
+            if (d && d.Code == 0) {
+                showTip('删除成功', 3, 0.8);
+                managebase.data.refreshTable();
+            }
+            else {
+                showTip('删除失败', 3, 0.8);
+            }
+        })
+    }, function () {
+    });
+}
+managebase.data.refreshTable = function () {
+    managebase.data.listTable.fnReloadAjax('/menu/search');
+};
 managebase.data.loadPage = function () {
     managebase.data.listTable = $("#dataTable").smDataTable({
         "bServerSide": true,

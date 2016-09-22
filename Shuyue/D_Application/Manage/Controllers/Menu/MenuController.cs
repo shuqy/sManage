@@ -32,7 +32,7 @@ namespace Manage.Controllers.Menu
         public JsonResult Search(DataTableRequest param)
         {
             int parentId = Request["parentId"].GetValueOrNull<int>() ?? 0;
-            var list = menuBLL.GetEntities(m => m.ParentId == parentId);
+            var list = menuBLL.GetEntities(m => m.ParentId == parentId && m.Deleted == false);
             var res = list.OrderByDescending(l => l.Id).Skip(param.iDisplayStart).Take(param.iDisplayLength);
             var query = res.Select(r => new
             {
@@ -120,6 +120,17 @@ namespace Manage.Controllers.Menu
             if (id <= 0) return null;
             sys_user_menu menu = menuBLL.GetEntities().FirstOrDefault(g => g.Id == id);
             menu.State = !menu.State;
+            menuBLL.Update(menu);
+            Core.AppContext.Current.UserMenu = null;
+            return Json(new JsonData { Code = ResultCode.OK, }, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult Delete(int id)
+        {
+            if (id <= 0) return null;
+            sys_user_menu menu = menuBLL.GetEntities().FirstOrDefault(g => g.Id == id);
+            menu.Deleted = true;
             menuBLL.Update(menu);
             Core.AppContext.Current.UserMenu = null;
             return Json(new JsonData { Code = ResultCode.OK, }, JsonRequestBehavior.DenyGet);
