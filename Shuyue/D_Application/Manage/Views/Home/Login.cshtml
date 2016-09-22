@@ -1,0 +1,156 @@
+﻿@model ManageService.Entities.LoginModel
+@{
+    Layout = "";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://img.pccoo.cn/website/css/common.css">
+    <link rel="stylesheet" type="text/css" href="http://img.pccoo.cn/website/css/common.login.css">
+    <title>同城移动社区-运营管理平台</title>
+</head>
+<body>
+    <div class="login-header">
+        <div class="login-center">
+            <dl class="login-log clearfix">
+                <dt class="login-log-img">
+                    <img src="/images/logo.png">
+                </dt>
+                <dd class="login-log-txt">
+                    <p class="first">同城移动社区</p>
+                    <p class="sec">运营管理平台</p>
+                </dd>
+            </dl>
+        </div>
+
+    </div>
+    <div class="login-content">
+        <div class="login-center">
+            <div class="login-form">
+                <p class="login-title">运营管理登录</p>
+                <form name="loginForm" method="post" id="loginForm" action="/home/login">
+                    <ul>
+                        <li class="item-inputxt s-border">
+                            <label>用户名</label>
+                            <input type="text" id="UserCode" name="UserCode" maxlength="20" value="@Model.UserCode" />
+                        </li>
+                        <li class="item-inputxt s-border">
+                            <label>密码</label>
+                            <input type="password" id="PassCode" maxlength="20" name="PassCode" value="@Model.PassCode" />
+                        </li>
+                        <li class="item-checkbox">
+                            <input type="checkbox" id="rePassword" name="rePassword" value="7" @if (!string.IsNullOrEmpty(Model.PassCode)) { @Html.Raw("checked=\"checked\"")  ; } />
+                            记住密码
+                            <input type="hidden" name="ReturnUrl" value="@Model.Redirect" />
+                        </li>
+                    </ul>
+                    <a href="javascript:sCheckform();" class="login-submit" id="butn">登录</a>
+                    <div class="center" id="loginValida" style="color:#f60">@Html.ValidationSummary()</div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="login-footer">
+        <div class="login-center">
+            <div class="footer-app">
+                <p class="u-p-s1">同城移动社区APP下载</p>
+                <img src="/images/Android-app.png" class="app-android">
+                <img src="/images/ios-app.jpg" class="app-ios">
+            </div>
+            <div class="login-gs">
+                <p>
+                    <i class="iconf icon-diqiu1"></i>
+                    公司介绍
+                </p>
+                <ul style="margin-left:80px;text-align: left;">
+                    <li>
+                        <a href="http://www.ccoo.net.cn/info.html" target="_blank">项目介绍</a>
+                    </li>
+                    <li>
+                        <a href="http://www.ccoo.net.cn/" target="_blank">加盟合作</a>
+                    </li>
+                    <li>
+                        <a href="http://www.about.ccoo.cn/about.html" target="_blank">关于我们</a>
+                    </li>
+                    <li>
+                        <a href="http://www.ccoo.cn" target="_blank">城市中国主站</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">产品运营指南</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="login-lx ">
+                <div class="login-lx-table">
+                    <ul class="login-lx-ul">
+                        <li class="frist-item">
+                            <i class="iconf icon-phone2"></i>
+                            联系我们
+                        </li>
+                        <li>
+                            <span class="u-font-s1">合作咨询：</span> <em class="u-font-s2">010-61744588</em>
+                        </li>
+                        <li>
+                            技术支持：
+                            <span class="f333">010-61744288</span>
+                            （周一至周五 9:00—18:00）
+                        </li>
+                        <li>
+                            联系邮箱：
+                            <span class="f333">wexin@ccoo.cn</span>
+                        </li>
+                        <li>
+                            联系地址：
+                            <span class="f333">北京昌平区北七家宏福11号院创意空间305</span>
+                        </li>
+                    </ul>
+                    <div class="login-lx-er">
+                        <img src="/images/erwei-cs.jpg"  / >
+                        <p>扫描关注我们</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function sCheckform() {
+            var testUsernmae = /^(\w*|\d*)$/;
+            if ($('#UserName').val() == "") {
+                $(".center").html("请输入用户名！");
+                $('#UserName').focus()
+                return false;
+            } else if (!testUsernmae.test($('#UserName').val())) {
+                $(".center").html("用户名必须输入字母数字或下划线！");
+                $('#UserName').focus();
+                return false;
+            }
+            if ($('#Password').val() == "") {
+                $(".center").html("请输入用户密码！");
+                $('#Password').focus()
+                return false;
+            }
+            if ($('#infoCode').val() == "") {
+                $(".center").html("请输入验证码！");
+                $('#infoCode').focus()
+                return false;
+            }
+            $("#loginForm").submit();
+            return true;
+        };
+
+        $(document).ready(function () {
+
+            $(document).keyup(function (evnet) {
+                if (evnet.keyCode == '13') {
+                    sCheckform();
+                }
+            });
+
+        })
+        function changepic() { $("#imgcode").attr("src", function () { return '/Common/VaildImg/' + Math.random() }); }
+    </script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+﻿@using Manage.Controllers.Common
+@{
+    Layout = "_LayoutBase.cshtml";
+    MenuCommon _menuCommon = new MenuCommon();
+    var userMenu = _menuCommon.GetUserMenu();//用户拥有的所有菜单
+    string controller = ViewContext.RouteData.Values["controller"].ToString().ToLower();
+    string action = ViewContext.RouteData.Values["action"].ToString().ToLower();
+    int roolId = _menuCommon.GetRootMenuId(userMenu, controller, action);//当前页面的顶级菜单
+    var rootMenus = userMenu.Where(p => (p.ParentId == null || p.ParentId == 0) && p.ShowInMenu == true);
+    var subMenus = userMenu.Where(p => p.ParentId == roolId && p.ShowInMenu == true);
+    var wapMenu = _menuCommon.GetWapMenu(userMenu, controller, action);
+}
+@section javascripts{
+    @RenderSection("javascripts", required: false)
+}
+@section Styles{
+    @RenderSection("Styles", required: false)
+}
+<div class="header">
+    <div class="logo">
+        <a href="#"><img src="http://img.pccoo.cn/website/images/logo_1.png"><p>工作助手</p></a>
+    </div>
+    <div class="headeruser">
+        <a href="#" class="user-icon"></a>
+        <ul class="userul">
+            <li>
+                <a href="#" class="clearfix user-text">
+                    <p class="overflow-text ">sqy</p>
+                    <i class="r arrow_down_k"></i>
+                </a>
+            </li>
+        </ul>
+        <a href="#" class="help-icon" title="帮助"></a>
+        <a href="/Home/logout/" class="tuichu-icon" title="退出"></a>
+    </div>
+    <div class="topbar">
+        <ul class="topnav">
+            @foreach (var rMenu in rootMenus)
+            {
+                var url = _menuCommon.GetRootUrl(rMenu.Id);
+                <li @(rMenu.Id == roolId ? "class=navHover" : "")>
+                    <a id="@(string.Format("menu{0}", rMenu.Id))" @(rMenu.Id == roolId ? "class=active" : "") href="@url">
+                        @rMenu.Title
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+<div class="mainwarp">
+    @if (subMenus.Count() > 0)
+    {
+        <div class="leftwarp">
+            <ul class="leftnav">
+                @foreach (var item in subMenus)
+                {
+                    var thirdMenus = userMenu.Where(p => p.ParentId == item.Id && p.ShowInMenu == true);
+                    <li>
+                        @if (thirdMenus.Count() > 0)
+                        {
+                            if (item.IsPath == true)
+                            {
+                                <span @(thirdMenus.Any(p => p.Id == wapMenu.Id || p.Id == wapMenu.ParentId) ? "class=active" : "")><i class="arrow_right"></i>@item.Title</span>
+                                <ol>
+                                    @foreach (var item1 in thirdMenus)
+                                    {
+                                        <li class="@(item1.Id == wapMenu.Id || item1.Id == wapMenu.ParentId ? "active" : "")">
+                                            <a id="@(string.Format("menu{0}", item1.Id))" href="@(string.IsNullOrEmpty(item1.ControllName) ? "#" : string.Format("/{0}/{1}", item1.ControllName, item1.ActionName))">@item1.Title</a>
+                                        </li>
+                                    }
+                                </ol>
+                            }
+                            else
+                            {
+                                <span>
+                                    <i class="arrow_right"></i><a id="@(string.Format("menu{0}", item.Id))" href="@(string.IsNullOrEmpty(item.ControllName) ? "#" : string.Format("/{0}/{1}", item.ControllName, item.ActionName))">@item.Title</a>
+                                </span>
+                            }
+                        }
+                        else
+                        {
+                            <span>
+                                <i class="arrow_right"></i>
+                                <a id="@(string.Format("menu{0}", item.Id))" href="@(string.IsNullOrEmpty(item.ControllName) ? "#" : string.Format("/{0}/{1}", item.ControllName, item.ActionName))">@item.Title</a>
+                            </span>
+                        }
+                    </li>
+                }
+            </ul>
+            <div class="nav_btn" id="nav-btn"></div>
+        </div>
+    }
+    <div class="rightwarp">
+        @RenderBody()
+    </div>
+</div>
+@section scripts{
+    @RenderSection("scripts", required: false)
+}

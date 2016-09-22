@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@section styles{
+    <style>
+        .kg {
+            font-size: 43px;
+            vertical-align: middle;
+        }
+    </style>
+}
+<div class="smContent">
+    <div class="mianbaowarp margin-top20  clearfix">
+        @Html.Partial("_NavPartial")
+        <a id="nCreateRoleBtn" title="新增菜单" class="btn btn-primary" href="/menu/edit?parentId=@ViewBag.parentId">
+            <i class="icon-plus icon-white"></i>新增菜单
+        </a>
+        <input type="hidden" id="parentId" value="@ViewBag.parentId" />
+    </div>
+    <div id="serverList" class="row-fluid">
+        <table id="dataTable" class="grid">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>名称</th>
+                    <th>描述</th>
+                    <th>排序</th>
+                    <th>是否可用</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot></tfoot>
+        </table>
+    </div>
+</div>
+@section scripts{
+    <script src="~/scripts/menu/menulist.js"></script>
+}
+
+
+

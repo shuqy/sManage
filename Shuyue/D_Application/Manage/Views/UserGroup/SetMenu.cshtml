@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "SetMenu";
+}
+<div class="mianbaowarp  clearfix ">
+    @Html.Partial("_NavPartial")
+</div>
+@using (Html.BeginForm())
+{
+    <div id="menuList">
+        @Html.Raw(ViewBag.html)
+    </div>
+    <div>
+        <br />
+        <input type="hidden" value="@ViewBag.GroupId" name="groupId" />
+        <button name="smSave" class="btn active btn-submit smSave">保存</button>
+    </div>
+}
+@section scripts{
+    <script>
+        $(function () {
+            $(".mainwarp").on("click", ".smSave", function (e) {
+                e.preventDefault();
+                $(".mainwarp").smAjaxSubmit({
+                    success: function (data) {
+                        if (data && data.Code == 0) {
+                            showTip("保存成功", 1, function () {
+                                location.href = "/usergroup/index";
+                            });
+                        } else {
+                            showTip("保存失败！", 0, 2);
+                        }
+                    }
+                });
+            });
+            $("#menuList input[type='checkbox']").click(function () {
+                var cc = $(this).is(":checked");
+                if (cc) {
+                    $(this).parents("ul").each(function () {
+                        var pc = $(this).find(".parentCheck").eq(0).find("input[type='checkbox']")
+
+                        pc.prop("checked", "checked");
+                    });
+                }
+                //if ($(this).hasClass("parentCheck"))
+                //    $(this).parents("ul").eq(0).find("input[type='checkbox']").each(function () {
+                //        if (cc) $(this).prop("checked", "checked");
+                //        else $(this).removeAttr("checked");
+                //    });
+            });
+            //$(".parentCheck").click(function () {
+            //    $this = $(this);
+            //    if ($this.is(":checked")) {
+            //        $this.parents("ul").find(".checkbox input[type='checkbox']").removeAttr("checked");
+            //    } else {
+            //        $this.parents("ul").find(".checkbox input[type='checkbox']").prop("checked", "checked");
+            //    }
+            //});
+        })
+    </script>
+}

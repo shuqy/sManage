@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "用户管理";
+}
+@section styles{
+    <style>
+        .kg {
+            font-size: 43px;
+            vertical-align: middle;
+        }
+    </style>
+}
+<div class="smContent">
+    <div class="mianbaowarp margin-top20  clearfix">
+        @Html.Partial("_NavPartial")
+        <a id="nCreateRoleBtn" title="新增角色" class="btn btn-primary" href="#"><i class="icon-plus icon-white"></i>新增角色</a>
+    </div>
+    <div id="serverList" class="row-fluid">
+        <table id="dataTable" class="grid">
+            <thead>
+                <tr>
+                    <th>标题</th>
+                    <th>描述</th>
+                    <th>标识码</th>
+                    <th>排序</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot></tfoot>
+        </table>
+    </div>
+</div>
+@section scripts{
+    <script src="~/scripts/user/usergroup.js"></script>
+}
+

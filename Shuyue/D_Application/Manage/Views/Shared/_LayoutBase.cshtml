@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="@Url.Content("~/css/common.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/css/font/iconfont.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/DataTables-1.9.4/media/css/jquery.dataTables.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/css/workhelp.css")" rel="stylesheet" type="text/css" />
+    <link href="http://img.pccoo.cn/website/js/Validation-Engine/css/validationEngine.jquery.css" rel="stylesheet" />
+    <script type="text/javascript" src="@Url.Content("~/scripts/jquery-1.10.2.min.js")"></script>
+    @RenderSection("javascripts", required: false)
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    @RenderBody()
+    <script type="text/javascript" src="~/Content/Validation-Engine/js/languages/jquery.validationEngine-zh_CN.js"></script>
+    <script type="text/javascript" src="~/Content/Validation-Engine/js/jquery.validationEngine.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/DataTables-1.9.4/media/js/jquery.dataTables.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/managebase.js")"></script>
+    <script type="text/javascript" src="~/scripts/common.js"></script>
+    <script type="text/javascript" src="~/Content/lhgdialog/lhgdialog.js?skin=weixin"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

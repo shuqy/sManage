@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "用户列表";
+}
+@section styles{
+    <style>
+        .kg {
+            font-size: 43px;
+            vertical-align: middle;
+        }
+    </style>
+}
+<div class="smContent">
+    <div class="mianbaowarp margin-top20  clearfix">
+        @Html.Partial("_NavPartial")
+        <a id="nCreateRoleBtn" href="/user/edit" class="btn btn-primary"><i class="icon-plus icon-white"></i>新增用户</a>
+    </div>
+    <div id="serverList" class="row-fluid">
+        <table id="dataTable" class="grid">
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>账号</th>
+                    <th>邮箱</th>
+                    <th>手机</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot></tfoot>
+        </table>
+    </div>
+</div>
+@section scripts{
+    <script src="~/scripts/user/userlist.js"></script>
+}

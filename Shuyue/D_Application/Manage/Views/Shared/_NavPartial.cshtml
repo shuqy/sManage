@@ -1,0 +1,44 @@
+﻿@using Manage.Controllers.Common
+@{
+    string controller = ViewContext.RouteData.Values["controller"].ToString().ToLower();
+    string action = ViewContext.RouteData.Values["action"].ToString().ToLower();
+    MenuCommon _menuCommon = new MenuCommon();
+    var userMenu = _menuCommon.GetUserMenu();
+    var menu = _menuCommon.GetWapMenu(userMenu, controller, action);
+    var wapMenus = _menuCommon.GetNavMenuList(userMenu, controller, action);
+}
+<div>
+    <ol class="v-mid">
+        @if (wapMenus != null)
+        {
+            for (int i = 0; i < wapMenus.Count; i++)
+            {
+                if (i == 0)
+                {
+                    <li>
+                        <span>@wapMenus[i].Title</span>
+                    </li>
+                }
+                else
+                {
+                    if (menu.Id == wapMenus[i].Id)
+                    {
+                        <li>
+                            <em>@wapMenus[i].Title</em>
+                            @if (!string.IsNullOrEmpty(menu.STitle))
+                            {
+                                <b>（@menu.STitle）</b>
+                            }
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="@(menu.ParentId == wapMenus[i].Id ? "active" : "")">
+                            <a href="@(string.IsNullOrEmpty(wapMenus[i].ControllName) ? "#" : string.Format("/{0}/{1}", wapMenus[i].ControllName, wapMenus[i].ActionName))">@wapMenus[i].Title</a>
+                        </li>
+                    }
+                }
+            }
+        }
+    </ol>
+</div>

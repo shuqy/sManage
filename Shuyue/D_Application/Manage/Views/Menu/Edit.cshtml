@@ -1,0 +1,83 @@
+﻿@model ManageEF.sys_user_menu
+@{
+    ViewBag.Title = Model.Id > 0 ? "编辑菜单" : "添加菜单";
+}
+<div class="mianbaowarp  clearfix ">
+    @Html.Partial("_NavPartial")
+</div>
+@using (Html.BeginForm())
+{
+    <table class="table-form table">
+        <tr>
+            <td class="w-15">名称：<span></span></td>
+            <td class="w-85 ">
+                <input type="text" name="Title" value="@Model.Title" class="validate[required] inputxt w250" maxlength="30" />
+            </td>
+        </tr>
+        <tr>
+            <td class="w-15">排序：<span></span></td>
+            <td class="w-85 ">
+                <input type="text" name="SortValue" value="@Model.SortValue" class="inputxt w250" maxlength="30" />
+            </td>
+        </tr>
+        <tr>
+            <td class="w-15">Controller名称：<span></span></td>
+            <td class="w-85 ">
+                <input type="text" name="ControllName" value="@Model.ControllName" class="inputxt w250" maxlength="30" />
+            </td>
+        </tr>
+        <tr>
+            <td class="w-15">Action名称：<span></span></td>
+            <td class="w-85 ">
+                <input type="text" name="ActionName" value="@Model.ActionName" class="inputxt w250" maxlength="30" />
+            </td>
+        </tr>
+        <tr>
+            <td class="w-15">描述：<span></span></td>
+            <td class="w-85 ">
+                <textarea name="Description" style="width: 60%;">@Model.Description</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td class="w-15">是否有子菜单：<span></span></td>
+            <td class="w-85 ">
+                @Html.RadioButtonFor(m => m.IsPath, true)<label>是</label>
+                @Html.RadioButtonFor(m => m.IsPath, false)<label>否</label>
+            </td>
+        </tr>
+        <tr>
+            <td class="w-15">是否显示菜单：<span></span></td>
+            <td class="w-85 ">
+                @Html.RadioButtonFor(m => m.ShowInMenu, true)<label>是</label>
+                @Html.RadioButtonFor(m => m.ShowInMenu, false)<label>否</label>
+            </td>
+        </tr>
+        <tr>
+            <td class="w-15 "></td>
+            <td class="w-85 ">
+                @Html.HiddenFor(m => m.Id)
+                @Html.HiddenFor(m => m.ParentId)
+                <input type="hidden" name="State" value="true" />
+                <button name="smSave" class="btn active btn-submit smSave">保存关闭</button>
+            </td>
+        </tr>
+    </table>
+}
+@section scripts{
+    <script>
+        $(".mainwarp").on("click", ".smSave", function (e) {
+            e.preventDefault();
+            $(".mainwarp").smAjaxSubmit({
+                success: function (data) {
+                    if (data && data.Code == 0) {
+                        showTip("保存成功", 1, function () {
+                            location.href = "/menu/index";
+                        });
+                    } else {
+                        showTip("保存失败！", 0, 2);
+                    }
+                }
+            });
+        });
+    </script>
+}
