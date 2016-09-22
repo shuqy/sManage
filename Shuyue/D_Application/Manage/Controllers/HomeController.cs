@@ -38,6 +38,11 @@ namespace Manage.Controllers
             var user = userBll.CheckUser(model.UserCode, Encryptor.EncryptDES(model.PassCode));
             if (user != null)
             {
+                if (user.State == 0)
+                {
+                    ModelState.AddModelError("", "账号被禁用！");
+                    return View(model);
+                }
                 BaseUser baseUser = new BaseUser
                 {
                     Id = user.Id,

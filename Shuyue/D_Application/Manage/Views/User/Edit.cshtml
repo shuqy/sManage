@@ -36,7 +36,7 @@
             <tr>
                 <td class="w-15">密码：<span></span></td>
                 <td class="w-85 ">
-                    <input type="text" name="PassCode" value="@Model.PassCode" class="validate[required] inputxt w250" maxlength="30" />
+                    <input type="text" name="PassCode" value="@(Core.Util.Encryptor.DecryptDES(Model.PassCode))" class="validate[required] inputxt w250" maxlength="30" />
                 </td>
             </tr>
             <tr>

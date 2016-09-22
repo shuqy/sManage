@@ -68,7 +68,7 @@ namespace Manage.Controllers
                 nu.Mobile = user.Mobile;
                 nu.Email = user.Email;
                 nu.UserCode = user.UserCode;
-                nu.PassCode = user.PassCode;
+                nu.PassCode = Encryptor.EncryptDES(user.PassCode);
                 nu.State = user.State;
                 nu.UserName = user.UserName;
                 userBLL.Update(nu);
