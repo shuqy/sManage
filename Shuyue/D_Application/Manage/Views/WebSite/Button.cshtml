@@ -1,7 +1,176 @@
 ﻿
 @{
-    ViewBag.Title = "Button";
+    ViewBag.Title = "按钮";
 }
 
-<h2>Button</h2>
-
+<div class="smContent">
+    <div class="mianbaowarp margin-top20  clearfix">
+        @Html.Partial("_NavPartial")
+    </div>
+    <dl class="sm-dl">
+        <dt>按钮用法class(类)="btn"</dt>
+    </dl>
+    <!--普通按钮-->
+    <div class="sm-div">
+        <p class="tit">普通按钮</p>
+        <div class="warp">
+            <a class="btn" href="javasrcipt:;" id="tst1">普通按钮</a>
+            <input type="button" class="btn" value="普通按钮" />
+            <button class="btn">普通按钮</button>
+            <span class="btn">普通按钮</span>
+        </div>
+        <h4>代码：</h4>
+        <div class="html-pre">
+            <pre>  
+            &lt;a class=&quot;btn&quot; href=&quot;javasrcipt:;&quot;&gt;普通按钮&lt;/a&gt;
+            &lt;input type=&quot;button&quot; class=&quot;btn&quot; value=&quot;普通按钮&quot; /&gt;
+            &lt;button class=&quot;btn&quot;&gt;普通按钮&lt;/button&gt;
+            &lt;span class=&quot;btn&quot;&gt;普通按钮&lt;/span&gt;
+   </pre>
+        </div>
+    </div>
+    <!--普通按钮 end-->
+    <!--小号按钮-->
+    <div class="sm-div">
+        <p class="tit">小号按钮</p>
+        <div class="warp">
+            <a class="btn btn-sm" href="javasrcipt:;">小号按钮</a>
+            <input type="button" class="btn btn-sm" value="小号按钮" />
+            <button class="btn btn-sm">小号按钮</button>
+            <span class="btn btn-sm">小号按钮</span>
+        </div>
+        <h4>代码：</h4>
+        <div class="html-pre">
+            <pre>  
+        &lt;a class=&quot;btn btn-sm&quot; href=&quot;javasrcipt:;&quot;&gt;小号按钮&lt;/a&gt;   
+        &lt;input type=&quot;button&quot; class=&quot;btn btn-sm&quot; value=&quot;小号按钮&quot; /&gt;
+        &lt;button class=&quot;btn btn-sm&quot;&gt;小号按钮&lt;/button&gt;
+        &lt;span class=&quot;btn btn-sm&quot;&gt;小号按钮&lt;/span&gt;
+            </pre>
+        </div>
+    </div>
+    <!--普通按钮 end-->
+    <!--小小号按钮-->
+    <div class="sm-div">
+        <p class="tit">小小号按钮</p>
+        <div class="warp">
+            <a class="btn btn-ssm" href="javasrcipt:;">小号按钮</a>
+            <input type="button" class="btn btn-ssm" value="小号按钮" />
+            <button class="btn btn-ssm">小号按钮</button>
+            <span class="btn btn-ssm">小号按钮</span>
+        </div>
+        <h4>代码：</h4>
+        <div class="html-pre">
+            <pre>  
+        &lt;a class=&quot;btn btn-ssm&quot; href=&quot;javasrcipt:;&quot;&gt;小号按钮&lt;/a&gt;   
+        &lt;input type=&quot;button&quot; class=&quot;btn btn-ssm&quot; value=&quot;小号按钮&quot; /&gt;
+        &lt;button class=&quot;btn btn-ssm&quot;&gt;小号按钮&lt;/button&gt;
+        &lt;span class=&quot;btn btn-ssm&quot;&gt;小号按钮&lt;/span&gt;
+            </pre>
+        </div>
+    </div>
+    <!--普通按钮 end-->
+    <!--选中按钮-->
+    <div class="sm-div">
+        <p class="tit">选中状态，强调</p>
+        <div class="warp">
+            <a class="btn active" href="javasrcipt:;">选中按钮</a>
+            <input type="button" class="btn active" value="选中按钮" />
+            <button class="btn active">选中按钮</button>
+            <span class="btn active">选中按钮</span>
+        </div>
+        <h4>代码：</h4>
+        <div class="html-pre">
+            <pre>&lt;a class=&quot;btn active&quot; href=&quot;javasrcipt:;&quot;&gt;选中按钮&lt;/a&gt;</pre>
+        </div>
+    </div>
+    <!--选中按钮 end-->
+    <!--图标按钮-->
+    <div class="sm-div">
+        <p class="tit">图标按钮 图标样式参照图标页面 <a href="字体图标.html"><i class="iconf icon-x-lianjie-02"></i></a></p>
+        <div class="warp">
+            <a class="btn" href="javasrcipt:;"><i class="iconf icon-s-tupian"></i> 图片按钮</a>
+            <button class="btn "><i class="iconf icon-s-tupian"></i> 图片按钮</button>
+            <span class="btn "><i class="iconf icon-s-tupian"></i> 图片按钮</span>
+        </div>
+        <h4>代码：</h4>
+        <div class="html-pre">
+            <pre>
+                &lt;a class=&quot;btn&quot; href=&quot;javasrcipt:;&quot;&gt;&lt;i class=&quot;iconf icon-s-tupian&quot;&gt;&lt;/i&gt; 图片按钮&lt;/a&gt;
+                &lt;button class=&quot;btn&quot;&gt;&lt;i class=&quot;iconf icon-s-tupian&quot;&gt;&lt;/i&gt; 图片按钮&lt;/button&gt;
+                &lt;span class=&quot;btn&quot;&gt;&lt;i class=&quot;iconf icon-s-tupian&quot;&gt;&lt;/i&gt; 图片按钮&lt;/span&gt;
+                </pre>
+        </div>
+    </div>
+    <!--图标按钮 end-->
+    <!--固定宽度按钮-->
+    <div class="sm-div">
+        <p class="tit">固定宽度按钮</p>
+        <div class="warp">
+            <a class="btn btnw w100" href="javasrcipt:;">固定宽度按钮</a>
+            <input type="button" class="btn btnw w100" value="固定宽度按钮" />
+            <button class="btn btnw w100">固定宽度按钮</button>
+            <span class="btn btnw w100">固定宽度按钮</span>
+        </div>
+        <h4>代码：</h4>
+        <div class="html-pre">
+            <pre>
+                &lt;a class=&quot;btn btnw w100&quot; href=&quot;javasrcipt:;&quot;&gt;固定宽度按钮&lt;/a&gt;
+                &lt;input type=&quot;button&quot; class=&quot;btn btnw w100&quot; value=&quot;固定宽度按钮&quot; /&gt;
+                &lt;button class=&quot;btn btnw w100&quot;&gt;固定宽度按钮&lt;/button&gt;
+                &lt;span class=&quot;btn btnw w100&quot;&gt;固定宽度按钮&lt;/span&gt;
+            </pre>
+        </div>
+    </div>
+    <!--固定宽度按钮 end-->
+    <!--不可用按钮-->
+    <div class="sm-div">
+        <p class="tit">不可用按钮</p>
+        <div class="warp">
+            <a class="btn disable" href="javasrcipt:;">不可用按钮</a>
+            <input type="button" class="btn disable" value="不可用按钮" />
+            <button class="btn disable">不可用按钮</button>
+            <span class="btn disable">不可用按钮</span>
+        </div>
+        <h4>代码：</h4>
+        <div class="html-pre">
+            <pre>
+        &lt;a class=&quot;btn disable&quot; href=&quot;javasrcipt:;&quot;&gt;不可用按钮&lt;/a&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn&quot; value=&quot;不可用按钮&quot; /&gt;
+        &lt;button class=&quot;btn disable&quot;&gt;不可用按钮&lt;/button&gt;
+        &lt;span class=&quot;btn disable&quot;&gt;不可用按钮&lt;/span&gt;
+            </pre>
+        </div>
+    </div>
+    <!--不可用按钮 end-->
+    <!--下拉按钮-->
+    <div class="sm-div">
+        <p class="tit">下拉按钮</p>
+        <div class="warp">
+            <div class="select-btn">
+                <a href="javascript:;" class="btn selectbtn margin0"><i class="iconf icon-x-shezhi"></i>设置&nbsp;&nbsp;<i class="iconf icon-s-triangle"></i></a>
+                <ul class="selectbtn-ul">
+                    <li class="selectbtn-li" data-value="0">设为已抽中</li>
+                    <li class="selectbtn-li" data-value="1">设为已兑奖</li>
+                </ul>
+            </div>
+        </div>
+        <h4>代码：</h4>
+        <div class="html-pre">
+            <pre>
+                &lt;div class=&quot;select-btn&quot;&gt;
+                    &lt;a href=&quot;javascript:;&quot; class=&quot;btn selectbtn margin0&quot;&gt;&lt;i class=&quot;iconf icon-x-shezhi&quot;&gt;&lt;/i&gt;设置&amp;nbsp;&amp;nbsp;&lt;i class=&quot;iconf icon-s-triangle&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+                    &lt;ul class=&quot;selectbtn-ul&quot;&gt;
+                        &lt;li class=&quot;selectbtn-li&quot; data-value=&quot;0&quot;&gt;设为已抽中&lt;/li&gt;
+                        &lt;li class=&quot;selectbtn-li&quot; data-value=&quot;1&quot;&gt;设为已兑奖&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            </pre>
+        </div>
+        <!--<script type="text/javascript">
+            SelectBtn();
+        </script>-->
+    </div>
+    <!--下拉按钮 end-->
+</div>
+<a class="btn sm-ding" href="#" title="返回顶部"><i class="iconf icon-x-zhiding"></i></a>

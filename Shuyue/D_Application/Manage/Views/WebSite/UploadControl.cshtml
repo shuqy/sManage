@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "上传控件";
+}
+
+<div class="smContent">
+    <div class="mianbaowarp margin-top20  clearfix">
+        @Html.Partial("_NavPartial")
+    </div>
+
+    <span class="warp-img120">
+        <img src="upload/111.jpg" id="titimg" />
+    </span>
+    <div class="warp-pro">
+        <span id="SWFUpload_1"></span><span id="progressStatus_1"></span>
+    </div>
+    <span class="span-left10">使用4:3比例避免被裁剪</span>
+    <input type="hidden" name="titval" id="titval" />
+    <script type="text/javascript" src="/Content/swfupload/swfupload.js"></script>
+    <script type="text/javascript" src="/Content/swfupload/upimg_more.js"></script>
+    <script type="text/javascript">
+        var upload1;
+        upload1 = new SWFUpload({
+            upload_url: "",//http://up1.pccoo.cn/upload.ashx?filesrc=weixin&sw=720&sh=400&mode=s&quot
+            upload_error_handler: fileQueueError,
+            upload_success_handler: uploadSuccess,
+            upload_complete_handler: uploadComplete,
+            custom_settings: { progressWrapper: "progressWrapper_1", progressBar: "progressBar_1", progressStatus: "progressStatus_1", imgId: "titimg", inputId: "titval" },
+            button_placeholder_id: "SWFUpload_1"
+        });
+    </script>
+    <h5>代码</h5>
+    <div class="html-pre">
+        <pre>
+&lt;span class=&quot;warp-img120&quot;&gt;
+    &lt;img src=&quot;upload/111.jpg&quot; id=&quot;titimg&quot; /&gt;
+&lt;/span&gt;
+&lt;div class=&quot;warp-pro&quot;&gt;
+     &gt;&lt;span id=&quot;SWFUpload_1&quot;&gt;&lt;/span&gt;&lt;span id=&quot;progressStatus_1&quot;&gt;&lt;/span
+&lt;/div&gt;
+&lt;span class=&quot;span-left10&quot;&gt;使用4:3比例避免被裁剪&lt;/span&gt;
+&lt;input type=&quot;hidden&quot; name=&quot;titval&quot; id=&quot;titval&quot; /&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;js/swfupload/swfupload.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;js/swfupload/upimg_more.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var upload1;
+    upload1 = new SWFUpload({
+        upload_url: &quot;http://up1.pccoo.cn/upload.ashx?filesrc=weixin&amp;sw=720&amp;sh=400&amp;mode=s&quot;,
+        custom_settings: { progressWrapper: &quot;progressWrapper_1&quot;, progressBar: &quot;progressBar_1&quot;, progressStatus: &quot;progressStatus_1&quot;, imgId: &quot;titimg&quot;, inputId: &quot;titval&quot; },
+        button_placeholder_id: &quot;SWFUpload_1&quot;
+    });
+&lt;/script&gt;</pre>
+    </div>
+    <dl class="f754">
+        <dt><strong> 注意事项：</strong></dt>
+        <dd>上传路径根据需求 改地址<strong>“http://up1.pccoo.cn/upload.ashx?”</strong>上传图片大小sw=720&sh=400  <strong>{sw：宽  ,sh： 高}</strong></dd>
+        <dd>custom_settings  绑定控件<strong>{参数1：warp-pro包裹层，参数2：warp-pro进度条，参数3：warp-pro下的第二个span的id，参数4：图片id，参数5：:隐藏控件id}</strong></dd>
+        <dd>button_placeholder_id 上传按钮id</dd>
+    </dl>
+
+</div>

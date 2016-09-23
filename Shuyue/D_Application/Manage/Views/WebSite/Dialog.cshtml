@@ -1,0 +1,313 @@
+﻿
+@{
+    ViewBag.Title = "提示框";
+}
+
+<div class="smContent">
+    <div class="mianbaowarp margin-top20  clearfix">
+        @Html.Partial("_NavPartial")
+    </div>
+
+    <h3 id="h3-1">提示（几秒后消失）</h3>
+
+    <dl class="sm-dl">
+        <dt>
+            提示函数4个参数showTip() 1、提示文字（text） 2、提示图标（icon） 3、显示时间（timer） 4、回调函数（callback）
+        </dt>
+        <dd>1、2、3三个参数必填</dd>
+        <dd>
+            提示图标（icon）可选参数
+            0、
+            <img src="/images/fail.png" />
+            1、
+            <img src="/images/succ.png" />
+            2、
+            <img src="/images/hits.png" />
+            3、
+            <img src="/images/confirm.gif" />
+        </dd>
+        <dd>显示时间（timer）以秒（s）为计量单位 （建议别超过3）</dd>
+        <dd>回调函数（callback）可不填</dd>
+    </dl>
+    <!--提示图标1-->
+    <div class="sm-div">
+        <a href="javascript:showTip('按钮提示', 3, 0.8);" class="btn btn-sm">按钮提示</a>
+        <h4>代码：</h4>
+        <div class="html-pre">
+            <pre>
+            &lt;a href=&quot;javascript:showTip(&#39;按钮提示&#39;, 3, 0.8);&quot; class=&quot;btn btn-sm&quot;&gt;按钮提示&lt;/a&gt;
+            &lt;img src=&quot;/images/1.png&quot; /&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;js/jquery-1.11.3.min.js&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;js/lhgdialog/lhgdialog.js?skin=weixin&quot;&gt;&lt;/script&gt;
+                </pre>
+        </div>
+    </div>
+    <!--提示图标1 end-->
+
+    <h3 id="h3-2">对话框</h3>
+
+    <dl class="sm-dl">
+        <dt>
+            提示函数$.dialog.confirm 1、对话框文字（text） 2、确定执行的function 3、取消执行的function
+        </dt>
+    </dl>
+
+    <!--对话框-->
+    <div class="sm-div">
+        <a href="javascript:;" class="btn btn-sm" id="tbtn1">按钮提示</a>
+        <script type="text/javascript">
+            $('#tbtn1').click(function () {
+                $.dialog.confirm('你确定要删除这个消息吗？', function () {
+                    showTip('执行确定操作', 1, 0.8);
+                }, function () {
+                    showTip('执行取消操作', 0, 0.8);
+                });
+            })
+
+        </script>
+        <h4>代码：</h4>
+        <div class="html-pre">
+            <pre>
+           &lt;a href=&quot;javascript:;&quot; class=&quot;btn btn-sm&quot; id=&quot;tbtn1&quot;&gt;按钮提示&lt;/a&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/jquery-1.11.3.min.js&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/lhgdialog/lhgdialog.js?skin=weixin&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot;&gt;
+                $(&#39;#tbtn1&#39;).click(function () {
+                    $.dialog.confirm(&#39;你确定要删除这个消息吗？&#39;, function () {
+                        showTip(&#39;执行确定操作&#39;, 1, 0.8);
+                    }, function () {
+                        showTip(&#39;执行取消操作&#39;, 0, 0.8);
+                    });
+                })
+            &lt;/script&gt;
+                </pre>
+        </div>
+        <!--对话框 end-->
+    </div>
+    <!--对话框 end-->
+
+    <h3 id="h3-3">[dialog]加载提示</h3>
+    <dl class="sm-dl">
+        <dt>
+            提示函数$.dialog.tips 1、对话框文字（text） 2、正确执行的function 3、错误执行的function
+        </dt>
+        <dd>
+            /* 下面的只是演示代码，实际应用中一般这样写：
+            <br />
+            $.dialog.tips('数据加载中...',600,'loading.gif');
+            <br />
+            [这里是你要执行的代码]
+            <br />
+            $.dialog.tips('数据加载完毕',1,'success.gif',function(){ 这里写完成后执行的其它代码 });
+        </dd>
+    </dl>
+    <!--加载窗口-->
+    <div class="sm-div">
+
+        <a href="javascript:;" class="btn btn-sm" id="tbtn2">按钮提示</a>
+
+        <script type="text/javascript">
+            $('#tbtn2').click(function () {
+                $.dialog.tips('数据加载中...', 600, 'loading.gif');
+                setTimeout(function () {
+                    $.dialog.tips('数据加载完毕', 1, 'tips.gif', function () { showTip('数据加载完成！', 1, 1) });
+                }, 5000);
+            })
+        </script>
+        <h4>代码：</h4>
+        <div class="html-pre">
+            <pre>
+            &lt;a href=&quot;javascript:;&quot; class=&quot;btn btn-sm&quot; id=&quot;tbtn2&quot;&gt;按钮提示&lt;/a&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/jquery-1.11.3.min.js&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/lhgdialog/lhgdialog.js?skin=weixin&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot;&gt;
+                $(&#39;#tbtn2&#39;).click(function () {
+                    $.dialog.tips(&#39;数据加载中...&#39;, 600, &#39;loading.gif&#39;);
+                    setTimeout(function () {
+                        $.dialog.tips(&#39;数据加载完毕&#39;, 1, &#39;tips.gif&#39;, function () { showTip(&#39;数据加载完成！&#39;, 1, 1) });
+                    }, 5000);          
+                })
+            &lt;/script&gt;
+                </pre>
+        </div>
+    </div>
+    <!--加载 end-->
+
+    <h3 id="h3-4">[dialog]窗口</h3>
+    <dl class="sm-dl">
+        <dt>参数1、width 窗口宽度 2、height 窗口高度 3、lock 是否锁屏 4、content 窗口内容</dt>
+    </dl>
+
+    <div class="sm-div">
+
+        <a href="javascript:;" class="btn btn-sm" id="tbtn3">对话窗口</a>
+
+        <script type="text/javascript">
+            $('#tbtn3').click(function () {
+                $.dialog({
+                    width: '700px',
+                    height: '500px',
+                    lock: true,
+                    content: '提示框',
+                });
+            })
+        </script>
+        <h4>代码：</h4>
+        <div class="html-pre">
+            <pre>
+           &lt;a href=&quot;javascript:;&quot; class=&quot;btn btn-sm&quot; id=&quot;tbtn3&quot;&gt;对话窗口&lt;/a&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/jquery-1.11.3.min.js&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/lhgdialog/lhgdialog.js?skin=weixin&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot;&gt;
+                $(&#39;#tbtn3&#39;).click(function () {
+                    $.dialog({
+                        width: &#39;700px&#39;,
+                        height: &#39;500px&#39;,
+                        lock: true,
+                        content: &#39;对话窗口&#39;
+                    });
+                })
+            &lt;/script&gt;
+                </pre>
+        </div>
+    </div>
+    <h3 id="h3-5">[dialog]外链窗口</h3>
+    <div class="sm-div">
+
+        <a href="javascript:;" class="btn btn-sm" id="tbtn4">对话窗口</a>
+        <script type="text/javascript">
+            $('#tbtn4').click(function () {
+                $.dialog({
+                    width: '400px',
+                    height: '300px',
+                    cancelVal: '关闭',
+                    cancel: true,
+                    lock: true,
+                    content: 'url:http://www.baidu.com'
+                });
+            })
+        </script>
+        <h4>代码：</h4>
+        <div class="html-pre">
+            <pre>
+          &lt;a href=&quot;javascript:;&quot; class=&quot;btn btn-sm&quot; id=&quot;tbtn4&quot;&gt;对话窗口&lt;/a&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/jquery-1.11.3.min.js&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/lhgdialog/lhgdialog.js?skin=weixin&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot;&gt;
+                $(&#39;#tbtn4&#39;).click(function () {
+                    $.dialog({
+                        width: &#39;400px&#39;,
+                        height: &#39;300px&#39;,
+                        cancelVal: &#39;关闭&#39;,
+                        cancel: true,   
+                        lock: true,
+                        content: &#39;url:http://www.baidu.com&#39;
+                    });
+                })
+            &lt;/script&gt;
+                </pre>
+        </div>
+    </div>
+    <h3 id="h3-6">Tip提示</h3>
+    <dl class="sm-dl">
+        <dt>新提示函数$.moduleTip （由于插件弹窗和提示都是一个函数同时出现会有Bug）</dt>
+        <dd>用于弹窗和提示同时出现</dd>
+        <dd>提示文字（text） 提示图标（icon） 显示时间（timer） 回调函数（callback）</dd>
+        <dd>
+            提示图标（icon）可选参数
+            0、
+            <img src="/images/fail.png" />
+            1、
+            <img src="/images/succ.png" />
+            2、
+            <img src="/images/hits.png" />
+            3、
+            <img src="/images/confirm.gif" />
+        </dd>
+        <dd>显示时间（timer）以秒（ms）为计量单位 （示例2000）</dd>
+        <dd>回调函数（callback)</dd>
+    </dl>
+    <div class="sm-div">
+        <a href="javascript:;" class="btn btn-sm" id="tbtn6">对话窗口</a>
+        <script type="text/javascript">
+            $('#tbtn6').click(function () {
+                $.moduleTip({
+                    'text': '不着去',
+                    'timer': '3000',
+                    'icon': '0',
+                    'callback': function () {
+                        console.log(1);
+                    }
+                });
+            })
+        </script>
+        <h4>代码：</h4>
+        <div class="html-pre">
+            <pre>
+          &lt;a href=&quot;javascript:;&quot; class=&quot;btn btn-sm&quot; id=&quot;tbtn6&quot;&gt;对话窗口&lt;/a&gt;
+        &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/jquery-1.11.3.min.js&quot;&gt;&lt;/script&gt;
+        &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/common.js&quot;&gt;&lt;/script&gt;
+        &lt;script type=&quot;text/javascript&quot;&gt;
+                $('#tbtn6').click(function () {
+                    $.moduleTip({
+                            'text':'不着去',
+                            'timer':'3000',
+                            'icon':'0',
+                            'callback':function(){
+                                console.log(1);
+                            }
+                    });
+                })
+            &lt;/script&gt;
+                </pre>
+        </div>
+    </div>
+
+    <h3 id="h3-7">Confirm对话框</h3>
+    <div class="sm-div">
+        <a href="javascript:;" class="btn btn-sm" id="tbtn7">对话窗口</a>
+        <dl class="sm-dl">
+            <dt>新对话函数$.moduleConfirm （由于插件弹窗对话框，在一些场景不适用。统一用新的对话框）</dt>
+            <dd>
+                提示标题（title） 提示文字（content） oktxt（确认文字） exitxt（退出文字） callback（回调函数）
+            </dd>
+            <dd>以上参数都是可选项</dd>
+            <dd>oktxt 如果不填就是【确认】</dd>
+            <dd>exitxt 如果不填就是【取消】</dd>
+            <dd>点击【确认】callback的回调函数</dd>
+        </dl>
+    </div>
+    <script type="text/javascript">
+        $('#tbtn7').click(function () {
+            $.moduleConfirm(
+                {
+                    'title': '确定要删除图片吗？',
+                    'content': '删除图片可能导致你在没有网络的时候不能查看图片哦！你确定要这样吗？',
+                    'oktxt': '确认',
+                    'exitxt': '取消',
+                    'callback': function () {
+                        showTip('按钮提示', 1, 2);
+                    }
+                });
+        })
+    </script>
+    <div class="html-pre">
+        <pre>
+                &lt;a href=&quot;javascript:;&quot; class=&quot;btn btn-sm&quot; id=&quot;tbtn7&quot;&gt;对话窗口&lt;/a&gt;
+                &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/jquery-1.11.3.min.js&quot;&gt;&lt;/script&gt;
+                &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/common.js&quot;&gt;&lt;/script&gt;
+                &lt;script type=&quot;text/javascript&quot;&gt;
+                $('#tbtn7').click(function(){
+                    $.moduleConfirm(
+                        {'title':'确定要删除图片吗？',
+                                 'content':'删除图片可能导致你在没有网络的时候不能查看图片哦！你确定要这样吗？',
+                                 'oktxt':'确认',
+                                 'exitxt':'取消',
+                                 'callback':function(){
+                                    showTip('按钮提示', 1, 2);
+                                 }
+                        });
+                 &lt;/script&gt;
+            </pre>
+    </div>
+</div>

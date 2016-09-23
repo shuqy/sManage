@@ -1,0 +1,370 @@
+﻿
+@{
+    ViewBag.Title = "时间控件";
+}
+
+<div class="smContent">
+    <div class="mianbaowarp margin-top20  clearfix">
+        @Html.Partial("_NavPartial")
+    </div>    <!--联动日历-->
+    <div>
+        <h4>联动日历</h4>
+        @*<link href="/css/common.css" rel="stylesheet" />
+        <link href="/css/font/iconfont.css" rel="stylesheet" />*@
+        <link href="/Content/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" />
+        <div class="date">
+            <span>
+                <i class="iconf icon-x-riqi active"></i>
+            </span>
+            <input type="text" class="w175" readonly id="date1" value="" />
+        </div>
+        @*<script type="text/javascript" src="/scripts/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="/scripts/common.js"></script>*@
+        <script type="text/javascript" src="/Content/daterangepicker/moment.js"></script>
+        <script type="text/javascript" src="/Content/daterangepicker/daterangepicker.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#date1').val(todayStr + ' / ' + todayStr);
+                $('#date1').daterangepicker(null,
+                function () {
+                    console.log($('#date1').val());
+                });
+            })
+        </script>
+        <h5>代码</h5>
+        <div class="html-pre">
+            <pre>
+            &lt;link href=&quot;http://img.pccoo.cn/website/css/common.css&quot; rel=&quot;stylesheet&quot; /&gt;
+            &lt;link href=&quot;http://img.pccoo.cn/website/font/iconfont.css&quot; rel=&quot;stylesheet&quot; /&gt;
+            &lt;link href=&quot;http://img.pccoo.cn/website/js/daterangepicker/daterangepicker-bs3.css&quot; rel=&quot;stylesheet&quot; /&gt;
+            &lt;div class=&quot;date&quot;&gt;
+                &lt;span&gt;
+                    &lt;i class=&quot;iconf icon-x-riqi active&quot;&gt;&lt;/i&gt;
+                &lt;/span&gt;
+                &lt;input type=&quot;text&quot; class=&quot;w175&quot; readonly id=&quot;date1&quot; value=&quot;&quot; /&gt;
+            &lt;/div&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/jquery-1.11.3.min.js&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/common.js&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/daterangepicker/moment.js&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/daterangepicker/daterangepicker.js&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot;&gt;
+                $(document).ready(function () {
+                    $(&#39;#date1&#39;).val(todayStr + &#39; / &#39; + todayStr);
+                    $(&#39;#date1&#39;).daterangepicker(null,
+                    function () {
+                        console.log($(&#39;#date1&#39;).val());
+                    });
+                })
+            &lt;/script&gt;
+            </pre>
+        </div>
+    </div>
+    <!--联动日历 end-->
+    <!--联动日历带分钟-->
+    <div>
+        <h4>联动日历带分钟</h4>
+        <div class="date">
+            <span>
+                <i class="iconf icon-x-riqi"></i>
+            </span>
+            <input type="text" class="w250" readonly id="1date5" value="2015-10-08 16:45 / 2015-10-12 16:45" />
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#1date5').daterangepicker({
+                    timePicker: true,
+                    timePickerIncrement: 1,
+                    format: 'YYYY-MM-DD HH:mm'
+                },
+                function () {
+                    console.log($('#1date5').val());
+                });
+            })
+        </script>
+        <h5>代码</h5>
+        <div class="html-pre">
+            <pre>
+            &lt;link href=&quot;http://img.pccoo.cn/website/css/common.css&quot; rel=&quot;stylesheet&quot; /&gt;
+            &lt;link href=&quot;http://img.pccoo.cn/website/font/iconfont.css&quot; rel=&quot;stylesheet&quot; /&gt;
+            &lt;link href=&quot;http://img.pccoo.cn/website/js/daterangepicker/daterangepicker-bs3.css&quot; rel=&quot;stylesheet&quot; /&gt;
+            &lt;div class=&quot;date&quot;&gt;
+                &lt;span&gt;
+                    &lt;i class=&quot;iconf icon-x-riqi&quot;&gt;&lt;/i&gt;
+                &lt;/span&gt;
+                &lt;input type=&quot;text&quot; class=&quot;w250&quot; readonly id=&quot;1date5&quot; value=&quot;2015-10-08 16:45 / 2015-10-12 16:45&quot;
+            &lt;/div&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/jquery-1.11.3.min.js&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/common.js&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/daterangepicker/moment.js&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/daterangepicker/daterangepicker.js&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot;&gt;
+                $(document).ready(function () {      
+                    $(&#39;#1date5&#39;).daterangepicker({
+                        timePicker: true,
+                        timePickerIncrement: 1,
+                        format: &#39;YYYY-MM-DD HH:mm&#39;
+                    },
+                    function () {
+                        console.log($(&#39;#1date5&#39;).val());
+                    });
+                })
+            &lt;/script&gt;
+            </pre>
+        </div>
+    </div>
+    <!--联动日历带分钟 end-->
+    <!--单个日历-->
+    <div>
+        <h4>单个日历</h4>
+        <div class="date">
+            <span>
+                <i class="iconf icon-x-riqi active"></i>
+            </span>
+            <input type="text" class="w80" readonly id="date2" value="2016-03-16" />
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#date2').daterangepicker({ startDate: moment().startOf('day'), singleDatePicker: true },
+                function () {
+                    console.log($('#date2').val());
+                });
+            })
+        </script>
+        <h5>代码：</h5>
+        <div class="html-pre">
+            <pre>
+           &lt;link href=&quot;http://img.pccoo.cn/website/css/common.css&quot; rel=&quot;stylesheet&quot; /&gt;
+            &lt;link href=&quot;http://img.pccoo.cn/website/font/iconfont.css&quot; rel=&quot;stylesheet&quot; /&gt;
+            &lt;link href=&quot;http://img.pccoo.cn/website/js/daterangepicker/daterangepicker-bs3.css&quot; rel=&quot;stylesheet&quot; /&gt;
+            &lt;div class=&quot;date&quot;&gt;
+                &lt;span&gt;
+                    &lt;i class=&quot;iconf icon-x-riqi active&quot;&gt;&lt;/i&gt;
+                &lt;/span&gt;
+                &lt;input type=&quot;text&quot; class=&quot;w80&quot; readonly id=&quot;date2&quot; value=&quot;&quot; /&gt;
+            &lt;/div&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/jquery-1.11.3.min.js&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/common.js&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/daterangepicker/moment.js&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/daterangepicker/daterangepicker.js&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot;&gt;
+                $(document).ready(function () {
+                    $(&#39;#date2&#39;).daterangepicker({ startDate:moment().startOf('day'),singleDatePicker: true},
+                    function () {
+                        console.log($(&#39;#date2&#39;).val());
+                    });
+                })
+            &lt;/script&gt;
+                </pre>
+        </div>
+    </div>
+    <!--单个日历 end-->
+
+    <div>
+        <h4>单个日历(默认不显示日期)</h4>
+        <div class="date">
+            <span>
+                <i class="iconf icon-x-riqi active"></i>
+            </span>
+            <input type="text" class="w80" readonly id="date22" value="" />
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#date22').daterangepicker({ startDate: moment().startOf('day'), singleDatePicker: true },
+                        function () {
+                            console.log($('#date22').val());
+                        });
+            })
+        </script>
+        <h5>代码：</h5>
+        <div class="html-pre">
+            <pre>
+           &lt;link href=&quot;http://img.pccoo.cn/website/css/common.css&quot; rel=&quot;stylesheet&quot; /&gt;
+            &lt;link href=&quot;http://img.pccoo.cn/website/font/iconfont.css&quot; rel=&quot;stylesheet&quot; /&gt;
+            &lt;link href=&quot;http://img.pccoo.cn/website/js/daterangepicker/daterangepicker-bs3.css&quot; rel=&quot;stylesheet&quot; /&gt;
+            &lt;div class=&quot;date&quot;&gt;
+                &lt;span&gt;
+                    &lt;i class=&quot;iconf icon-x-riqi active&quot;&gt;&lt;/i&gt;
+                &lt;/span&gt;
+                &lt;input type=&quot;text&quot; class=&quot;w80&quot; readonly id=&quot;date2&quot; value=&quot;&quot; /&gt;
+            &lt;/div&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/jquery-1.11.3.min.js&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/common.js&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/daterangepicker/moment.js&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/daterangepicker/daterangepicker.js&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot;&gt;
+                $(document).ready(function () {
+                    $(&#39;#date2&#39;).daterangepicker({ startDate:moment().startOf('day'),singleDatePicker: true},
+                    function () {
+                        console.log($(&#39;#date2&#39;).val());
+                    });
+                })
+            &lt;/script&gt;
+                </pre>
+        </div>
+    </div>
+    <!--单个日历 end-->
+    <!--单个日历带分钟-->
+    <div>
+        <h4>单个日历带分钟</h4>
+        <div class="date">
+            <span>
+                <i class="iconf icon-x-riqi"></i>
+            </span>
+            <input type="text" class="w120" readonly id="date3" value="2016-03-16 00:00" />
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#date3').daterangepicker({
+                    startDate: moment().startOf('day'),
+                    singleDatePicker: true,
+                    timePickerIncrement: 1,
+                    format: 'YYYY-MM-DD HH:mm',
+                    timePicker: true
+                },
+                function () {
+                    console.log($('#date3').val());
+                });
+            })
+        </script>
+        <h5>代码：</h5>
+        <div class="html-pre">
+            <pre>
+            &lt;link href=&quot;http://img.pccoo.cn/website/css/common.css&quot; rel=&quot;stylesheet&quot; /&gt;
+            &lt;link href=&quot;http://img.pccoo.cn/website/font/iconfont.css&quot; rel=&quot;stylesheet&quot; /&gt;
+            &lt;link href=&quot;http://img.pccoo.cn/website/js/daterangepicker/daterangepicker-bs3.css&quot; rel=&quot;stylesheet&quot; /&gt;
+            &lt;div class=&quot;date&quot;&gt;
+                &lt;span&gt;
+                    &lt;i class=&quot;iconf icon-x-riqi&quot;&gt;&lt;/i&gt;
+                &lt;/span&gt;
+                &lt;input type=&quot;text&quot; class=&quot;w120&quot; readonly id=&quot;date3&quot; value=&quot;&quot; /&gt;
+            &lt;/div&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/jquery-1.11.3.min.js&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/common.js&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/daterangepicker/moment.js&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/daterangepicker/daterangepicker.js&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot;&gt;
+                $(document).ready(function () {
+                    $(&#39;#date3&#39;).daterangepicker({
+                        startDate:moment().startOf('day'),
+                        singleDatePicker: true,
+                        timePickerIncrement: 1,
+                        format: &#39;YYYY-MM-DD HH:mm&#39;,
+                        timePicker: true
+                    },
+                    function () {
+                        console.log($(&#39;#date3&#39;).val());
+                    });
+                })
+            &lt;/script&gt;
+                </pre>
+        </div>
+    </div>
+    <!--单个日历带分钟 end-->
+    <!--起始日历-->
+    <div>
+        <h4>起始日历</h4>
+        <div class="date">
+            开始时间：
+            <span>
+                <i class="iconf icon-x-riqi active"></i>
+            </span>
+            <input type="text" class="w120" readonly id="date4" value="" />
+        </div>
+
+        <div class="date">
+            结束时间：
+            <span>
+                <i class="iconf icon-x-riqi active"></i>
+            </span><input type="text" class="w120 " readonly id="date5" value="" />
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#date4').val(todayLongStr);
+                $('#date4').daterangepicker({
+                    timePickerIncrement: 1,
+                    minDate: todayLongStr,
+                    timePicker: true,
+                    singleDatePicker: true,
+                    format: 'YYYY-MM-DD HH:mm',
+                },
+            function () {
+                startTimer = $('#date4').val();
+                $('#date5').val($('#date4').val());
+                $('#date5').daterangepicker({
+                    minDate: $('#date4').val(),
+                    singleDatePicker: true,
+                    timePickerIncrement: 1,
+                    timePicker: true,
+                    format: 'YYYY-MM-DD HH:mm'
+                })
+            });
+                $('#date5').val(todayLongStr);
+                $('#date5').daterangepicker({
+                    minDate: $('#date4').val(),
+                    singleDatePicker: true,
+                    timePickerIncrement: 1,
+                    timePicker: true,
+                    format: 'YYYY-MM-DD HH:mm'
+                })
+            })
+        </script>
+        <h5>代码：</h5>
+        <div class="html-pre">
+            <pre>
+            &lt;link href=&quot;http://img.pccoo.cn/website/css/common.css&quot; rel=&quot;stylesheet&quot; /&gt;
+            &lt;link href=&quot;http://img.pccoo.cn/website/font/iconfont.css&quot; rel=&quot;stylesheet&quot; /&gt;
+            &lt;link href=&quot;http://img.pccoo.cn/website/js/daterangepicker/daterangepicker-bs3.css&quot; rel=&quot;stylesheet&quot; /&gt;
+            &lt;div class=&quot;date&quot;&gt;
+                开始时间：
+                &lt;span&gt;
+                    &lt;i class=&quot;iconf icon-x-riqi active&quot;&gt;&lt;/i&gt;
+                &lt;/span&gt;
+                &lt;input type=&quot;text&quot; class=&quot;w120&quot; readonly id=&quot;date4&quot; value=&quot;&quot; /&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;date&quot;&gt;
+                结束时间：
+                &lt;span&gt;
+                    &lt;i class=&quot;iconf icon-x-riqi active&quot;&gt;&lt;/i&gt;
+                &lt;/span&gt;&lt;input type=&quot;text&quot; class=&quot;w120 &quot; readonly id=&quot;date5&quot; value=&quot;&quot; /&gt;
+            &lt;/div&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/jquery-1.11.3.min.js&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/common.js&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/daterangepicker/moment.js&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/daterangepicker/daterangepicker.js&quot;&gt;&lt;/script&gt;
+            &lt;script type=&quot;text/javascript&quot;&gt;
+                $(document).ready(function () {
+                    $(&#39;#date4&#39;).val(todayLongStr);
+                    $(&#39;#date4&#39;).daterangepicker({
+                        timePickerIncrement: 1,
+                        minDate: todayLongStr,
+                        timePicker: true,
+                        singleDatePicker: true,
+                        format: &#39;YYYY-MM-DD HH:mm&#39;,
+                    },
+                function () {
+                    startTimer = $(&#39;#date4&#39;).val();
+                    $(&#39;#date5&#39;).val($(&#39;#date4&#39;).val());
+                    $(&#39;#date5&#39;).daterangepicker({
+                        minDate: $(&#39;#date4&#39;).val(),
+                        singleDatePicker: true,
+                        timePickerIncrement: 1,
+                        timePicker: true,
+                        format: &#39;YYYY-MM-DD HH:mm&#39;
+                    })
+                });
+                    $(&#39;#date5&#39;).val(todayLongStr);
+                    $(&#39;#date5&#39;).daterangepicker({
+                        minDate: $(&#39;#date4&#39;).val(),
+                        singleDatePicker: true,
+                        timePickerIncrement: 1,
+                        timePicker: true,
+                        format: &#39;YYYY-MM-DD HH:mm&#39;
+                    })
+                })
+            &lt;/script&gt;
+                </pre>
+        </div>
+    </div>
+    <!--起始日历 end-->
+
+</div>

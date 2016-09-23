@@ -3,5 +3,82 @@
     ViewBag.Title = "TextBox";
 }
 
-<h2>TextBox</h2>
 
+<div class="smContent">
+    <div class="mianbaowarp margin-top20  clearfix">
+        @Html.Partial("_NavPartial")
+    </div>
+    <!--普通输入框-->
+    <div class="sm-div">
+        <p class="tit">普通输入框</p>
+        <div class="warp">
+            <input type="text" class="inputxt" placeholder="普通输入框" />
+        </div>
+        <h4>代码：</h4>
+        <div class="html-pre">
+            <pre>&lt;input type=&quot;text&quot; class=&quot;inputxt&quot; placeholder=&quot;普通输入框&quot; /&gt</pre>
+        </div>
+    </div>
+    <!--普通输入框 end-->
+    <!--不可用输入框-->
+    <div class="sm-div">
+        <p class="tit">不可用输入框</p>
+        <div class="warp">
+            <input type="text" class="inputxt " placeholder="不可用输入框" value="0" disabled />
+        </div>
+        <h4>代码：</h4>
+        <div class="html-pre">
+            <pre>&lt;input type=&quot;text&quot; class=&quot;inputxt &quot; placeholder=&quot;不可用输入框&quot;  value=&quot;0&quot; disabled /&gt;</pre>
+        </div>
+    </div>
+    <!--不可用输入框 end-->
+    <!--居中输入框-->
+    <div class="sm-div">
+        <p class="tit">居中输入框[常用于 数字排序 短数字、文字等]</p>
+        <div class="warp">
+            <input type="text" class="inputxt60" value="1" />
+        </div>
+        <h4>代码：</h4>
+        <div class="html-pre">
+            <pre>&lt;input type=&quot;text&quot; class=&quot;inputxt60&quot;  value=&quot;0&quot;  /&gt;</pre>
+        </div>
+    </div>
+    <!--不可用输入框 end-->
+    <!--下划线-->
+    <div class="sm-div">
+        <p class="tit">下划线</p>
+        <div class="hr w-80"></div>
+        <h4>代码：</h4>
+        <div class="html-pre">
+            <pre>&lt;div class=&quot;hr w-80&quot;&gt;&lt;/div&gt;</pre>
+        </div>
+    </div>
+    <!--下划线 end-->
+    <!--圆形字体图标-->
+    <div class="sm-div">
+        <p class="tit">圆形字体图标</p>
+        <a href="javascript:;" class="icontt">值</a><br>
+        <h4>代码：</h4>
+        <div class="html-pre">
+            <pre>&lt;a href=&quot;javascript:;&quot; class=&quot;icontt&quot;&gt;值&lt;/a&gt;</pre>
+        </div>
+        <a href="javascript:;" class="icontt active">值</a>
+        <h4>代码：</h4>
+        <div class="html-pre">
+            <pre>&lt;a href=&quot;javascript:;&quot; class=&quot;icontt active&quot;&gt;值&lt;/a&gt;</pre>
+        </div>
+    </div>
+    <!--圆形字体图标 end-->
+    <!--时间撮-->
+    <div class="sm-div">
+        <p class="tit">时间撮</p>
+        <span class="tag-timer">24小时</span>
+        <h4>代码：</h4>
+        <div class="html-pre">
+            <pre>&lt;span class=&quot;tag-timer&quot;&gt;24小时&lt;/span&gt;</pre>
+        </div>
+    </div>
+    <!--时间撮 end-->
+
+</div>
+<a class="btn sm-ding" href="#" title="返回顶部"><i class="iconf icon-x-zhiding"></i></a>
