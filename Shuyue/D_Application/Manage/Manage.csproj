@@ -142,6 +142,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\daterangepicker\daterangepicker-bs3.css" />
+    <Content Include="Content\daterangepicker\daterangepicker.js" />
+    <Content Include="Content\daterangepicker\moment.js" />
     <Content Include="Content\lhgdialog\lhgdialog.js" />
     <Content Include="Content\lhgdialog\lhgdialog.min.js" />
     <Content Include="Content\lhgdialog\skins\default.css" />
@@ -165,6 +168,8 @@
     <Content Include="Content\lhgdialog\skins\icons\success.gif" />
     <Content Include="Content\lhgdialog\skins\icons\tips.gif" />
     <Content Include="Content\lhgdialog\skins\weixin.css" />
+    <Content Include="Content\swfupload\swfupload.js" />
+    <Content Include="Content\swfupload\upimg_more.js" />
     <Content Include="Content\Validation-Engine\css\customMessages.css" />
     <Content Include="Content\Validation-Engine\css\screenshot.png" />
     <Content Include="Content\Validation-Engine\css\template.css" />
@@ -179,6 +184,10 @@
     <Content Include="css\font\demo.html" />
     <Content Include="css\font\font-awesome.css" />
     <Content Include="css\font\iconfont.svg" />
+    <Content Include="images\confirm.gif" />
+    <Content Include="images\fail.png" />
+    <Content Include="images\hits.png" />
+    <Content Include="images\succ.png" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -209,6 +218,10 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\WebSite\Button.cshtml" />
     <Content Include="Views\WebSite\TextBox.cshtml" />
+    <Content Include="Views\WebSite\FontIcon.cshtml" />
+    <Content Include="Views\WebSite\TimeControl.cshtml" />
+    <Content Include="Views\WebSite\UploadControl.cshtml" />
+    <Content Include="Views\WebSite\Dialog.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
