@@ -63,7 +63,7 @@ div.tab-wrap{ margin-bottom:9px;}
 
 .proDataTable{border-collapse:collapse;border-spacing:0; border:1px solid #dfdfdf;}
 table.dataTable thead tr.head_topTitle th{ background:#f9fafc; font-size:14px;color:#999;border:1px solid #dfdfdf;}
-table.dataTable td{ border:1px solid #dfdfdf;}
+/*table.dataTable td{ border:1px solid #dfdfdf;}*/
 
 div.login-footer{ height:auto;}
 

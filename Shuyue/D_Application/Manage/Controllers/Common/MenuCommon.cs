@@ -63,6 +63,7 @@ namespace Manage.Controllers.Common
         /// <returns></returns>
         public sys_user_menu GetWapMenu(List<sys_user_menu> menu, string controller, string action)
         {
+            if (menu == null || !menu.Any()) return new sys_user_menu();
             return menu.FirstOrDefault(p => p.ControllName == controller && p.ActionName == action);
         }
         public sys_user_menu GetWapMenu(List<sys_user_menu> menu, int id)

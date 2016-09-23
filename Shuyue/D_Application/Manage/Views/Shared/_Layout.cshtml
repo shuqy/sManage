@@ -58,7 +58,7 @@
                     <li>
                         @if (thirdMenus.Count() > 0)
                         {
-                            if (item.IsPath == true)
+                            if (item.IsPath == true && wapMenu != null)
                             {
                                 <span @(thirdMenus.Any(p => p.Id == wapMenu.Id || p.Id == wapMenu.ParentId) ? "class=active" : "")><i class="arrow_right"></i>@item.Title</span>
                                 <ol>

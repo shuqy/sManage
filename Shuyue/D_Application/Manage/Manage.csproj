@@ -207,6 +207,8 @@
     <Content Include="Views\UserGroup\SetMenu.cshtml" />
     <Content Include="Views\Shared\_NavPartial.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\WebSite\Button.cshtml" />
+    <Content Include="Views\WebSite\TextBox.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -428,7 +430,6 @@
     <Content Include="Content\DataTables-1.9.4\media\css\demo_table_jui.css" />
     <Content Include="Content\DataTables-1.9.4\media\css\jquery.dataTables.css" />
     <Content Include="Content\DataTables-1.9.4\media\css\jquery.dataTables_themeroller.css" />
-    <Content Include="Content\DataTables-1.9.4\media\css\副本 jquery.dataTables.css" />
     <Content Include="Content\DataTables-1.9.4\media\images\back_disabled.png" />
     <Content Include="Content\DataTables-1.9.4\media\images\back_enabled.png" />
     <Content Include="Content\DataTables-1.9.4\media\images\back_enabled_hover.png" />
@@ -563,6 +564,7 @@
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Menu\MenuController.cs" />
+    <Compile Include="Controllers\WebSite\WebSiteController.cs" />
     <Compile Include="Controllers\User\UserController.cs" />
     <Compile Include="Controllers\User\UserGroupController.cs" />
     <Compile Include="Global.asax.cs">
