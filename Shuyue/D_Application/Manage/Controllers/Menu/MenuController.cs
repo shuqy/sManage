@@ -33,7 +33,7 @@ namespace Manage.Controllers.Menu
         {
             int parentId = Request["parentId"].GetValueOrNull<int>() ?? 0;
             var list = menuBLL.GetEntities(m => m.ParentId == parentId && m.Deleted == false);
-            var res = list.OrderByDescending(l => l.Id).Skip(param.iDisplayStart).Take(param.iDisplayLength);
+            var res = list.OrderBy(l => l.SortValue).Skip(param.iDisplayStart).Take(param.iDisplayLength);
             var query = res.Select(r => new
             {
                 r.Title,
