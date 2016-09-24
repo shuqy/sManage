@@ -24,7 +24,7 @@ namespace Manage.Controllers
         public ActionResult Login()
         {
             LoginModel model = new LoginModel();
-            string returnUrl = ParamHelper.GetString("ReturnUrl");
+            string returnUrl = ParamHelper.GetString("redirect");
             model.Redirect = returnUrl ?? "/";
             model.UserCode = Encryptor.DecryptDES(CookieHelper.GetCookie("manageuser", "username"));
             model.PassCode = Encryptor.DecryptDES(CookieHelper.GetCookie("manageuser", "password"));
@@ -55,7 +55,7 @@ namespace Manage.Controllers
                 if (isSavePwd > 0)
                 {
                     CookieHelper.SetCookie("manageuser", "username", Encryptor.EncryptDES(user.UserCode), isSavePwd);
-                    CookieHelper.SetCookie("manageuser", "password", Encryptor.EncryptDES(user.PassCode.Trim()), isSavePwd);
+                    CookieHelper.SetCookie("manageuser", "password", user.PassCode.Trim(), isSavePwd);
                 }
                 else { CookieHelper.DelCookie("manageuser"); }
                 if (model.Redirect != null && model.Redirect.Length > 0)

@@ -50,5 +50,23 @@ namespace Manage.Controllers.WebSite
         {
             return View();
         }
+
+        [Description("表格列表")]
+        public ActionResult TableList()
+        {
+            return View();
+        }
+
+        [Description("验证元素")]
+        public ActionResult FormValid()
+        {
+            return View();
+        }
+
+        [Description("标签表格")]
+        public ActionResult NewTable()
+        {
+            return View();
+        }
     }
 }
