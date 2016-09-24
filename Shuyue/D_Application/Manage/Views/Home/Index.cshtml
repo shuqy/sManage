@@ -1,8 +1,11 @@
-﻿
-@{
-    ViewBag.Title = "Index";
+﻿@{
+    ViewBag.Title = "首页";
 }
-
-<h2>Index</h2>
-
-abc
+<div class="smContent">
+    <div class="mianbaowarp margin-top20  clearfix">
+        @Html.Partial("_NavPartial")
+    </div>
+    <div>
+        <span>尊敬的@(Core.AppContext.Current.CurrentUser.UserName)，欢迎进入mySpace！</span>
+    </div>
+</div>

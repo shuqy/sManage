@@ -42,9 +42,9 @@
                             <input type="password" id="PassCode" maxlength="20" name="PassCode" value="@Model.PassCode" />
                         </li>
                         <li class="item-checkbox">
-                            <input type="checkbox" id="rePassword" name="rePassword" value="7" @if (!string.IsNullOrEmpty(Model.PassCode)) { @Html.Raw("checked=\"checked\"")  ; } />
+                            <input type="checkbox" id="rePassword" name="rePassword" value="7" @if (!string.IsNullOrEmpty(Model.PassCode)) { @Html.Raw("checked=\"checked\"")   ; } />
                             记住密码
-                            <input type="hidden" name="ReturnUrl" value="@Model.Redirect" />
+                            @Html.HiddenFor(m => m.Redirect)
                         </li>
                     </ul>
                     <a href="javascript:sCheckform();" class="login-submit" id="butn">登录</a>

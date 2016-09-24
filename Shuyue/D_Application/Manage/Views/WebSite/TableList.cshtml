@@ -1,0 +1,505 @@
+﻿@{
+    ViewBag.Title = "表格列表";
+}
+<div class="smContent">
+    <div class="mianbaowarp margin-top20  clearfix">
+        @Html.Partial("_NavPartial")
+    </div>
+
+    <h2 class="margin-top10">表格列表样式</h2>
+
+    <!--表格列表样式基本样式-->
+    <table class="table-listdata table" cellpadding="0" cellspacing="0">
+        <caption class="px18" id="ca-1"><strong>表格列表样式基本样式</strong> </caption>
+        <tr class="border">
+            <th class="w-10 center">姓名</th>
+            <th class="w-80 center">住址</th>
+            <th class="w-10 center">职位</th>
+        </tr>
+        <tr>
+            <td class="w-10 center">张三</td>
+            <td class="w-80 center">北京市朝阳区xxx号</td>
+            <td class="w-10 center">.net程序员</td>
+        </tr>
+        <tr>
+            <td class="w-10 center">李四</td>
+            <td class="w-80 center">北京市海淀区xxx号</td>
+            <td class="w-10 center">.Asp程序员</td>
+        </tr>
+        <tr>
+            <td class="w-10 center">王五</td>
+            <td class="w-80 center">北京市昌平区xxx号</td>
+            <td class="w-10 center">前端程序员</td>
+        </tr>
+    </table>
+    <h4>代码：</h4>
+    <div class="html-pre">
+        <pre>
+&lt;table class=&quot;table-listdata table&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
+&lt;caption class=&quot;px18&quot;&gt;&lt;strong&gt;表格列表样式基本样式&lt;/strong&gt; &lt;/caption&gt;
+&lt;tr class=&quot;border&quot;&gt;
+    &lt;th class=&quot;w-10 center&quot;&gt;姓名&lt;/th&gt;
+    &lt;th class=&quot;w-80 center&quot;&gt;住址&lt;/th&gt;
+    &lt;th class=&quot;w-10 center&quot;&gt;职位&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td class=&quot;w-10 center&quot;&gt;张三&lt;/td&gt;
+    &lt;td class=&quot;w-80 center&quot;&gt;北京市朝阳区xxx号&lt;/td&gt;
+    &lt;td class=&quot;w-10 center&quot;&gt;.net程序员&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td class=&quot;w-10 center&quot;&gt;李四&lt;/td&gt;
+    &lt;td class=&quot;w-80 center&quot;&gt;北京市海淀区xxx号&lt;/td&gt;
+    &lt;td class=&quot;w-10 center&quot;&gt;.Asp程序员&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td class=&quot;w-10 center&quot;&gt;王五&lt;/td&gt;
+    &lt;td class=&quot;w-80 center&quot;&gt;北京市昌平区xxx号&lt;/td&gt;
+    &lt;td class=&quot;w-10 center&quot;&gt;前端程序员&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+            </pre>
+    </div>
+    <!--表格列表样式基本样式 end-->
+    <!--表格列表样式排序样式-->
+    <table cellpadding="0" cellspacing="0" class="table-listdata table">
+        <caption class="px18" id="ca-2"><strong>表格列表样式排序样式</strong> </caption>
+        <tr class="border h34">
+            <th class="w-70">类别名称</th>
+            <th class="w-15 center">排序</th>
+            <th class="w-15 center">操作</th>
+        </tr>
+        <tr>
+            <td class="w-70">洮南市宏娜SPA中心</td>
+            <td class="w-15 paixu"><input type="text" class="inputxt50" value="0" /></td>
+            <td class="w-15">
+                <div class="tr-icon">
+                    <a href="#"><i class="iconf icon-x-del-01 "></i><div>删除</div></a>
+                    <a href="#"><i class="iconf icon-x-share "></i><div>分享</div></a>
+                    <a href="#"><i class="iconf icon-x-edit1 "></i><div>修改</div></a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="w-70">洮南市宏娜SPA中心</td>
+            <td class="w-15 paixu"><input type="text" class="inputxt50" value="20" /></td>
+            <td class="w-15 center">
+                <div class="tr-icon">
+                    <a href="#"><i class="iconf icon-x-del-01 "></i><div>删除</div></a>
+                    <a href="#"><i class="iconf icon-x-share "></i><div>分享</div></a>
+                    <a href="#"><i class="iconf icon-x-edit1 "></i><div>修改</div></a>
+                </div>
+
+            </td>
+        </tr>
+        <tr>
+            <td class="w-70">洮南市宏娜SPA中心</td>
+            <td class="w-15 paixu"><input type="text" class="inputxt50" value="20" /></td>
+            <td class="w-15">
+                <div class="tr-icon">
+                    <a href="#"><i class="iconf icon-x-del-01 "></i><div>删除</div></a>
+                    <a href="#"><i class="iconf icon-x-share "></i><div>分享</div></a>
+                    <a href="#"><i class="iconf icon-x-edit1 "></i><div>修改</div></a>
+                </div>
+            </td>
+        </tr>
+        <tr class="fff">
+            <td class="w-70"></td>
+            <td class="w-15 paixu"><a href="#" class="btn">排序</a></td>
+            <td class="w-15 center"></td>
+        </tr>
+    </table>
+    <h4>代码：</h4>
+    <div class="html-pre">
+        <pre>
+                &lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; class=&quot;table-listdata table&quot;&gt;
+            &lt;caption class=&quot;px18&quot; id=&quot;ca-2&quot;&gt;&lt;strong&gt;表格列表样式排序样式&lt;/strong&gt; &lt;/caption&gt;
+            &lt;tr class=&quot;border h34&quot;&gt;
+                &lt;th class=&quot;w-70&quot;&gt;类别名称&lt;/th&gt;
+                &lt;th class=&quot;w-15 center&quot;&gt;排序&lt;/th&gt;
+                &lt;th class=&quot;w-15 center&quot;&gt;操作&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td class=&quot;w-70&quot;&gt;洮南市宏娜SPA中心&lt;/td&gt;
+                &lt;td class=&quot;w-15 paixu&quot;&gt;&lt;input type=&quot;text&quot; class=&quot;inputxt50&quot; value=&quot;0&quot; /&gt;&lt;/td&gt;
+                &lt;td class=&quot;w-15&quot;&gt;
+                    &lt;div class=&quot;tr-icon&quot;&gt;
+                        &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;iconf icon-x-del-01 &quot;&gt;&lt;/i&gt;&lt;div&gt;删除&lt;/div&gt;&lt;/a&gt;
+                        &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;iconf icon-x-share &quot;&gt;&lt;/i&gt;&lt;div&gt;分享&lt;/div&gt;&lt;/a&gt;
+                        &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;iconf icon-x-edit1 &quot;&gt;&lt;/i&gt;&lt;div&gt;修改&lt;/div&gt;&lt;/a&gt;
+                    &lt;/div&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td class=&quot;w-70&quot;&gt;洮南市宏娜SPA中心&lt;/td&gt;
+                &lt;td class=&quot;w-15 paixu&quot;&gt;&lt;input type=&quot;text&quot; class=&quot;inputxt50&quot; value=&quot;20&quot; /&gt;&lt;/td&gt;
+                &lt;td class=&quot;w-15 center&quot;&gt;
+                    &lt;div class=&quot;tr-icon&quot;&gt;
+                        &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;iconf icon-x-del-01 &quot;&gt;&lt;/i&gt;&lt;div&gt;删除&lt;/div&gt;&lt;/a&gt;
+                        &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;iconf icon-x-share &quot;&gt;&lt;/i&gt;&lt;div&gt;分享&lt;/div&gt;&lt;/a&gt;
+                        &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;iconf icon-x-edit1 &quot;&gt;&lt;/i&gt;&lt;div&gt;修改&lt;/div&gt;&lt;/a&gt;
+                    &lt;/div&gt;
+                    
+                &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td class=&quot;w-70&quot;&gt;洮南市宏娜SPA中心&lt;/td&gt;
+                &lt;td class=&quot;w-15 paixu&quot;&gt;&lt;input type=&quot;text&quot; class=&quot;inputxt50&quot; value=&quot;20&quot; /&gt;&lt;/td&gt;
+                &lt;td class=&quot;w-15&quot;&gt;
+                    &lt;div class=&quot;tr-icon&quot;&gt;
+                        &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;iconf icon-x-del-01 &quot;&gt;&lt;/i&gt;&lt;div&gt;删除&lt;/div&gt;&lt;/a&gt;
+                        &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;iconf icon-x-share &quot;&gt;&lt;/i&gt;&lt;div&gt;分享&lt;/div&gt;&lt;/a&gt;
+                        &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;iconf icon-x-edit1 &quot;&gt;&lt;/i&gt;&lt;div&gt;修改&lt;/div&gt;&lt;/a&gt;
+                    &lt;/div&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr class=&quot;fff&quot;&gt;
+                &lt;td class=&quot;w-70&quot;&gt;&lt;/td&gt;
+                &lt;td class=&quot;w-15 paixu&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;btn&quot;&gt;排序&lt;/a&gt;&lt;/td&gt;
+                &lt;td class=&quot;w-15 center&quot;&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+            </pre>
+    </div>
+    <!--表格列表样式排序样式 end-->
+    <!--表格列表样式底部按钮样式-->
+    <table class="table-listdata table" cellpadding="0" cellspacing="0">
+        <caption class="px18" id="ca-3"><strong>表格列表样式基本样式</strong> </caption>
+        <tr class="h34 border">
+            <th class="w-5 center" scope="col">
+                选择
+            </th>
+            <th class="w-60" align="left" scope="col">
+                盟友名称
+            </th>
+            <th class="w-15 center" scope="col">
+                发布人
+            </th>
+            <th class="w-10 center" scope="col">
+                发布时间
+            </th>
+            <th class="w-20 center" scope="col">
+                管理
+            </th>
+        </tr>
+        <tr>
+            <td class="w-5 center " scope="col">
+                <input type="checkbox" class="margin0" name="ischecked" value="1" />
+                <input type="hidden" value="1" />
+            </td>
+            <td class="w-60 f333" align="left" scope="col">
+                <a href="#" class="warp-link">洮南举办草原之夏系列活动暨李光远先生美术书法作品展</a>
+            </td>
+            <td class="w-15 center" align="left" scope="col">
+                李光远先生
+            </td>
+            <td class="w-10 center" align="left" scope="col">
+                2015-8-31 13:34
+            </td>
+            <td class="w-20 center" scope="col">
+                <div class="tr-icon">
+                    <a href="#"><i class="iconf icon-x-del-01 "></i><div>删除活动</div></a>
+                    <a href="#"><i class="iconf icon-x-share "></i><div>修改</div></a>
+                    <a href="#"><i class="iconf icon-x-edit1 "></i><div>修改</div></a>
+                    <a href="#"><i class="iconf icon-x-shibai "></i><div>删除</div></a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="w-5 center " scope="col">
+                <input type="checkbox" class="margin0" name="ischecked" value="1" />
+                <input type="hidden" value="1" />
+            </td>
+            <td class="w-60 f333" align="left" scope="col">
+                <a href="#" class="warp-link">洮南举办草原之夏系列活动暨李光远先生美术书法作品展</a>
+            </td>
+            <td class="w-15 center" align="left" scope="col">
+                李光远先生
+            </td>
+            <td class="w-10 center" align="left" scope="col">
+                2015-8-31 13:34
+            </td>
+            <td class="w-20 center" scope="col">
+                <div class="tr-icon">
+                    <a href="#"><i class="iconf icon-x-del-01 "></i><div>删除活动</div></a>
+                    <a href="#"><i class="iconf icon-x-share "></i><div>修改</div></a>
+                    <a href="#"><i class="iconf icon-x-edit1 "></i><div>修改</div></a>
+                    <a href="#"><i class="iconf icon-x-shibai "></i><div>删除</div></a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="w-5 center " scope="col">
+                <input type="checkbox" class="margin0" name="ischecked" value="1" />
+                <input type="hidden" value="1" />
+            </td>
+            <td class="w-60 f333" align="left" scope="col">
+                <a href="#" class="warp-link">洮南举办草原之夏系列活动暨李光远先生美术书法作品展</a>
+            </td>
+            <td class="w-15 center" align="left" scope="col">
+                李光远先生
+            </td>
+            <td class="w-10 center" align="left" scope="col">
+                2015-8-31 13:34
+            </td>
+            <td class="w-20 center" scope="col">
+                <div class="tr-icon">
+                    <a href="#"><i class="iconf icon-x-del-01 "></i><div>删除活动</div></a>
+                    <a href="#"><i class="iconf icon-x-share "></i><div>修改</div></a>
+                    <a href="#"><i class="iconf icon-x-edit1 "></i><div>修改</div></a>
+                    <a href="#"><i class="iconf icon-x-shibai "></i><div>删除</div></a>
+                </div>
+            </td>
+        </tr>
+        <tr class="fff">
+            <td colspan="5">
+                <button class="btn btn-80 w80" id="check">全选</button>
+                <button class="btn btn-small btn-del">删除所选条</button>
+                <button class="btn btn-small">设为头条</button>
+                <button class="btn btn-small">取消头条</button>
+                <button class="btn btn-small">删除所选</button>
+                <button class="btn btn-small">设为焦点</button>
+            </td>
+        </tr>
+    </table>
+    <h4>代码：</h4>
+    <div class="html-pre">
+        <pre>
+                 &lt;table class=&quot;table-listdata table&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
+            &lt;caption class=&quot;px18&quot; id=&quot;ca-3&quot;&gt;&lt;strong&gt;表格列表样式基本样式&lt;/strong&gt; &lt;/caption&gt;
+            &lt;tr class=&quot;h34 border&quot;&gt;
+                &lt;th class=&quot;w-5 center&quot; scope=&quot;col&quot;&gt;
+                    选择
+                &lt;/th&gt;
+                &lt;th class=&quot;w-60&quot; align=&quot;left&quot; scope=&quot;col&quot;&gt;
+                    盟友名称
+                &lt;/th&gt;
+                &lt;th class=&quot;w-15 center&quot; scope=&quot;col&quot;&gt;
+                    发布人
+                &lt;/th&gt;
+                &lt;th class=&quot;w-10 center&quot; scope=&quot;col&quot;&gt;
+                    发布时间
+                &lt;/th&gt;
+                &lt;th class=&quot;w-20 center&quot; scope=&quot;col&quot;&gt;
+                    管理
+                &lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td class=&quot;w-5 center &quot; scope=&quot;col&quot;&gt;
+                    &lt;input type=&quot;checkbox&quot; class=&quot;margin0&quot; name=&quot;ischecked&quot; value=&quot;1&quot; /&gt;
+                    &lt;input type=&quot;hidden&quot; value=&quot;1&quot; /&gt;
+                &lt;/td&gt;
+                &lt;td class=&quot;w-60 f333&quot; align=&quot;left&quot; scope=&quot;col&quot;&gt;
+                    &lt;a href=&quot;#&quot; class=&quot;warp-link&quot;&gt;洮南举办草原之夏系列活动暨李光远先生美术书法作品展&lt;/a&gt;
+                &lt;/td&gt;
+                &lt;td class=&quot;w-15 center&quot; align=&quot;left&quot; scope=&quot;col&quot;&gt;
+                    李光远先生
+                &lt;/td&gt;
+                &lt;td class=&quot;w-10 center&quot; align=&quot;left&quot; scope=&quot;col&quot;&gt;
+                    2015-8-31 13:34
+                &lt;/td&gt;
+                &lt;td class=&quot;w-20 center&quot; scope=&quot;col&quot;&gt;
+                    &lt;div class=&quot;tr-icon&quot;&gt;
+                        &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;iconf icon-x-del-01 &quot;&gt;&lt;/i&gt;&lt;div&gt;删除活动&lt;/div&gt;&lt;/a&gt;
+                        &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;iconf icon-x-share &quot;&gt;&lt;/i&gt;&lt;div&gt;修改&lt;/div&gt;&lt;/a&gt;
+                        &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;iconf icon-x-edit1 &quot;&gt;&lt;/i&gt;&lt;div&gt;修改&lt;/div&gt;&lt;/a&gt;
+                        &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;iconf icon-x-shibai &quot;&gt;&lt;/i&gt;&lt;div&gt;删除&lt;/div&gt;&lt;/a&gt;
+                    &lt;/div&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td class=&quot;w-5 center &quot; scope=&quot;col&quot;&gt;
+                    &lt;input type=&quot;checkbox&quot; class=&quot;margin0&quot; name=&quot;ischecked&quot; value=&quot;1&quot; /&gt;
+                    &lt;input type=&quot;hidden&quot; value=&quot;1&quot; /&gt;
+                &lt;/td&gt;
+                &lt;td class=&quot;w-60 f333&quot; align=&quot;left&quot; scope=&quot;col&quot;&gt;
+                    &lt;a href=&quot;#&quot; class=&quot;warp-link&quot;&gt;洮南举办草原之夏系列活动暨李光远先生美术书法作品展&lt;/a&gt;
+                &lt;/td&gt;
+                &lt;td class=&quot;w-15 center&quot; align=&quot;left&quot; scope=&quot;col&quot;&gt;
+                    李光远先生
+                &lt;/td&gt;
+                &lt;td class=&quot;w-10 center&quot; align=&quot;left&quot; scope=&quot;col&quot;&gt;
+                    2015-8-31 13:34
+                &lt;/td&gt;
+                &lt;td class=&quot;w-20 center&quot; scope=&quot;col&quot;&gt;
+                    &lt;div class=&quot;tr-icon&quot;&gt;
+                        &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;iconf icon-x-del-01 &quot;&gt;&lt;/i&gt;&lt;div&gt;删除活动&lt;/div&gt;&lt;/a&gt;
+                        &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;iconf icon-x-share &quot;&gt;&lt;/i&gt;&lt;div&gt;修改&lt;/div&gt;&lt;/a&gt;
+                        &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;iconf icon-x-edit1 &quot;&gt;&lt;/i&gt;&lt;div&gt;修改&lt;/div&gt;&lt;/a&gt;
+                        &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;iconf icon-x-shibai &quot;&gt;&lt;/i&gt;&lt;div&gt;删除&lt;/div&gt;&lt;/a&gt;
+                    &lt;/div&gt;
+                    
+                &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td class=&quot;w-5 center &quot; scope=&quot;col&quot;&gt;
+                    &lt;input type=&quot;checkbox&quot; class=&quot;margin0&quot; name=&quot;ischecked&quot; value=&quot;1&quot; /&gt;
+                    &lt;input type=&quot;hidden&quot; value=&quot;1&quot; /&gt;
+                &lt;/td&gt;
+                &lt;td class=&quot;w-60 f333&quot; align=&quot;left&quot; scope=&quot;col&quot;&gt;
+                    &lt;a href=&quot;#&quot; class=&quot;warp-link&quot;&gt;洮南举办草原之夏系列活动暨李光远先生美术书法作品展&lt;/a&gt;
+                &lt;/td&gt;
+                &lt;td class=&quot;w-15 center&quot; align=&quot;left&quot; scope=&quot;col&quot;&gt;
+                    李光远先生
+                &lt;/td&gt;
+                &lt;td class=&quot;w-10 center&quot; align=&quot;left&quot; scope=&quot;col&quot;&gt;
+                    2015-8-31 13:34
+                &lt;/td&gt;
+                &lt;td class=&quot;w-20 center&quot; scope=&quot;col&quot;&gt;
+                    &lt;div class=&quot;tr-icon&quot;&gt;
+                        &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;iconf icon-x-del-01 &quot;&gt;&lt;/i&gt;&lt;div&gt;删除活动&lt;/div&gt;&lt;/a&gt;
+                        &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;iconf icon-x-share &quot;&gt;&lt;/i&gt;&lt;div&gt;修改&lt;/div&gt;&lt;/a&gt;
+                        &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;iconf icon-x-edit1 &quot;&gt;&lt;/i&gt;&lt;div&gt;修改&lt;/div&gt;&lt;/a&gt;
+                        &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;iconf icon-x-shibai &quot;&gt;&lt;/i&gt;&lt;div&gt;删除&lt;/div&gt;&lt;/a&gt;
+                    &lt;/div&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr class=&quot;fff&quot;&gt;
+                &lt;td colspan=&quot;5&quot;&gt;
+                    &lt;button class=&quot;btn btn-80 w80&quot; id=&quot;check&quot;&gt;全选&lt;/button&gt;
+                    &lt;button class=&quot;btn btn-small btn-del&quot;&gt;删除所选条&lt;/button&gt;
+                    &lt;button class=&quot;btn btn-small&quot;&gt;设为头条&lt;/button&gt;
+                    &lt;button class=&quot;btn btn-small&quot;&gt;取消头条&lt;/button&gt;
+                    &lt;button class=&quot;btn btn-small&quot;&gt;删除所选&lt;/button&gt;
+                    &lt;button class=&quot;btn btn-small&quot;&gt;设为焦点&lt;/button&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+            </pre>
+    </div>
+    <!--表格列表样式底部按钮样式 end-->
+    <!--表格列表样式单个图标样式-->
+    <table class="table-listdata table" cellpadding="0" cellspacing="0">
+        <caption class="px18" id="ca-4"><strong>表格列表样式单个图标样式</strong> </caption>
+        <tbody>
+            <tr class="border">
+                <th colspan="3"><span class="f666 margin0">请选择下列的活动类型来创建投票活动：</span>(当前操作将创建一个空白的活动模板)</th>
+            </tr>
+            <tr>
+                <td class="w-25  f333">综合类</td>
+                <td class="w-70">适应大部分投票，无针对性。内设4种PC模板风格，微信版样式固定综合<p>1. 可选网络短信组合成3种投票方式，支持单选以及多选两种投票模式。</p></td>
+                <td class="w-5 ">
+                    <div class="tr-icon">
+                        <a href="#"><i class="iconf icon-x-edit1"></i><div class="one-icon">修改活动</div></a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="w-15 f333">微女神类型活动</td>
+                <td class="w-70">
+                    针对微信+网络的女神评选活动制定。<br />
+                    1. 更新颖的订制模板  2.强制单选模式增强用户体验度  3.活动流程的针对优化  4.默认部分设置减少盟友添加过程中的不合理操作
+                </td>
+                <td class="w-5">
+                    <div class="tr-icon">
+                        <a href="#"><i class="iconf icon-x-edit1"></i><div class="one-icon">修改活动</div></a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="w-25 f333">微萌宝类型投票</td>
+                <td class="w-70">
+                    针对微信+网络的女神评选活动制定。<br />
+                    1. 更新颖的订制模板  2.强制单选模式增强用户体验度  3.活动流程的针对优化  4.默认部分设置减少盟友添加过程中的不合理操作
+                </td>
+                <td class="w-5 ">
+                    <div class="tr-icon">
+                        <a href="#"><i class="iconf icon-x-edit1"></i><div class="one-icon">修改活动</div></a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h4>代码：</h4>
+    <div class="html-pre">
+        <pre>
+                &lt;table class=&quot;table-listdata table&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
+            &lt;caption class=&quot;px18&quot; id=&quot;ca-4&quot;&gt;&lt;strong&gt;表格列表样式单个图标样式&lt;/strong&gt; &lt;/caption&gt;
+            &lt;tbody&gt;
+                &lt;tr class=&quot;border&quot;&gt;
+                    &lt;th colspan=&quot;3&quot;&gt;&lt;span class=&quot;f666 margin0&quot;&gt;请选择下列的活动类型来创建投票活动：&lt;/span&gt;(当前操作将创建一个空白的活动模板)&lt;/th&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td class=&quot;w-25  f333&quot;&gt;综合类&lt;/td&gt;
+                    &lt;td class=&quot;w-70&quot;&gt;适应大部分投票，无针对性。内设4种PC模板风格，微信版样式固定综合&lt;p&gt;1. 可选网络短信组合成3种投票方式，支持单选以及多选两种投票模式。&lt;/p&gt;&lt;/td&gt;
+                    &lt;td class=&quot;w-5 &quot;&gt;
+                        &lt;div class=&quot;tr-icon&quot;&gt;
+                            &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;iconf icon-x-edit1&quot;&gt;&lt;/i&gt;&lt;div class=&quot;one-icon&quot;&gt;修改活动&lt;/div&gt;&lt;/a&gt;
+                        &lt;/div&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td class=&quot;w-15 f333&quot;&gt;微女神类型活动&lt;/td&gt;
+                    &lt;td class=&quot;w-70&quot;&gt;
+                        针对微信+网络的女神评选活动制定。&lt;br /&gt;
+                        1. 更新颖的订制模板  2.强制单选模式增强用户体验度  3.活动流程的针对优化  4.默认部分设置减少盟友添加过程中的不合理操作
+                    &lt;/td&gt;
+                    &lt;td class=&quot;w-5&quot;&gt;
+                        &lt;div class=&quot;tr-icon&quot;&gt;
+                            &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;iconf icon-x-edit1&quot;&gt;&lt;/i&gt;&lt;div class=&quot;one-icon&quot;&gt;修改活动&lt;/div&gt;&lt;/a&gt;
+                        &lt;/div&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td class=&quot;w-25 f333&quot;&gt;微萌宝类型投票&lt;/td&gt;
+                    &lt;td class=&quot;w-70&quot;&gt;
+                        针对微信+网络的女神评选活动制定。&lt;br /&gt;
+                        1. 更新颖的订制模板  2.强制单选模式增强用户体验度  3.活动流程的针对优化  4.默认部分设置减少盟友添加过程中的不合理操作
+                    &lt;/td&gt;
+                    &lt;td class=&quot;w-5 &quot;&gt;
+                        &lt;div class=&quot;tr-icon&quot;&gt;
+                            &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;iconf icon-x-edit1&quot;&gt;&lt;/i&gt;&lt;div class=&quot;one-icon&quot;&gt;修改活动&lt;/div&gt;&lt;/a&gt;
+                        &lt;/div&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/tbody&gt;
+        &lt;/table&gt;
+            </pre>
+    </div>
+    <!--表格列表样式单个图标样式 end-->
+    <!--表格列表 图标样式-->
+    <table class="table-listdata table" cellpadding="0" cellspacing="0">
+        <caption class="px18" id="ca-4"><strong>表格列表样式单个图标样式</strong> </caption>
+        <tbody>
+            <tr class="border">
+                <th colspan="3"><span class="f666 margin0">请选择下列的活动类型来创建投票活动：</span>(当前操作将创建一个空白的活动模板)</th>
+            </tr>
+            <tr>
+                <td class="w-12  f333">综合类</td>
+                <td class="w-70">适应大部分投票，无针对性。内设4种PC模板风格，微信版样式固定综合<p>1. 可选网络短信组合成3种投票方式，支持单选以及多选两种投票模式。</p></td>
+                <td class="w-18 ">
+                    <div class="tr-icon">
+                        <a href="#"><i class="iconf icon-x-bianji"></i><div>编辑</div></a>
+                        <a href="#"><i class="iconf icon-x-bianji"></i><div>编辑</div></a>
+                        <a href="#"><i class="iconf icon-x-bianji"></i><div>编辑</div></a>
+                    </div>
+                </td>
+            </tr>
+
+        </tbody>
+
+    </table>
+    <div class="html-pre">
+        <pre>
+                &lt;table class=&quot;table-listdata table&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
+            &lt;caption class=&quot;px18&quot; id=&quot;ca-4&quot;&gt;&lt;strong&gt;表格列表样式单个图标样式&lt;/strong&gt; &lt;/caption&gt;
+            &lt;tbody&gt;
+                &lt;tr class=&quot;border&quot;&gt;
+                    &lt;th colspan=&quot;3&quot;&gt;&lt;span class=&quot;f666 margin0&quot;&gt;请选择下列的活动类型来创建投票活动：&lt;/span&gt;(当前操作将创建一个空白的活动模板)&lt;/th&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td class=&quot;w-12  f333&quot;&gt;综合类&lt;/td&gt;
+                    &lt;td class=&quot;w-70&quot;&gt;适应大部分投票，无针对性。内设4种PC模板风格，微信版样式固定综合&lt;p&gt;1. 可选网络短信组合成3种投票方式，支持单选以及多选两种投票模式。&lt;/p&gt;&lt;/td&gt;
+                    &lt;td class=&quot;w-18 &quot;&gt;
+                        &lt;div class=&quot;tr-icon&quot;&gt;
+                            &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;iconf icon-x-bianji&quot;&gt;&lt;/i&gt;&lt;div&gt;编辑&lt;/div&gt;&lt;/a&gt;
+                            &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;iconf icon-x-bianji&quot;&gt;&lt;/i&gt;&lt;div&gt;编辑&lt;/div&gt;&lt;/a&gt;
+                            &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;iconf icon-x-bianji&quot;&gt;&lt;/i&gt;&lt;div&gt;编辑&lt;/div&gt;&lt;/a&gt;
+                        &lt;/div&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/tbody&gt;
+        &lt;/table&gt;
+            </pre>
+    </div>
+</div>

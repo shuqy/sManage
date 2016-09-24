@@ -310,4 +310,54 @@
                  &lt;/script&gt;
             </pre>
     </div>
+
+    <div class="sm-div">
+        <a href="javascript:;" class="btn btn-sm" id="tbtn8" data-id="id1">复选框对话框</a>
+    </div>
+    <h4>代码：</h4>
+    <div class="html-pre">
+        <pre>
+         &lt;a href=&quot;javascript:;&quot; class=&quot;btn btn-sm&quot; id=&quot;tbtn8&quot; data-id=&quot;id1&quot;&gt;复选框对话框&lt;/a&gt;
+         &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/jquery-1.11.3.min.js&quot;&gt;&lt;/script&gt;
+        &lt;script type=&quot;text/javascript&quot; src=&quot;http://img.pccoo.cn/website/js/common.js&quot;&gt;&lt;/script&gt;
+        &lt;script type=&quot;text/javascript&quot;&gt;
+              $('#tbtn8').click(function () {
+                var _id = $(this).data('id');
+                $.moduleConfirm(
+                    {
+                        'title': '确定要删除图片吗？',
+                        'content': '&lt;input id=&quot;ComfirmCheckBox&quot;  type=&quot;checkbox&quot;   /&gt;同步到盟友端',
+                        'oktxt': '确认',
+                        'exitxt': '取消',
+                        'callback': function () {
+                            //选中为1未选中为0
+                            var _ch = $('#ComfirmCheckBox').is(':checked') ? 1 : 0;
+                            alert(_id + '\t' + _ch);
+                        }
+                    });
+            })
+           &lt;/script&gt;
+            </pre>
+
+    </div>
+    <script type="text/javascript">
+        $('#tbtn8').click(function () {
+            var _id = $(this).data('id');
+            $.moduleConfirm(
+                {
+                    'title': '确定要删除图片吗？',
+                    'content': '<input id="ComfirmCheckBox"  type="checkbox"   />同步到盟友端',
+                    'oktxt': '确认',
+                    'exitxt': '取消',
+                    'callback': function () {
+                        //选中为1未选中为0
+                        var _ch = $('#ComfirmCheckBox').is(':checked') ? 1 : 0;
+                        alert(_id + '\t' + _ch);
+                    }
+                });
+        })
+
+    </script>
+
+
 </div>

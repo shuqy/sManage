@@ -1,0 +1,122 @@
+﻿
+@{
+    ViewBag.Title = "新样式表格";
+}
+<div class="smContent">
+    <div class="mianbaowarp margin-top20  clearfix">
+        @Html.Partial("_NavPartial")
+    </div>
+    <div class="tab-title">
+        <span class="active">基本设置</span>
+        <span>活动简介</span>
+        <span>赞助商家</span>
+        <span>广告设置</span>
+        <span>项目选手</span>
+        <span>活动报道</span>
+        <span>活动花絮</span>
+        <span>留言管理</span>
+        <span>投票日志</span>
+        <span>吸粉接单</span>
+    </div><!--tab-title-->
+    <div class="tab-wrap">
+        <div class="tab-box" style="display: block;"><span>主题贴</span><span class="on">评论贴</span><span>主题贴</span><span>主题贴</span><span>主题贴</span><span>主题贴</span><span>主题贴</span></div><!--tab-box-->
+        <div class="tab-box">活动简介</div><!--tab-box-->
+        <div class="tab-box">赞助商家</div><!--tab-box-->
+        <div class="tab-box">广告设置</div><!--tab-box-->
+        <div class="tab-box">项目选手</div><!--tab-box-->
+        <div class="tab-box">活动报道</div><!--tab-box-->
+        <div class="tab-box">活动花絮</div><!--tab-box-->
+        <div class="tab-box">留言管理</div><!--tab-box-->
+        <div class="tab-box">投票日志</div><!--tab-box-->
+        <div class="tab-box">吸粉接单</div><!--tab-box-->
+    </div><!--tab-wrap-->
+    <div class="smContent">
+        <div id="gambitTable" class="row-fluid">
+            <div class="searchwarp mb5 clearfix">
+                <div class="fristp">
+                    <input id="keyword" class="inputxt w160" type="text" value="" placeholder="用户名">
+                    <input id="keyword" class="inputxt w160" type="text" value="" placeholder="关键字">
+                    <select class="select" id="class" name="class">
+                        <option value="0">话题类别</option>
+                        <option value="6">节日2</option>
+                        <option value="5">经济</option>
+                        <option value="4">户外旅游</option>
+                        <option value="3">文学</option>
+                        <option value="2">笑话</option>
+                        <option value="1">美食</option>
+                    </select>
+                    <input id="search" class="btn" type="button" value="搜索">
+                </div>
+                <div class="secendp">
+                    <a id="xzAdd" title="添加话题" class="btn active " href="/TieBaManage/GetGamBitCaiNaiList"><i class="iconf icon-x-tianjia"></i>选择添加</a>
+                    <a id="nCreateRoleBtn" title="添加话题" class="btn active " href="#"><i class="iconf icon-x-tianjia"></i>自定义添加</a>
+                </div>
+            </div>
+            <div id="gambitDate_wrapper" class="dataTables_wrapper" role="grid">
+                <div id="gambitDate_processing" class="dataTables_processing" style="visibility: hidden;"><img src="../../Images/loading.gif"></div><table id="gambitDate" class="grid dataTable mb10" aria-describedby="gambitDate_info">
+                    <thead>
+                        <tr role="row"><th class="sorting_disabled center" role="columnheader" rowspan="1" colspan="1" style="width: 70px;">图片</th><th class="sorting_disabled center" role="columnheader" rowspan="1" colspan="1" style="width: 70px;">话题主题</th><th class="sorting_disabled center" role="columnheader" rowspan="1" colspan="1" style="width: 30px;">话题帖数</th><th class="sorting_disabled center" role="columnheader" rowspan="1" colspan="1" style="width: 70px;">创建时间</th><th class="sorting_disabled center" role="columnheader" rowspan="1" colspan="1" style="width: 30px;">排序</th><th class="sorting_disabled center" role="columnheader" rowspan="1" colspan="1" style="width: 30px;">状态</th><th class="sorting_disabled center" role="columnheader" rowspan="1" colspan="1" style="width: 70px;">操作</th></tr>
+                    </thead>
+
+                    <tfoot></tfoot>
+                    <tbody role="alert" aria-live="polite" aria-relevant="all">
+                        <tr class="odd">
+                            <td class="center"><img src="http://p3.pccoo.cn/weixin/20160114/2016011419260844468087.gif" height="40px"></td>
+                            <td class="left f333">网络购物</td>
+                            <td class="center">0</td>
+                            <td class="center">2016-01-14 19:30:28</td>
+                            <td class="center"><input type="text" style="width:50px" name="viewlev" value="0"></td>
+                            <td class="center"><span vid="0"><a href="#" class="isopen"><i class="iconf icon-iconfont93 fset" style="font-size:40px"></i></a></span></td>
+                            <td class="center">
+                                <div class="tr-icon">
+                                    <a href="#" class="smEdit">
+                                        <i class="iconf icon-x-edit1"></i>
+
+                                        <div>编辑</div>
+                                    </a><a href="#" class="smDel">
+                                        <i class="iconf icon-x-del-01"></i>
+
+                                        <div>删除</div>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="dataTables_info" id="gambitDate_info">共26项记录</div>
+                <div class="dataTables_paginate paging_full_numbers" id="gambitDate_paginate">
+                    <a tabindex="0" class="first paginate_button paginate_button_disabled" id="gambitDate_first">首页</a>
+                    <a tabindex="0" class="previous paginate_button paginate_button_disabled" id="gambitDate_previous">«</a><span>
+                        <a tabindex="0" class="paginate_active">1</a>
+                    </span><a tabindex="0" class="next paginate_button paginate_button_disabled" id="gambitDate_next">»</a>
+                    <a tabindex="0" class="last paginate_button paginate_button_disabled" id="gambitDate_last">尾页</a>
+                </div>
+            </div>
+        </div>
+        <div class="list_bot f666">
+            <div class="l">
+                <input type="button" value="全选/取消全选" class="btn"> <input type="button" value="删除所选" class="btn" id="elev"> <input type="button" value="设为头条" class="btn">
+            </div>
+        </div>
+        <div id="ePanel" class="modal hide big"></div>
+    </div>
+    <div class="clear"></div>
+    <div class="bottom-desc">
+        <div class="layout"><span class="light"></span></div>
+        <p>请正确、不过度的使用现有广告位。传统的广告死板过时影响用户的体验（挂一个代码广告能有几块钱收入？单纯的展示位置也无法满足商家客请正确、不过度的使用现有广告位。传统的广告死板过时影响用户的体验（挂一个代码广告能有几块钱收入？单纯的展示位置也无法满足商家客请正确、不过度的使用现有广告位。传统的广告死板过时影响用户的体验（挂一个代码广告能有几块钱收入？单纯的展示位置也无法满足商家客</p>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        //选项卡
+        $("div.tab-title span").click(function () {
+            var oind = $(this).index();
+            $(this).addClass("active").siblings().removeClass("active");
+            $(this).parent().next().find(".tab-box:eq(" + oind + ")").show().siblings().hide();
+        });
+
+        $("div.tab-wrap>.tab-box>span").click(function () {
+            $(this).addClass("on").siblings().removeClass("on");
+        });
+    });
+</script>

@@ -1,0 +1,187 @@
+﻿
+@{
+    ViewBag.Title = "验证元素";
+}
+<div class="smContent">
+    <div class="mianbaowarp margin-top20  clearfix">
+        @Html.Partial("_NavPartial")
+    </div>
+    <h2>表单验证的基本操作</h2>
+    <dl class="sm-dl">
+        <dd>
+            1、验证插件的样式引用：
+            <span class="html-pre">
+                &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;/Content/Validation-Engine/css/validationEngine.jquery.css&quot;&gt;
+            </span>
+        </dd>
+        <dd>
+            2、验证插件的js引用：
+            <div class="html-pre">
+                <pre style="">
+ &lt;script type=&quot;text/javascript&quot; src=&quot;/scripts/jquery-1.11.3.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/scripts/Validation-Engine/js/languages/jquery.validationEngine-zh_CN.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/scripts/Validation-Engine/js/jquery.validationEngine.js&quot;&gt;&lt;/script&gt;
+            </pre>
+            </div>
+        </dd>
+        <dd>
+            3、验证插件的验证类型：Class里面加验证的类型，比如:(基本常见的验证规则下面会有介绍)
+            <br>
+
+            <div class="html-pre">
+                &lt;input type=&quot;text&quot; class=&quot;inputxt w175 validate[required]&quot;  /&gt;
+            </div>
+        </dd>
+        <dd>
+            4、验证插件的验证的使用：很简单javscript写上一段js就可以了(
+            <span class="fred">注意：验证的元素必须在form表单中如（#user_form）</span>
+            )
+            <div class="html-pre">
+                <pre>
+                $(document).ready(function(){
+                  $('#user_form').validationEngine({
+                    scroll:true,  
+                    maxErrorsPerField: 1,
+                    showOneMessage: true,
+                    addPromptClass: 'formError-noArrow formError-text',
+                  });
+                });
+            </pre>
+            </div>
+        </dd>
+    </dl>
+    <form id="user_form" class="form" method="post">
+        <h3 id="yz-1">
+            验证规则
+            <a href="http://code.ciaoca.com/jquery/validation_engine/">
+                <i class="iconf icon-x-lianjie-02"></i>
+                更多验证规则
+            </a>
+        </h3>
+        <div class="sm-div">
+            <h4 id="yz-1-1">手机验证</h4>
+            <input type="text" class="inputxt w175 validate[required,custom[tel]" />
+            <h5>代码:</h5>
+            <div class="html-pre">
+                <pre>
+    &lt;input type=&quot;text&quot; class=&quot;inputxt w175 validate[required,custom[tel]&quot;  /&gt;
+             </pre>
+            </div>
+        </div>
+        <div class="sm-div">
+            <h4 id="yz-1-2">最小字符长度/最大字符长度 [number]是长度值</h4>
+            <input type="text" class="inputxt w175 validate[required,minSize[6],maxSize[20]]">
+            <h5>代码</h5>
+            <div class="html-pre">
+                <pre>
+     &lt;input type=&quot;text&quot; class=&quot;inputxt w175 validate[required,minSize[6],maxSize[20]]&quot;&gt;
+                 </pre>
+            </div>
+        </div>
+
+        <div class="sm-div">
+            <h4 id="yz-1-3">
+                最小值/最大值[number]是数字
+                <span class="fred">(注：和上面的不同，使用时要注意)</span>
+            </h4>
+            <input type="text" class="inputxt w175 validate[required,min[6],max[10]]" maxlength="2">
+            <h5>代码</h5>
+            <div class="html-pre">
+                <pre>
+     &lt;input type=&quot;text&quot; class=&quot;inputxt w175 validate[required,min[6],max[10]]&quot; maxlength=&quot;2&quot;&gt;
+                 </pre>
+            </div>
+        </div>
+
+        <div class="sm-div">
+            <h4 id="yz-1-4">验证数字</h4>
+            <input type="text" class="inputxt w175 validate[required,custom[number],min[6],max[10]]" maxlength="2">
+            <h5></h5>
+            <div class="html-pre">
+                <pre>
+         &lt;input type=&quot;text&quot; class=&quot;inputxt w175 validate[required,custom[number],min[6],max[10]]&quot; maxlength=&quot;2&quot;&gt;
+                     </pre>
+            </div>
+        </div>
+
+        <div class="sm-div">
+            <h4 id="yz-1-5">验证整数</h4>
+            <input type="text" class="inputxt w175 validate[required,custom[integer],min[6],max[10]]" maxlength="2">
+            <h5></h5>
+            <div class="html-pre">
+                <pre>
+             &lt;input type=&quot;text&quot; class=&quot;inputxt w175 validate[required,custom[integer],min[6],max[10]]&quot; maxlength=&quot;2&quot;&gt;
+                         </pre>
+            </div>
+        </div>
+
+        <div class="sm-div">
+            <h4 id="yz-1-6">验证邮箱</h4>
+            <input type="text" class="inputxt w175 validate[required,custom[email]">
+            <h5></h5>
+            <div class="html-pre">
+                <pre>
+                 &lt;input type=&quot;text&quot; class=&quot;inputxt w175 validate[required,custom[email]&quot;&gt;
+                             </pre>
+            </div>
+        </div>
+
+        <div class="sm-div">
+            <h4 id="yz-1-7">验证url</h4>
+            <input type="text" class="inputxt w175 validate[required,custom[url]">
+            <h5></h5>
+            <div class="html-pre">
+                <pre>
+                 &lt;input type=&quot;text&quot; class=&quot;inputxt w175 validate[required,custom[url]&quot;&gt;
+                             </pre>
+            </div>
+        </div>
+
+        <div class="sm-div">
+            <h4 id="yz-1-7">验证邮编</h4>
+            <input type="text" class="inputxt w175 validate[required,custom[chinaZip]">
+            <h5></h5>
+            <div class="html-pre">
+                <pre>
+                 &lt;input type=&quot;text&quot; class=&quot;inputxt w175 validate[required,custom[chinaZip]&quot;&gt;
+                             </pre>
+            </div>
+        </div>
+
+        <div class="sm-div">
+            <h4 id="yz-1-7">验证qq</h4>
+            <input type="text" class="inputxt w175 validate[required,custom[qq]">
+            <h5></h5>
+            <div class="html-pre">
+                <pre>
+                 &lt;input type=&quot;text&quot; class=&quot;inputxt w175 validate[required,custom[qq]&quot;&gt;
+                             </pre>
+            </div>
+        </div>
+
+        <div class="sm-div">
+            <h4 id="yz-1-7">验证身份证</h4>
+            <input type="text" class="inputxt w175 validate[required,custom[chinaId]">
+            <h5></h5>
+            <div class="html-pre">
+                <pre>
+                 &lt;input type=&quot;text&quot; class=&quot;inputxt w175 validate[required,custom[chinaId]&quot;&gt;
+                             </pre>
+            </div>
+        </div>
+    </form>
+
+</div>
+<a class="btn sm-ding" href="#" title="返回顶部">
+    <i class="iconf icon-x-zhiding"></i>
+</a>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#user_form').validationEngine({
+            scroll: true,
+            maxErrorsPerField: 1,
+            showOneMessage: true,
+            addPromptClass: 'formError-noArrow formError-text',
+        });
+    });
+</script>
