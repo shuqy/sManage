@@ -222,6 +222,9 @@
     <Content Include="Views\WebSite\TimeControl.cshtml" />
     <Content Include="Views\WebSite\UploadControl.cshtml" />
     <Content Include="Views\WebSite\Dialog.cshtml" />
+    <Content Include="Views\WebSite\TableList.cshtml" />
+    <Content Include="Views\WebSite\FormValid.cshtml" />
+    <Content Include="Views\WebSite\NewTable.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
