@@ -29,7 +29,7 @@ namespace Manage.Attributes
             else flag = Core.AppContext.Current.UserMenu.Any(m => m.ControllName == controller && m.ActionName == action);
             if (!flag)
             {
-                filterContext.RequestContext.HttpContext.Response.Redirect("/Error/?message=您没有操作权限", true);
+                filterContext.RequestContext.HttpContext.Response.Redirect("/Error/?msg=您没有操作权限", true);
                 filterContext.RequestContext.HttpContext.Response.End();
                 filterContext.Result = new EmptyResult();
             }

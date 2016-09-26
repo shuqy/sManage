@@ -134,10 +134,13 @@ namespace Manage.Controllers
             int groupId = Request["groupId"].GetValueOrNull<int>() ?? 0;
             GroupMenuMappingBLL groupMenuBLL = new GroupMenuMappingBLL();
             int[] items = Request["menuId"].GetArrayNoNull<int>();
-            groupMenuBLL.Delete(groupMenuBLL.GetEntities(r => r.GroupId == groupId));
+            IEnumerable<group_menu_mapping> nMenu = groupMenuBLL.GetEntities(r => r.GroupId == groupId);
+            IEnumerable<group_menu_mapping> delMenu = nMenu.Where(m => !items.Contains(m.MenuID));
+            groupMenuBLL.Delete(delMenu);
             List<group_menu_mapping> groupMenuList = new List<group_menu_mapping>();
             foreach (int menuId in items)
             {
+                if (nMenu.Any(a => a.MenuID == menuId)) continue;
                 groupMenuList.Add(new group_menu_mapping() { GroupId = groupId, MenuID = menuId });
             }
             groupMenuBLL.Insert(groupMenuList);

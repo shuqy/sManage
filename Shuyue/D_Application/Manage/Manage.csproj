@@ -225,6 +225,7 @@
     <Content Include="Views\WebSite\TableList.cshtml" />
     <Content Include="Views\WebSite\FormValid.cshtml" />
     <Content Include="Views\WebSite\NewTable.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -620,7 +621,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>30464</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

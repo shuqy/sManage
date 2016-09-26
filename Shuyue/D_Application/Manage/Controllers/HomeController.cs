@@ -7,6 +7,7 @@ using ManageService.Entities;
 using ManageService.User;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -16,11 +17,13 @@ namespace Manage.Controllers
     public class HomeController : Controller
     {
         [SmAuthorize]
+        [Description("首页")]
         public ActionResult Index()
         {
             return View();
         }
 
+        [Description("登录")]
         public ActionResult Login()
         {
             LoginModel model = new LoginModel();
@@ -30,6 +33,7 @@ namespace Manage.Controllers
             model.PassCode = Encryptor.DecryptDES(CookieHelper.GetCookie("manageuser", "password"));
             return View(model);
         }
+
         [HttpPost]
         public ActionResult Login(LoginModel model)
         {
@@ -70,11 +74,20 @@ namespace Manage.Controllers
             return View(model);
         }
 
+        [Description("登出")]
         public ActionResult Logout()
         {
             Session.Abandon();
             CookieHelper.DelCookie("manageuser");
             return RedirectToAction("Login");
+        }
+
+        [Description("错误页面")]
+        public ActionResult Error()
+        {
+            string tip = Request.QueryString["msg"] ?? "";
+            ViewBag.Tip = tip;
+            return View();
         }
     }
 }
