@@ -18,20 +18,21 @@
 }
 <div class="header">
     <div class="logo">
-        <a href="#"><img src="http://img.pccoo.cn/website/images/logo_1.png"><p>工作助手</p></a>
+        @*<a href="#"><img src="/images/logo.png"><p>MYSPACE</p></a>*@
+        <p>MY WORKSPACE</p>
     </div>
     <div class="headeruser">
         <a href="#" class="user-icon"></a>
         <ul class="userul">
             <li>
                 <a href="#" class="clearfix user-text">
-                    <p class="overflow-text ">sqy</p>
-                    <i class="r arrow_down_k"></i>
+                    <p class="overflow-text ">@Core.AppContext.Current.CurrentUser.UserName</p>
+                    @*<i class="r arrow_down_k"></i>*@
                 </a>
             </li>
         </ul>
-        <a href="#" class="help-icon" title="帮助"></a>
-        <a href="/Home/logout/" class="tuichu-icon" title="退出"></a>
+        @*<a href="#" class="help-icon" title="帮助"></a>*@
+        <a href="/home/logout/" class="tuichu-icon" title="退出"></a>
     </div>
     <div class="topbar">
         <ul class="topnav">
