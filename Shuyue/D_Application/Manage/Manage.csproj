@@ -226,6 +226,9 @@
     <Content Include="Views\WebSite\FormValid.cshtml" />
     <Content Include="Views\WebSite\NewTable.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\Algorithm\Index.cshtml" />
+    <Content Include="Views\Sort\Selection.cshtml" />
+    <Content Include="Views\Sort\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -577,6 +580,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Attributes\SmAuthorizeAttribute.cs" />
     <Compile Include="Attributes\UserGroupAttribute.cs" />
+    <Compile Include="Controllers\Algorithm\AlgorithmController.cs" />
+    <Compile Include="Controllers\Algorithm\SortController.cs" />
     <Compile Include="Controllers\Common\MenuCommon.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\HomeController.cs" />

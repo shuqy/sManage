@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "排序算法介绍";
+    Layout = null;
+}
+@section styles{
+}
+<style>
+    .codeBlock p {
+        line-height:5px;
+    }
+</style>
+
+<div class="codeBlock">
+    <p style="text-indent:2em;">public class SortTemp<T> where T : IComparable<T> {</p>
+    <p style="text-indent:4em;">public static bool Less(T a, T b) {</p>
+    <p style="text-indent:6em;">return a.CompareTo(b) < 0;</p>
+    <p style="text-indent:4em;">}</p>
+    <p style="text-indent:4em;">public static void Exch(T[] arr, int i, int j) {</p>
+    <p style="text-indent:6em;">var temp = arr[i];</p>
+    <p style="text-indent:6em;">arr[i] = arr[j];</p>
+    <p style="text-indent:6em;">arr[j] = temp;</p>
+    <p style="text-indent:4em;">}</p>
+    <p style="text-indent:2em;">}</p>
+</div>
