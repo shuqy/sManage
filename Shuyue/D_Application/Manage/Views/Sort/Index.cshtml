@@ -3,16 +3,13 @@
     ViewBag.Title = "排序算法介绍";
 }
 @section styles{
-    <style>
-        .codeBlock{
-            background:#F5F5F5;
-            padding:20px;
-            color:#333;
-        }
-    </style>
+    <link href="~/css/algorithm.css" rel="stylesheet"/>
 }
 <div class="mianbaowarp  clearfix ">
     @Html.Partial("_NavPartial")
+</div>
+<div class="tipBlock">
+    <p>所有排序算法均集成下面的类，统一比较方法和交换方法。</p>
 </div>
 <div class="codeBlock">
     @Html.Raw(ViewBag.SelectionSortStr)

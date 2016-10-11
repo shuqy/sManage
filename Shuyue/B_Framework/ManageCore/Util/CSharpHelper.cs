@@ -17,8 +17,17 @@ namespace Core.Util
         /// <returns></returns>
         public static string ChangeColor(string str)
         {
+            //变量
+            Regex creg = new Regex(@"""(?<v>[^""]*)");
+            Match cmatch = creg.Match(str);
+            while (cmatch.Success)
+            {
+                str = str.Replace(cmatch.Value + "\"", "<font color=\"#800000\">" + cmatch.Value + "\"</font>");
+                cmatch = cmatch.NextMatch();
+            }
+
             //自定义类颜色更改
-            Regex userClass = new Regex(@"class (?<className>[\s\S]*?)( |\(|<)");
+            Regex userClass = new Regex(@"class&nbsp;(?<className>[\s\S]*?)(&nbsp;|\(|<)");
             Match classMatch = userClass.Match(str);
             while (classMatch.Success)
             {
@@ -41,24 +50,26 @@ namespace Core.Util
             {
                 if (str.Contains(keyw))
                 {
-                    Regex reg = new Regex(" ?" + keyw + " ");
-                    str = reg.Replace(str, " <font color=\"blue\">" + keyw + "</font> ");
+                    str = str.Replace("(" + keyw + ")", "(<font color=\"blue\">" + keyw + "</font>)");
+                    str = str.Replace(keyw + "[]", "<font color=\"blue\">" + keyw + "</font>[]");
+                    str = str.Replace("<" + keyw + ">", "<<font color=\"blue\">" + keyw + "</font>>");
+                    str = str.Replace(keyw + "(", "<font color=\"blue\">" + keyw + "</font>(");
+                    Regex reg = new Regex("(&nbsp;)?" + keyw + "&nbsp;");
+                    str = reg.Replace(str, "&nbsp;<font color=\"blue\">" + keyw + "</font>&nbsp;");
                 }
             }
             //系统类
-            string[] objClass = AllClassName(typeof(object));
-            string[] sysClass = AllClassName(typeof(object));
-            string[] className = objClass.Concat(sysClass).ToArray();
+            string[] className = AllClassName(typeof(object));
             for (int i = 0; i < className.Length; i++)
             {
                 if (!string.IsNullOrEmpty(className[i]) && str.Contains(className[i]))
                 {
-                    Regex reg = new Regex("( )?" + className[i] + "( )");
-                    str = reg.Replace(str, " <font color=\"#00868B\">" + className[i] + "</font> ");
-                    Regex reg2 = new Regex("( )?" + className[i] + "(<)");
-                    str = reg2.Replace(str, " <font color=\"#00868B\">" + className[i] + "</font><");
-                    Regex reg3 = new Regex("( )?" + className[i] + @"(\()");
-                    str = reg3.Replace(str, " <font color=\"#00868B\">" + className[i] + "</font>(");
+                    Regex reg = new Regex("(&nbsp;)?" + className[i] + "(&nbsp;)");
+                    str = reg.Replace(str, "&nbsp;<font color=\"#00868B\">" + className[i] + "</font>&nbsp;");
+                    Regex reg2 = new Regex("(&nbsp;)?" + className[i] + "(<)");
+                    str = reg2.Replace(str, "&nbsp;<font color=\"#00868B\">" + className[i] + "</font><");
+                    Regex reg3 = new Regex("(&nbsp;)" + className[i] + @"(\()");
+                    str = reg3.Replace(str, "&nbsp;<font color=\"#00868B\">" + className[i] + "</font>(");
                 }
             }
             //泛型
@@ -67,8 +78,9 @@ namespace Core.Util
                 str = str.Replace("<T>", "<<font color=\"#00868B\">T</font>>");
                 str = str.Replace("(T", "(<font color=\"#00868B\">T</font>");
                 str = str.Replace("T[", "<font color=\"#00868B\">T</font>[");
-                str = str.Replace("T ", "<font color=\"#00868B\">T</font> ");
+                str = str.Replace("T ", "<font color=\"#00868B\">T</font>&nbsp;");
             }
+
             return str;
         }
 

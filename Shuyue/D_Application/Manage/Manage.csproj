@@ -180,6 +180,7 @@
     <Content Include="Content\Validation-Engine\js\languages\jquery.validationEngine-en.js" />
     <Content Include="Content\Validation-Engine\js\languages\jquery.validationEngine-zh_CN.js" />
     <Content Include="Content\Validation-Engine\js\languages\jquery.validationEngine-zh_TW.js" />
+    <Content Include="css\algorithm.css" />
     <Content Include="css\font\demo.css" />
     <Content Include="css\font\demo.html" />
     <Content Include="css\font\font-awesome.css" />
