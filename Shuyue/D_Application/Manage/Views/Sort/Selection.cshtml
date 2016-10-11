@@ -3,6 +3,13 @@
     ViewBag.Title = "Selection";
     Layout = null;
 }
+<style>
+    .codeBlock p {
+        line-height: 5px;
+    }
+</style>
 
-<h2>Selection</h2>
+<div class="codeBlock">
+    @Html.Raw(ViewBag.SelectionSortStr)
+</div>
 
