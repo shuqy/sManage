@@ -27,10 +27,6 @@ namespace Manage.Controllers.Algorithm
             selectionHtml.AppendLine("<p style=\"text-indent:6em;\">arr[j] = temp;</p>");
             selectionHtml.AppendLine("<p style=\"text-indent:4em;\">}</p>");
             selectionHtml.AppendLine("<p style=\"text-indent:2em;\">}</p>");
-            selectionHtml.AppendLine("<p style=\"text-indent:2em;\">public class SortController : Controller </p>");
-            selectionHtml.AppendLine("<p style=\"text-indent:2em;\">public ActionResult Index()</p>");
-            selectionHtml.AppendLine("<p style=\"text-indent:2em;\">StringBuilder selectionHtml = new StringBuilder();</p>");
-            selectionHtml.AppendLine("<p style=\"text-indent:2em;\">return View();</p>");
             ViewBag.SelectionSortStr = CSharpHelper.ChangeColor(selectionHtml.ToString());
             return View();
         }
