@@ -8,13 +8,9 @@ using System.Web.Mvc;
 
 namespace Manage.Controllers.Algorithm
 {
-    public class SortController : Controller
+    public class SortController : ControllerBase
     {
         public ActionResult Index()
-        {
-            return View();
-        }
-        public ActionResult Selection()
         {
             StringBuilder selectionHtml = new StringBuilder();
             selectionHtml.AppendLine("<p style=\"text-indent:2em;\">public class SortTemp<T> where T : IComparable<T> {</p>");
@@ -28,6 +24,10 @@ namespace Manage.Controllers.Algorithm
             selectionHtml.AppendLine("<p style=\"text-indent:4em;\">}</p>");
             selectionHtml.AppendLine("<p style=\"text-indent:2em;\">}</p>");
             ViewBag.SelectionSortStr = CSharpHelper.ChangeColor(selectionHtml.ToString());
+            return View();
+        }
+        public ActionResult Selection()
+        {
             return View();
         }
     }
