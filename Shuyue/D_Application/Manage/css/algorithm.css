@@ -8,8 +8,11 @@
     line-height: 30px;
 }
 
+.tipBlock p{
+    text-indent:2em;
+}
+
 .boldBlock{
-    font-size:16px;
-    color:#333;
+    color:#fba100;
     line-height: 35px;
 }

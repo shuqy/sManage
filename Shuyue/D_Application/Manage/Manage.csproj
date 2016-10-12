@@ -230,6 +230,9 @@
     <Content Include="Views\Algorithm\Index.cshtml" />
     <Content Include="Views\Sort\Selection.cshtml" />
     <Content Include="Views\Sort\Index.cshtml" />
+    <Content Include="Views\Sort\Shell.cshtml" />
+    <Content Include="Views\Sort\Insertion.cshtml" />
+    <Content Include="Views\Sort\Quick.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
