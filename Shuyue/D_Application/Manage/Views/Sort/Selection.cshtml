@@ -1,9 +1,24 @@
-﻿
-@{
-    ViewBag.Title = "Selection";
-    Layout = null;
+﻿@{
+    ViewBag.Title = "选择排序";
 }
-<div>
+@section styles{
+    <link href="~/css/algorithm.css" rel="stylesheet" />
+}
+<div class="mianbaowarp  clearfix ">
+    @Html.Partial("_NavPartial")
+</div>
+<div class="tipBlock">
+    <p>选择排序（Selection sort）是一种简单直观的排序算法。</p>
+    <p>它的工作原理是每一次从待排序的数据元素中选出最小（或最大）的一个元素，存放在序列的起始位置，直到全部待排序的数据元素排完。</p>
+    <p>选择排序是不稳定的排序方法（比如序列[5， 5， 3]第一次就将第一个[5]与[3]交换，导致第一个5挪动到第二个5后面）。</p>
+    <p class="boldBlock">选择排序算法C#代码：</p>
+</div>
+<div class="codeBlock">
     @Html.Raw(ViewBag.SelectionSortStr)
 </div>
-
+<div class="tipBlock">
+    <p class="boldBlock">排序算法公用模块代码：</p>
+</div>
+<div class="codeBlock">
+    @Html.Raw(ViewBag.TempStr)
+</div>

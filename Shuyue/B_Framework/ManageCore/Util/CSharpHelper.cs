@@ -54,7 +54,7 @@ namespace Core.Util
                     str = str.Replace(keyw + "[]", "<font color=\"blue\">" + keyw + "</font>[]");
                     str = str.Replace("<" + keyw + ">", "<<font color=\"blue\">" + keyw + "</font>>");
                     str = str.Replace(keyw + "(", "<font color=\"blue\">" + keyw + "</font>(");
-                    Regex reg = new Regex("(&nbsp;)?" + keyw + "&nbsp;");
+                    Regex reg = new Regex("(&nbsp;)" + keyw + "&nbsp;");
                     str = reg.Replace(str, "&nbsp;<font color=\"blue\">" + keyw + "</font>&nbsp;");
                 }
             }
@@ -72,6 +72,16 @@ namespace Core.Util
                     str = reg3.Replace(str, "&nbsp;<font color=\"#00868B\">" + className[i] + "</font>(");
                 }
             }
+            //注释
+            Regex dreg = new Regex(@"//(?<z>[\s\S]*?)</p>");
+            Match dmatch = dreg.Match(str);
+            while (dmatch.Success)
+            {
+                str = dreg.Replace(str, "<font color=\"green\">//" + dmatch.Groups["z"].Value + "</font></p>");
+                dmatch = dmatch.NextMatch();
+            }
+
+
             //泛型
             if (str.Contains("<T>"))
             {
