@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "希尔排序";
+}
+@section styles{
+    <link href="~/css/algorithm.css" rel="stylesheet" />
+}
+<div class="mianbaowarp  clearfix ">
+    @Html.Partial("_NavPartial")
+</div>
+<div class="tipBlock">
+    <p>希尔排序(Shell Sort)是插入排序的一种。也称缩小增量排序，是直接插入排序算法的一种更高效的改进版本。</p>
+    <p>希尔排序是非稳定排序算法。该方法因DL．Shell于1959年提出而得名。</p>
+    <p>希尔排序是把记录按下标的一定增量分组，对每组使用直接插入排序算法排序；随着增量逐渐减少，每组包含的关键词越来越多，当增量减至1时，整个文件恰被分成一组，算法便终止。</p>
+    <p class="boldBlock">希尔排序算法C#代码：</p>
+</div>
+<div class="codeBlock">
+    @Html.Raw(ViewBag.SortHtml)
+</div>
+<div class="tipBlock">
+    <p class="boldBlock">排序算法公用模块代码：</p>
+</div>
+<div class="codeBlock">
+    @Html.Raw(ViewBag.TempStr)
+</div>
