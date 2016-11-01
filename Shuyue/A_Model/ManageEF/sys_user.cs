@@ -21,6 +21,7 @@ namespace ManageEF
         }
     
         public int Id { get; set; }
+        public string UserName { get; set; }
         public string UserCode { get; set; }
         public string Email { get; set; }
         public string Mobile { get; set; }
@@ -29,7 +30,6 @@ namespace ManageEF
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<int> State { get; set; }
         public bool Deleted { get; set; }
-        public string UserName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<user_group_mapping> user_group_mapping { get; set; }

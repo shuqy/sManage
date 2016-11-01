@@ -206,6 +206,33 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SQY_ManageModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SQY_ManageEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="group_menu_mapping" EntityType="SQY_ManageModel.group_menu_mapping" />
+          <EntitySet Name="stock_exchange_record" EntityType="SQY_ManageModel.stock_exchange_record" />
+          <EntitySet Name="sys_user" EntityType="SQY_ManageModel.sys_user" />
+          <EntitySet Name="sys_user_group" EntityType="SQY_ManageModel.sys_user_group" />
+          <EntitySet Name="sys_user_menu" EntityType="SQY_ManageModel.sys_user_menu" />
+          <EntitySet Name="turn_in_out_record" EntityType="SQY_ManageModel.turn_in_out_record" />
+          <EntitySet Name="user_group_mapping" EntityType="SQY_ManageModel.user_group_mapping" />
+          <EntitySet Name="water_bill" EntityType="SQY_ManageModel.water_bill" />
+          <EntitySet Name="stock" EntityType="SQY_ManageModel.stock" />
+          <AssociationSet Name="groupmenu_groupid_cons" Association="SQY_ManageModel.groupmenu_groupid_cons">
+            <End Role="sys_user_group" EntitySet="sys_user_group" />
+            <End Role="group_menu_mapping" EntitySet="group_menu_mapping" />
+          </AssociationSet>
+          <AssociationSet Name="groupmenu_menuid_cons" Association="SQY_ManageModel.groupmenu_menuid_cons">
+            <End Role="sys_user_menu" EntitySet="sys_user_menu" />
+            <End Role="group_menu_mapping" EntitySet="group_menu_mapping" />
+          </AssociationSet>
+          <AssociationSet Name="usergroup_userid_cons" Association="SQY_ManageModel.usergroup_userid_cons">
+            <End Role="sys_user" EntitySet="sys_user" />
+            <End Role="user_group_mapping" EntitySet="user_group_mapping" />
+          </AssociationSet>
+          <AssociationSet Name="usergroup_groupid_cons" Association="SQY_ManageModel.usergroup_groupid_cons">
+            <End Role="sys_user_group" EntitySet="sys_user_group" />
+            <End Role="user_group_mapping" EntitySet="user_group_mapping" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="group_menu_mapping">
           <Key>
             <PropertyRef Name="Id" />
@@ -213,144 +240,9 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="GroupId" Type="Int32" Nullable="false" />
           <Property Name="MenuID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="sys_user_group" Relationship="Self.groupmenu_groupid_cons" FromRole="group_menu_mapping" ToRole="sys_user_group" />
-          <NavigationProperty Name="sys_user_menu" Relationship="Self.groupmenu_menuid_cons" FromRole="group_menu_mapping" ToRole="sys_user_menu" />
+          <NavigationProperty Name="sys_user_group" Relationship="SQY_ManageModel.groupmenu_groupid_cons" FromRole="group_menu_mapping" ToRole="sys_user_group" />
+          <NavigationProperty Name="sys_user_menu" Relationship="SQY_ManageModel.groupmenu_menuid_cons" FromRole="group_menu_mapping" ToRole="sys_user_menu" />
         </EntityType>
-        <EntityType Name="sys_user">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PassCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CreatedBy" Type="Int32" />
-          <Property Name="State" Type="Int32" />
-          <Property Name="Deleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="user_group_mapping" Relationship="Self.usergroup_userid_cons" FromRole="sys_user" ToRole="user_group_mapping" />
-          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="sys_user_group">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Code" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="State" Type="Boolean" Nullable="false" />
-          <Property Name="SortValue" Type="Int32" />
-          <Property Name="IsFree" Type="Int32" />
-          <Property Name="Deleted" Type="Boolean" />
-          <NavigationProperty Name="group_menu_mapping" Relationship="Self.groupmenu_groupid_cons" FromRole="sys_user_group" ToRole="group_menu_mapping" />
-          <NavigationProperty Name="user_group_mapping" Relationship="Self.usergroup_groupid_cons" FromRole="sys_user_group" ToRole="user_group_mapping" />
-        </EntityType>
-        <EntityType Name="sys_user_menu">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="STitle" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="ParentId" Type="Int32" />
-          <Property Name="ControllName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ActionName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="SortValue" Type="Int32" />
-          <Property Name="State" Type="Boolean" Nullable="false" />
-          <Property Name="IsPath" Type="Boolean" />
-          <Property Name="ShowInMenu" Type="Boolean" />
-          <Property Name="Code" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Deleted" Type="Boolean" />
-          <NavigationProperty Name="group_menu_mapping" Relationship="Self.groupmenu_menuid_cons" FromRole="sys_user_menu" ToRole="group_menu_mapping" />
-        </EntityType>
-        <EntityType Name="user_group_mapping">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="GroupId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="sys_user" Relationship="Self.usergroup_userid_cons" FromRole="user_group_mapping" ToRole="sys_user" />
-          <NavigationProperty Name="sys_user_group" Relationship="Self.usergroup_groupid_cons" FromRole="user_group_mapping" ToRole="sys_user_group" />
-        </EntityType>
-        <Association Name="groupmenu_groupid_cons">
-          <End Role="sys_user_group" Type="Self.sys_user_group" Multiplicity="1" />
-          <End Role="group_menu_mapping" Type="Self.group_menu_mapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="sys_user_group">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="group_menu_mapping">
-              <PropertyRef Name="GroupId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="groupmenu_menuid_cons">
-          <End Role="sys_user_menu" Type="Self.sys_user_menu" Multiplicity="1" />
-          <End Role="group_menu_mapping" Type="Self.group_menu_mapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="sys_user_menu">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="group_menu_mapping">
-              <PropertyRef Name="MenuID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="usergroup_userid_cons">
-          <End Role="sys_user" Type="Self.sys_user" Multiplicity="1" />
-          <End Role="user_group_mapping" Type="Self.user_group_mapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="sys_user">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="user_group_mapping">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="usergroup_groupid_cons">
-          <End Role="sys_user_group" Type="Self.sys_user_group" Multiplicity="1" />
-          <End Role="user_group_mapping" Type="Self.user_group_mapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="sys_user_group">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="user_group_mapping">
-              <PropertyRef Name="GroupId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="SQY_ManageEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="group_menu_mapping" EntityType="Self.group_menu_mapping" />
-          <EntitySet Name="sys_user" EntityType="Self.sys_user" />
-          <EntitySet Name="sys_user_group" EntityType="Self.sys_user_group" />
-          <EntitySet Name="sys_user_menu" EntityType="Self.sys_user_menu" />
-          <EntitySet Name="user_group_mapping" EntityType="Self.user_group_mapping" />
-          <AssociationSet Name="groupmenu_groupid_cons" Association="Self.groupmenu_groupid_cons">
-            <End Role="sys_user_group" EntitySet="sys_user_group" />
-            <End Role="group_menu_mapping" EntitySet="group_menu_mapping" />
-          </AssociationSet>
-          <AssociationSet Name="groupmenu_menuid_cons" Association="Self.groupmenu_menuid_cons">
-            <End Role="sys_user_menu" EntitySet="sys_user_menu" />
-            <End Role="group_menu_mapping" EntitySet="group_menu_mapping" />
-          </AssociationSet>
-          <AssociationSet Name="usergroup_userid_cons" Association="Self.usergroup_userid_cons">
-            <End Role="sys_user" EntitySet="sys_user" />
-            <End Role="user_group_mapping" EntitySet="user_group_mapping" />
-          </AssociationSet>
-          <AssociationSet Name="usergroup_groupid_cons" Association="Self.usergroup_groupid_cons">
-            <End Role="sys_user_group" EntitySet="sys_user_group" />
-            <End Role="user_group_mapping" EntitySet="user_group_mapping" />
-          </AssociationSet>
-          <EntitySet Name="stock_exchange_record" EntityType="SQY_ManageModel.stock_exchange_record" />
-          <EntitySet Name="turn_in_out_record" EntityType="SQY_ManageModel.turn_in_out_record" />
-          <EntitySet Name="water_bill" EntityType="SQY_ManageModel.water_bill" />
-          <EntitySet Name="stock" EntityType="SQY_ManageModel.stock" />
-        </EntityContainer>
         <EntityType Name="stock_exchange_record">
           <Key>
             <PropertyRef Name="Id" />
@@ -367,6 +259,56 @@
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
         </EntityType>
+        <EntityType Name="sys_user">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PassCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="State" Type="Int32" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="user_group_mapping" Relationship="SQY_ManageModel.usergroup_userid_cons" FromRole="sys_user" ToRole="user_group_mapping" />
+        </EntityType>
+        <EntityType Name="sys_user_group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="Boolean" Nullable="false" />
+          <Property Name="SortValue" Type="Int32" />
+          <Property Name="IsFree" Type="Int32" />
+          <Property Name="Deleted" Type="Boolean" />
+          <NavigationProperty Name="group_menu_mapping" Relationship="SQY_ManageModel.groupmenu_groupid_cons" FromRole="sys_user_group" ToRole="group_menu_mapping" />
+          <NavigationProperty Name="user_group_mapping" Relationship="SQY_ManageModel.usergroup_groupid_cons" FromRole="sys_user_group" ToRole="user_group_mapping" />
+        </EntityType>
+        <EntityType Name="sys_user_menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="STitle" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="ControllName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ActionName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SortValue" Type="Int32" />
+          <Property Name="State" Type="Boolean" Nullable="false" />
+          <Property Name="IsPath" Type="Boolean" />
+          <Property Name="ShowInMenu" Type="Boolean" />
+          <Property Name="Code" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Deleted" Type="Boolean" />
+          <NavigationProperty Name="group_menu_mapping" Relationship="SQY_ManageModel.groupmenu_menuid_cons" FromRole="sys_user_menu" ToRole="group_menu_mapping" />
+        </EntityType>
         <EntityType Name="turn_in_out_record">
           <Key>
             <PropertyRef Name="Id" />
@@ -377,6 +319,16 @@
           <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user_group_mapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="GroupId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="sys_user" Relationship="SQY_ManageModel.usergroup_userid_cons" FromRole="user_group_mapping" ToRole="sys_user" />
+          <NavigationProperty Name="sys_user_group" Relationship="SQY_ManageModel.usergroup_groupid_cons" FromRole="user_group_mapping" ToRole="sys_user_group" />
         </EntityType>
         <EntityType Name="water_bill">
           <Key>
@@ -401,7 +353,55 @@
           <Property Name="PyFullName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="PyAbbre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
-      </Schema>
+        <Association Name="groupmenu_groupid_cons">
+          <End Type="SQY_ManageModel.sys_user_group" Role="sys_user_group" Multiplicity="1" />
+          <End Type="SQY_ManageModel.group_menu_mapping" Role="group_menu_mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sys_user_group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="group_menu_mapping">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="groupmenu_menuid_cons">
+          <End Type="SQY_ManageModel.sys_user_menu" Role="sys_user_menu" Multiplicity="1" />
+          <End Type="SQY_ManageModel.group_menu_mapping" Role="group_menu_mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sys_user_menu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="group_menu_mapping">
+              <PropertyRef Name="MenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usergroup_userid_cons">
+          <End Type="SQY_ManageModel.sys_user" Role="sys_user" Multiplicity="1" />
+          <End Type="SQY_ManageModel.user_group_mapping" Role="user_group_mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sys_user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="user_group_mapping">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usergroup_groupid_cons">
+          <End Type="SQY_ManageModel.sys_user_group" Role="sys_user_group" Multiplicity="1" />
+          <End Type="SQY_ManageModel.user_group_mapping" Role="user_group_mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sys_user_group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="user_group_mapping">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -410,67 +410,9 @@
           <EntitySetMapping Name="group_menu_mapping">
             <EntityTypeMapping TypeName="SQY_ManageModel.group_menu_mapping">
               <MappingFragment StoreEntitySet="group_menu_mapping">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
                 <ScalarProperty Name="MenuID" ColumnName="MenuID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sys_user">
-            <EntityTypeMapping TypeName="SQY_ManageModel.sys_user">
-              <MappingFragment StoreEntitySet="sys_user">
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
-                <ScalarProperty Name="PassCode" ColumnName="PassCode" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sys_user_group">
-            <EntityTypeMapping TypeName="SQY_ManageModel.sys_user_group">
-              <MappingFragment StoreEntitySet="sys_user_group">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="SortValue" ColumnName="SortValue" />
-                <ScalarProperty Name="IsFree" ColumnName="IsFree" />
-                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sys_user_menu">
-            <EntityTypeMapping TypeName="SQY_ManageModel.sys_user_menu">
-              <MappingFragment StoreEntitySet="sys_user_menu">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="STitle" ColumnName="STitle" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
-                <ScalarProperty Name="ControllName" ColumnName="ControllName" />
-                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
-                <ScalarProperty Name="SortValue" ColumnName="SortValue" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="IsPath" ColumnName="IsPath" />
-                <ScalarProperty Name="ShowInMenu" ColumnName="ShowInMenu" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="user_group_mapping">
-            <EntityTypeMapping TypeName="SQY_ManageModel.user_group_mapping">
-              <MappingFragment StoreEntitySet="user_group_mapping">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -491,6 +433,55 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sys_user">
+            <EntityTypeMapping TypeName="SQY_ManageModel.sys_user">
+              <MappingFragment StoreEntitySet="sys_user">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="PassCode" ColumnName="PassCode" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sys_user_group">
+            <EntityTypeMapping TypeName="SQY_ManageModel.sys_user_group">
+              <MappingFragment StoreEntitySet="sys_user_group">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="IsFree" ColumnName="IsFree" />
+                <ScalarProperty Name="SortValue" ColumnName="SortValue" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sys_user_menu">
+            <EntityTypeMapping TypeName="SQY_ManageModel.sys_user_menu">
+              <MappingFragment StoreEntitySet="sys_user_menu">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="ShowInMenu" ColumnName="ShowInMenu" />
+                <ScalarProperty Name="IsPath" ColumnName="IsPath" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="SortValue" ColumnName="SortValue" />
+                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+                <ScalarProperty Name="ControllName" ColumnName="ControllName" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="STitle" ColumnName="STitle" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="turn_in_out_record">
             <EntityTypeMapping TypeName="SQY_ManageModel.turn_in_out_record">
               <MappingFragment StoreEntitySet="turn_in_out_record">
@@ -498,6 +489,15 @@
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
                 <ScalarProperty Name="Money" ColumnName="Money" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_group_mapping">
+            <EntityTypeMapping TypeName="SQY_ManageModel.user_group_mapping">
+              <MappingFragment StoreEntitySet="user_group_mapping">
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
