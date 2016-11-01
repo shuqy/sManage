@@ -1,4 +1,4 @@
-
+drop table turn_in_out_record
 create table turn_in_out_record(
 	Id int identity(1,1) primary key,
 	UserId int,
@@ -7,30 +7,32 @@ create table turn_in_out_record(
 	CreatedOn datetime not null default getdate(),
 	Deleted bit not null default 0,
 )
-
+drop table stock_exchange_record
 create table stock_exchange_record(
 	Id int identity(1,1) primary key,
 	UserId int,
 	StockCode varchar(20) not null,
-	BuyPrice decimal(18,2),
-	SellPrice decimal(18,2),
-	Quantity int,
-	BuyDate datetime,--
-	SellDate datetime,--
-	Profit decimal(18,2)null,--Ó¯¿÷½ð¶î
+	StockName nvarchar(20) null,
+	BuyPrice decimal(18,2) not null,
+	SellPrice decimal(18,2) not null,
+	Quantity int not null,
+	BuyDate datetime not null,--
+	SellDate datetime not null,--
+	Profit decimal(18,2) null,--Ó¯¿÷½ð¶î
 	CreatedOn datetime not null default getdate(),
 	Deleted bit not null default 0,
 )
-
+drop table water_bill
 create table water_bill(
 	Id int identity(1,1) primary key,
 	UserId int not null,
-	[Date] decimal not null,
 	BMonthMoney decimal(18,2) not null,
 	TurnInMoney decimal(18,2) not null,
 	TurnOutMoney decimal(18,2) not null,
 	ProfitMoney decimal(18,2) not null,	
 	EMonthMoney decimal(18,2) not null,
+	[Date] datetime not null,
+	UpdatedOn datetime not null,
 )
 
 
