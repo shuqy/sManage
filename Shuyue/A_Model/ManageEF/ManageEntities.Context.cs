@@ -30,5 +30,9 @@ namespace ManageEF
         public virtual DbSet<sys_user_group> sys_user_group { get; set; }
         public virtual DbSet<sys_user_menu> sys_user_menu { get; set; }
         public virtual DbSet<user_group_mapping> user_group_mapping { get; set; }
+        public virtual DbSet<stock_exchange_record> stock_exchange_record { get; set; }
+        public virtual DbSet<turn_in_out_record> turn_in_out_record { get; set; }
+        public virtual DbSet<water_bill> water_bill { get; set; }
+        public virtual DbSet<stock> stock { get; set; }
     }
 }

@@ -70,6 +70,12 @@
       <DependentUpon>ManageEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="stock.cs">
+      <DependentUpon>ManageEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="stock_exchange_record.cs">
+      <DependentUpon>ManageEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="sys_user.cs">
       <DependentUpon>ManageEntities.tt</DependentUpon>
     </Compile>
@@ -79,11 +85,17 @@
     <Compile Include="sys_user_menu.cs">
       <DependentUpon>ManageEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="turn_in_out_record.cs">
+      <DependentUpon>ManageEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="user_group_mapping.cs">
       <DependentUpon>ManageEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\DataTableRequest.cs" />
     <Compile Include="ViewModel\Paging.cs" />
+    <Compile Include="water_bill.cs">
+      <DependentUpon>ManageEntities.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

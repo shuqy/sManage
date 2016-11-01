@@ -14,6 +14,10 @@
         <AssociationConnector Association="SQY_ManageModel.groupmenu_menuid_cons" ManuallyRouted="false" />
         <AssociationConnector Association="SQY_ManageModel.usergroup_userid_cons" ManuallyRouted="false" />
         <AssociationConnector Association="SQY_ManageModel.usergroup_groupid_cons" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SQY_ManageModel.stock_exchange_record" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SQY_ManageModel.turn_in_out_record" Width="1.5" PointX="5.375" PointY="4.75" />
+        <EntityTypeShape EntityType="SQY_ManageModel.water_bill" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SQY_ManageModel.stock" Width="1.5" PointX="3.375" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

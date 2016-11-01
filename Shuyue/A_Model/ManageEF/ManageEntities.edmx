@@ -13,6 +13,34 @@
           <Property Name="GroupId" Type="int" Nullable="false" />
           <Property Name="MenuID" Type="int" Nullable="false" />
         </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“SQY_Manage.dbo.stock”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="stock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StockCode" Type="varchar" MaxLength="100" />
+          <Property Name="StockName" Type="nvarchar" MaxLength="100" />
+          <Property Name="PyFullName" Type="varchar" MaxLength="100" />
+          <Property Name="PyAbbre" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="stock_exchange_record">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="StockCode" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="BuyPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SellPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="BuyDate" Type="datetime" />
+          <Property Name="SellDate" Type="datetime" />
+          <Property Name="Profit" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="sys_user">
           <Key>
             <PropertyRef Name="Id" />
@@ -59,6 +87,17 @@
           <Property Name="Code" Type="varchar" MaxLength="200" />
           <Property Name="Deleted" Type="bit" />
         </EntityType>
+        <EntityType Name="turn_in_out_record">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Money" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="OperationDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="user_group_mapping">
           <Key>
             <PropertyRef Name="Id" />
@@ -66,6 +105,19 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="GroupId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="water_bill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="BMonthMoney" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TurnInMoney" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TurnOutMoney" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="ProfitMoney" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="EMonthMoney" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
         <Association Name="groupmenu_groupid_cons">
           <End Role="sys_user_group" Type="Self.sys_user_group" Multiplicity="1" />
@@ -117,10 +169,22 @@
         </Association>
         <EntityContainer Name="SQY_ManageModelStoreContainer">
           <EntitySet Name="group_menu_mapping" EntityType="Self.group_menu_mapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="stock_exchange_record" EntityType="Self.stock_exchange_record" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sys_user" EntityType="Self.sys_user" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sys_user_group" EntityType="Self.sys_user_group" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sys_user_menu" EntityType="Self.sys_user_menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="turn_in_out_record" EntityType="Self.turn_in_out_record" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="user_group_mapping" EntityType="Self.user_group_mapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="water_bill" EntityType="Self.water_bill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="stock" EntityType="Self.stock" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [stock].[Id] AS [Id], 
+    [stock].[StockCode] AS [StockCode], 
+    [stock].[StockName] AS [StockName], 
+    [stock].[PyFullName] AS [PyFullName], 
+    [stock].[PyAbbre] AS [PyAbbre]
+    FROM [dbo].[stock] AS [stock]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="groupmenu_groupid_cons" Association="Self.groupmenu_groupid_cons">
             <End Role="sys_user_group" EntitySet="sys_user_group" />
             <End Role="group_menu_mapping" EntitySet="group_menu_mapping" />
@@ -282,7 +346,61 @@
             <End Role="sys_user_group" EntitySet="sys_user_group" />
             <End Role="user_group_mapping" EntitySet="user_group_mapping" />
           </AssociationSet>
+          <EntitySet Name="stock_exchange_record" EntityType="SQY_ManageModel.stock_exchange_record" />
+          <EntitySet Name="turn_in_out_record" EntityType="SQY_ManageModel.turn_in_out_record" />
+          <EntitySet Name="water_bill" EntityType="SQY_ManageModel.water_bill" />
+          <EntitySet Name="stock" EntityType="SQY_ManageModel.stock" />
         </EntityContainer>
+        <EntityType Name="stock_exchange_record">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="StockCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BuyPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SellPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="BuyDate" Type="DateTime" Precision="3" />
+          <Property Name="SellDate" Type="DateTime" Precision="3" />
+          <Property Name="Profit" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="turn_in_out_record">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Money" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="water_bill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="BMonthMoney" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="TurnInMoney" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="TurnOutMoney" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="ProfitMoney" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="EMonthMoney" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="stock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StockCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="StockName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PyFullName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PyAbbre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -353,6 +471,60 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stock_exchange_record">
+            <EntityTypeMapping TypeName="SQY_ManageModel.stock_exchange_record">
+              <MappingFragment StoreEntitySet="stock_exchange_record">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Profit" ColumnName="Profit" />
+                <ScalarProperty Name="SellDate" ColumnName="SellDate" />
+                <ScalarProperty Name="BuyDate" ColumnName="BuyDate" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="SellPrice" ColumnName="SellPrice" />
+                <ScalarProperty Name="BuyPrice" ColumnName="BuyPrice" />
+                <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="turn_in_out_record">
+            <EntityTypeMapping TypeName="SQY_ManageModel.turn_in_out_record">
+              <MappingFragment StoreEntitySet="turn_in_out_record">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+                <ScalarProperty Name="Money" ColumnName="Money" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="water_bill">
+            <EntityTypeMapping TypeName="SQY_ManageModel.water_bill">
+              <MappingFragment StoreEntitySet="water_bill">
+                <ScalarProperty Name="EMonthMoney" ColumnName="EMonthMoney" />
+                <ScalarProperty Name="ProfitMoney" ColumnName="ProfitMoney" />
+                <ScalarProperty Name="TurnOutMoney" ColumnName="TurnOutMoney" />
+                <ScalarProperty Name="TurnInMoney" ColumnName="TurnInMoney" />
+                <ScalarProperty Name="BMonthMoney" ColumnName="BMonthMoney" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stock">
+            <EntityTypeMapping TypeName="SQY_ManageModel.stock">
+              <MappingFragment StoreEntitySet="stock">
+                <ScalarProperty Name="PyAbbre" ColumnName="PyAbbre" />
+                <ScalarProperty Name="PyFullName" ColumnName="PyFullName" />
+                <ScalarProperty Name="StockName" ColumnName="StockName" />
+                <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

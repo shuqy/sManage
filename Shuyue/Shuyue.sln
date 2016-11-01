@@ -30,6 +30,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "B_Framework\ManageC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EF.Entity.Core", "B_Framework\EFData.Core\EF.Entity.Core.csproj", "{0AB13F11-BE54-4233-A7AA-C7F5140EFD11}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockApp", "D_Application\StockApp\StockApp.csproj", "{B5F33B8E-BAF1-44D7-A126-FA725066BEE0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,10 @@ Global
 		{0AB13F11-BE54-4233-A7AA-C7F5140EFD11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AB13F11-BE54-4233-A7AA-C7F5140EFD11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AB13F11-BE54-4233-A7AA-C7F5140EFD11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5F33B8E-BAF1-44D7-A126-FA725066BEE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5F33B8E-BAF1-44D7-A126-FA725066BEE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5F33B8E-BAF1-44D7-A126-FA725066BEE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5F33B8E-BAF1-44D7-A126-FA725066BEE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,5 +73,6 @@ Global
 		{ACB66AA8-31ED-4E64-88F8-58EF6BEF7871} = {569E75E6-47F7-4F41-97D0-E460DE9EF9B0}
 		{CB4C1A81-AB9D-4091-A218-E4447DD37AD6} = {A48693E3-E75C-4AA2-AF46-BEE445F94A2C}
 		{0AB13F11-BE54-4233-A7AA-C7F5140EFD11} = {A48693E3-E75C-4AA2-AF46-BEE445F94A2C}
+		{B5F33B8E-BAF1-44D7-A126-FA725066BEE0} = {0E38AE1E-3079-4827-84A8-2AF527FCB372}
 	EndGlobalSection
 EndGlobal
