@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace StockApp.Controllers
 {
-    [SmAuthorize]
+    //[SmAuthorize]
     public class ControllerBase : Controller
     {
     }

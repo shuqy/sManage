@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "添加转入转出";
+}
+<div class="weui-toptips weui-toptips_warn js_tooltips" style="display: none;">操作失败</div>
+@using (Html.BeginForm())
+{
+    <input type="hidden" name="UserId" value="@ViewBag.UserId" />
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell weui-cell_switch">
+            <div class="weui-cell__bd">
+                选择转入转出类型
+                （<b id="type">转入</b>）
+            </div>
+            <div class="weui-cell__ft">
+                <input class="weui-switch" type="checkbox" id="inOrOut">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">金额</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="number" placeholder="请输入金额" pattern="[-][0-9]*" id="price">
+                <input type="hidden" name="Money" id="Money" />
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label for="" class="weui-label">日期</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="date" value="" name="OperationDate">
+            </div>
+        </div>
+        <a href="javascript:;" class="weui-btn weui-btn_default smSave">确定</a>
+        <div id="toast" style="display: none;">
+            <div class="weui-mask_transparent"></div>
+            <div class="weui-toast">
+                <i class="weui-icon-success-no-circle weui-icon_toast"></i>
+                <p class="weui-toast__content">已完成</p>
+            </div>
+        </div>
+    </div>
+}
+@section scripts{
+    <script type="text/javascript" class="toast js_show">
+        $(function () {
+            $(".mainwarp").on("click", ".smSave", function (e) {
+                e.preventDefault();
+                if ($("#price").val() == "") {
+                    topTip();
+                    return;
+                }
+                if ($("#inOrOut").is(':checked')) {
+                    $("#Money").val(-1 * parseFloat($("#price").val()));
+                } else {
+                    $("#Money").val(parseFloat($("#price").val()));
+                }
+                $(".mainwarp").smAjaxSubmit({
+                    success: function (data) {
+                        if (data && data.Code == 0) {
+                            showTip();
+                        } else {
+                            topTip();
+                        }
+                    }
+                });
+            });
+            $("#inOrOut").change(function () {
+                if ($(this).is(':checked')) {
+                    $("#type").html("转出");
+                } else {
+                    $("#type").html("转入");
+                }
+            });
+        });
+        function showTip() {
+            var $toast = $('#toast');
+            if ($toast.css('display') != 'none') return;
+            $toast.show();
+            setTimeout(function () {
+                $toast.hide();
+            }, 2000);
+        }
+        function topTip() {
+            var $tooltips = $('.js_tooltips');
+            if ($tooltips.css('display') != 'none') return;
+            // toptips的fixed, 如果有`animation`, `position: fixed`不生效
+            $('.page.cell').removeClass('slideIn');
+
+            $tooltips.css('display', 'block');
+            setTimeout(function () {
+                $tooltips.css('display', 'none');
+            }, 2000);
+        }
+    </script>
+}

@@ -145,6 +145,9 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="scripts\common.js" />
+    <Content Include="scripts\jweixin-1.0.0.js" />
+    <Content Include="scripts\zepto.min.js" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -154,6 +157,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Summary\TurnInAndOut.cshtml" />
+    <Content Include="appsetting.config" />
+    <Content Include="Views\Summary\AddStockExchange.cshtml" />
+    <Content Include="Views\Summary\UpdateWaterBill.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -201,7 +208,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Summary\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\A_Model\ManageEF\ManageEF.csproj">

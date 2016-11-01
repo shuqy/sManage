@@ -1,0 +1,95 @@
+﻿@{
+    ViewBag.Title = "添加股票交易记录";
+}
+<div class="weui-toptips weui-toptips_warn js_tooltips" style="display: none;">操作失败</div>
+@using (Html.BeginForm())
+{
+    <input type="hidden" name="UserId" value="@ViewBag.UserId" />
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">股票代码</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="number" placeholder="请输入股票代码" name="StockCode">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label for="" class="weui-label">持股数量</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="number" placeholder="请输入持股数量" name="Quantity">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label for="" class="weui-label">买入价格</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="number" placeholder="请输入买入价格" name="BuyPrice">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label for="" class="weui-label">卖出价格</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="number" placeholder="请输入卖出价格" name="SellPrice">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label for="" class="weui-label">买入日期</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="date" value="" name="BuyDate">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label for="" class="weui-label">卖出日期</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="date" value="" name="SellDate">
+            </div>
+        </div>
+        <a href="javascript:;" class="weui-btn weui-btn_default smSave">确定</a>
+        <div id="toast" style="display: none;">
+            <div class="weui-mask_transparent"></div>
+            <div class="weui-toast">
+                <i class="weui-icon-success-no-circle weui-icon_toast"></i>
+                <p class="weui-toast__content">已完成</p>
+            </div>
+        </div>
+    </div>
+}
+@section scripts{
+    <script type="text/javascript" class="toast js_show">
+        $(function () {
+            $(".mainwarp").on("click", ".smSave", function (e) {
+                e.preventDefault();
+                if ($("#price").val() == "") {
+                    topTip();
+                    return;
+                }
+                $(".mainwarp").smAjaxSubmit({
+                    success: function (data) {
+                        if (data && data.Code == 0) {
+                            showTip();
+                        } else {
+                            topTip();
+                        }
+                    }
+                });
+            });
+        });
+        function showTip() {
+            var $toast = $('#toast');
+            if ($toast.css('display') != 'none') return;
+            $toast.show();
+            setTimeout(function () {
+                $toast.hide();
+            }, 2000);
+        }
+        function topTip() {
+            var $tooltips = $('.js_tooltips');
+            if ($tooltips.css('display') != 'none') return;
+            // toptips的fixed, 如果有`animation`, `position: fixed`不生效
+            $('.page.cell').removeClass('slideIn');
+
+            $tooltips.css('display', 'block');
+            setTimeout(function () {
+                $tooltips.css('display', 'none');
+            }, 2000);
+        }
+    </script>
+}
