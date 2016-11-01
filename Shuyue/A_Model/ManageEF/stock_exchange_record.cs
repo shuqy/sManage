@@ -17,11 +17,12 @@ namespace ManageEF
         public int Id { get; set; }
         public Nullable<int> UserId { get; set; }
         public string StockCode { get; set; }
-        public Nullable<decimal> BuyPrice { get; set; }
-        public Nullable<decimal> SellPrice { get; set; }
-        public Nullable<int> Quantity { get; set; }
-        public Nullable<System.DateTime> BuyDate { get; set; }
-        public Nullable<System.DateTime> SellDate { get; set; }
+        public string StockName { get; set; }
+        public decimal BuyPrice { get; set; }
+        public decimal SellPrice { get; set; }
+        public int Quantity { get; set; }
+        public System.DateTime BuyDate { get; set; }
+        public System.DateTime SellDate { get; set; }
         public Nullable<decimal> Profit { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public bool Deleted { get; set; }

@@ -16,11 +16,12 @@ namespace ManageEF
     {
         public int Id { get; set; }
         public int UserId { get; set; }
-        public decimal Date { get; set; }
         public decimal BMonthMoney { get; set; }
         public decimal TurnInMoney { get; set; }
         public decimal TurnOutMoney { get; set; }
         public decimal ProfitMoney { get; set; }
         public decimal EMonthMoney { get; set; }
+        public System.DateTime Date { get; set; }
+        public System.DateTime UpdatedOn { get; set; }
     }
 }
