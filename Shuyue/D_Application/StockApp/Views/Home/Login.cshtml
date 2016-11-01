@@ -1,0 +1,30 @@
+﻿@model ManageService.Entities.LoginModel
+@{
+    ViewBag.Title = "登录";
+}
+<form method="post" id="loginForm" action="/home/login">
+    <div class="page__bd">
+        <div class="weui-cells__title">请登录</div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">账号</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="text" placeholder="请输入账号" name="UserCode" value="@Model.UserCode">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">密码</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="password" placeholder="请输入密码" name="PassCode" value="@Model.PassCode">
+            </div>
+        </div>
+        <a href="javascript:sCheckform();" class="weui-btn weui-btn_default">登录</a>
+    </div>
+    <div class="weui-cells__tips">@Html.ValidationSummary()</div>
+</form>
+<script type="text/javascript">
+    function sCheckform() {
+        $("#loginForm").submit();
+        return true;
+    };
+
+</script>
