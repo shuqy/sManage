@@ -163,6 +163,8 @@
     <Content Include="Views\Summary\UpdateWaterBill.cshtml" />
     <Content Include="Views\Summary\TurnInOutList.cshtml" />
     <Content Include="Views\Summary\StockExchangeList.cshtml" />
+    <Content Include="Views\Summary\WaterBill.cshtml" />
+    <Content Include="Views\Summary\Statistics.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

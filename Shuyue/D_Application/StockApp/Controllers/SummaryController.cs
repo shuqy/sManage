@@ -79,10 +79,10 @@ namespace StockApp.Controllers
                 var tlist = turnInOutList.Where(e => e.OperationDate <= efd && e.OperationDate >= bfd);
                 var elist = stockExchangeList.Where(e => e.SellDate <= efd && e.SellDate >= bfd);
                 bmoney = emoney;
-                decimal inOutMoney = tlist.Sum(t => t.Money);
-                decimal profile = Convert.ToDecimal(elist.Sum(e => e.Profit));
-                decimal inMoney = tlist.Any(t => t.Money > 0) ? tlist.Where(t => t.Money > 0).Sum(t => t.Money) : 0m;
-                decimal outMoney = tlist.Any(t => t.Money < 0) ? tlist.Where(t => t.Money > 0).Sum(t => t.Money) : 0m;
+                decimal inOutMoney = tlist == null || !tlist.Any() ? 0 : tlist.Sum(t => t.Money);
+                decimal profile = Convert.ToDecimal(elist == null || !elist.Any() ? 0 : elist.Sum(e => e.Profit));
+                decimal inMoney = tlist.Any(t => t.Money > 0) ? !tlist.Any(t => t.Money > 0) ? 0 : tlist.Where(t => t.Money > 0).Sum(t => t.Money) : 0m;
+                decimal outMoney = tlist.Any(t => t.Money < 0) ? !tlist.Any(t => t.Money < 0) ? 0 : tlist.Where(t => t.Money < 0).Sum(t => t.Money) : 0m;
                 emoney = bmoney + inOutMoney + profile;
                 wlist.Add(new water_bill
                 {
@@ -117,6 +117,19 @@ namespace StockApp.Controllers
             var db = AppContext.Current.DbContext;
             List<stock_exchange_record> stockExchangeList = db.stock_exchange_record.Where(t => t.UserId == AppContext.Current.CurrentUser.Id).ToList();
             return View(stockExchangeList);
+        }
+        public ActionResult WaterBill()
+        {
+            var db = AppContext.Current.DbContext;
+            List<water_bill> waterBillList = db.water_bill.Where(t => t.UserId == AppContext.Current.CurrentUser.Id).ToList();
+            return View(waterBillList);
+        }
+        public ActionResult Statistics()
+        {
+            var db = AppContext.Current.DbContext;
+            List<water_bill> waterBillList = db.water_bill.Where(t => t.UserId == AppContext.Current.CurrentUser.Id).ToList();
+            ViewBag.stockExchangeList = db.stock_exchange_record.Where(t => t.UserId == AppContext.Current.CurrentUser.Id).GroupBy(a => a.StockCode).ToList();
+            return View(waterBillList);
         }
     }
 }

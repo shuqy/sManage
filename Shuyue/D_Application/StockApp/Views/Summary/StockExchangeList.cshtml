@@ -1,21 +1,29 @@
-﻿
-@{
-    ViewBag.Title = "交易记录";
+﻿@{
+    ViewBag.Title = "历史交易";
 }
 
 @model List<ManageEF.stock_exchange_record>
 <div class="page__bd">
-    <div class="weui-cells__title">带说明的列表项</div>
+    <div class="weui-cells__title">历史交易</div>
     <div class="weui-cells">
         @foreach (var item in Model.OrderByDescending(a => a.SellDate))
         {
             <div class="weui-cell">
                 <div class="weui-cell__bd">
-                    <p>@item.StockName<label style="font-size:12px;">@item.StockCode</label></p>
+                    <span>@item.StockName<label style="font-size:12px;">@item.StockCode</label></span>
                 </div>
-                <div class="weui-cell__ft"><span style="color:@(item.Profit > 0 ? "red" : item.Profit == 0 ? "gray" : "green";)">@item.Profit</span></div>
+                <div class="weui-cell__ft">
+                    <label style="font-size:12px;">盈亏</label>
+                    <span style="color:@(item.Profit > 0 ? "red" : item.Profit == 0 ? "gray" : "green");">@Convert.ToDecimal(item.Profit).ToString("f2")</span>
+                </div>
+            </div>
+            <div style="margin-left:15px;">
+                <div class="weui-cell__bd" style="font-size:13px;">
+                    <p>@item.BuyDate.ToString("yyyy-MM-dd") 至 @item.SellDate.ToString("yyyy-MM-dd")</p>
+                    <p>买入均价 @item.BuyPrice &nbsp; 卖出均价 @item.SellPrice</p>
+                    <p>交易数量 @item.Quantity</p>
+                </div>
             </div>
         }
     </div>
-
 </div>

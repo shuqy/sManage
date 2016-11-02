@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "统计";
+    List<IGrouping<string, ManageEF.stock_exchange_record>> groupList = ViewBag.stockExchangeList;
+    decimal totalProfile = 0m, totalLoss = 0m;
+}
+@model List<ManageEF.water_bill>
+
+<div class="page__bd">
+    <div class="weui-cells__title">资金统计（实际结果请以软件结果为准）</div>
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <p>
+                总资产：@Model.Sum(a => a.TurnInMoney + a.TurnOutMoney + a.ProfitMoney)&nbsp;
+                <span>成本：@Model.Sum(a => a.TurnInMoney + a.TurnOutMoney)</span>
+            </p>
+            <span>盈亏：@Model.Sum(a => a.ProfitMoney)</span>&nbsp;
+            <span>盈亏比例：@(Model.Any() ? (Model.Sum(a => a.ProfitMoney) * 100 / Model.Sum(a => a.TurnInMoney + a.TurnOutMoney)).ToString("f2") : "0.00")%</span>
+        </div>
+    </div>
+    <div class="weui-cells__title">所有亏损股票</div>
+    <div class="weui-cells">
+        @foreach (var item in groupList.OrderBy(a => a.Sum(i => i.Profit)))
+        {
+            if (item.Sum(i => i.Profit) < 0)
+            {
+                totalProfile += Convert.ToDecimal(item.Sum(i => i.Profit));
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <p>@(item.First().StockName)&nbsp;<label style="font-size:12px;">@item.First().StockCode</label></p>
+                    </div>
+                    <div class="weui-cell__ft">@Convert.ToDecimal(item.Sum(i => i.Profit)).ToString("f2")</div>
+                </div>
+            }
+        }
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>累计亏损</p>
+            </div>
+            <div class="weui-cell__ft" style="color:green;">@totalProfile.ToString("f2")</div>
+        </div>
+    </div>
+    <div class="weui-cells__title">所有盈利股票</div>
+    <div class="weui-cells">
+        @foreach (var item in groupList.OrderByDescending(a => a.Sum(i => i.Profit)))
+        {
+            if (item.Sum(i => i.Profit) > 0)
+            {
+                totalLoss += Convert.ToDecimal(item.Sum(i => i.Profit));
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <p>@(item.First().StockName)&nbsp;<label style="font-size:12px;">@item.First().StockCode</label></p>
+                    </div>
+                    <div class="weui-cell__ft">@Convert.ToDecimal(item.Sum(i => i.Profit)).ToString("f2")</div>
+                </div>
+            }
+        }
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>累计盈利</p>
+            </div>
+            <div class="weui-cell__ft" style="color:red;">@totalLoss.ToString("f2")</div>
+        </div>
+    </div>
+</div>
