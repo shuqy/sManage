@@ -49,10 +49,11 @@ namespace StockApp.Controllers
         [HttpPost]
         public ActionResult AddStockExchange(stock_exchange_record record)
         {
+            var db = AppContext.Current.DbContext;
             record.CreatedOn = DateTime.Now;
             record.Deleted = false;
+            record.StockName = db.stock.FirstOrDefault(a => a.StockCode == record.StockCode).StockName;
             record.Profit = (record.SellPrice - record.BuyPrice) * record.Quantity;
-            var db = AppContext.Current.DbContext;
             db.stock_exchange_record.Add(record);
             db.SaveChanges();
             return Json(new JsonData { Code = record.Id > 0 ? ResultCode.OK : ResultCode.Fail, }, JsonRequestBehavior.DenyGet);
@@ -73,7 +74,7 @@ namespace StockApp.Controllers
             DateTime bfd = Convert.ToDateTime(string.Format("{0}-{1}-{2}", fd.Year, fd.Month, 1));
             DateTime efd = Convert.ToDateTime(string.Format("{0}-{1}-{2}", fd.Year, fd.Month, bfd.AddMonths(1).AddDays(-1).Day));
             //生成月账单流水
-            for (; efd < Convert.ToDateTime(DateTime.Now.ToShortDateString()); efd.AddMonths(1), bfd.AddMonths(1))
+            for (; efd < Convert.ToDateTime(DateTime.Now.ToShortDateString()); efd = efd.AddMonths(1), bfd = bfd.AddMonths(1))
             {
                 var tlist = turnInOutList.Where(e => e.OperationDate <= efd && e.OperationDate >= bfd);
                 var elist = stockExchangeList.Where(e => e.SellDate <= efd && e.SellDate >= bfd);

@@ -33,12 +33,12 @@
           <Property Name="UserId" Type="int" />
           <Property Name="StockCode" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="StockName" Type="nvarchar" MaxLength="20" />
-          <Property Name="BuyPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="SellPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="BuyPrice" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="SellPrice" Type="decimal" Precision="18" Scale="5" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="BuyDate" Type="datetime" Nullable="false" />
           <Property Name="SellDate" Type="datetime" Nullable="false" />
-          <Property Name="Profit" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Profit" Type="decimal" Precision="18" Scale="5" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
@@ -113,11 +113,11 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="BMonthMoney" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="TurnInMoney" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="TurnOutMoney" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="ProfitMoney" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="EMonthMoney" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="BMonthMoney" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="TurnInMoney" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="TurnOutMoney" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="ProfitMoney" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="EMonthMoney" Type="decimal" Precision="18" Scale="5" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="UpdatedOn" Type="datetime" Nullable="false" />
         </EntityType>
@@ -253,12 +253,12 @@
           <Property Name="UserId" Type="Int32" />
           <Property Name="StockCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="StockName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="BuyPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="SellPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="BuyPrice" Type="Decimal" Nullable="false" Precision="18" Scale="5" />
+          <Property Name="SellPrice" Type="Decimal" Nullable="false" Precision="18" Scale="5" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <Property Name="BuyDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="SellDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Profit" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Profit" Type="Decimal" Precision="18" Scale="5" />
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
         </EntityType>
@@ -339,11 +339,11 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="BMonthMoney" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="TurnInMoney" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="TurnOutMoney" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="ProfitMoney" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="EMonthMoney" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="BMonthMoney" Type="Decimal" Nullable="false" Precision="18" Scale="5" />
+          <Property Name="TurnInMoney" Type="Decimal" Nullable="false" Precision="18" Scale="5" />
+          <Property Name="TurnOutMoney" Type="Decimal" Nullable="false" Precision="18" Scale="5" />
+          <Property Name="ProfitMoney" Type="Decimal" Nullable="false" Precision="18" Scale="5" />
+          <Property Name="EMonthMoney" Type="Decimal" Nullable="false" Precision="18" Scale="5" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdatedOn" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
