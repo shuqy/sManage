@@ -161,6 +161,8 @@
     <Content Include="appsetting.config" />
     <Content Include="Views\Summary\AddStockExchange.cshtml" />
     <Content Include="Views\Summary\UpdateWaterBill.cshtml" />
+    <Content Include="Views\Summary\TurnInOutList.cshtml" />
+    <Content Include="Views\Summary\StockExchangeList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

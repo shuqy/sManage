@@ -102,5 +102,21 @@ namespace StockApp.Controllers
             db.SaveChanges();
             return View();
         }
+        /// <summary>
+        /// 转入转出记录
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult TurnInOutList()
+        {
+            var db = AppContext.Current.DbContext;
+            List<turn_in_out_record> turnInOutList = db.turn_in_out_record.Where(t => t.UserId == AppContext.Current.CurrentUser.Id).ToList();
+            return View(turnInOutList);
+        }
+        public ActionResult StockExchangeList()
+        {
+            var db = AppContext.Current.DbContext;
+            List<stock_exchange_record> stockExchangeList = db.stock_exchange_record.Where(t => t.UserId == AppContext.Current.CurrentUser.Id).ToList();
+            return View(stockExchangeList);
+        }
     }
 }

@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "转账记录";
+}
+@model List<ManageEF.turn_in_out_record>
+<div class="page__bd">
+    <div class="weui-cells__title">带说明的列表项</div>
+    <div class="weui-cells">
+        @foreach (var item in Model.OrderByDescending(a => a.OperationDate))
+        {
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <p>@(item.Money > 0 ? "转入" : "转出")<span style="color:@(item.Money > 0 ? "red" : "green");">@item.Money</span></p>
+                </div>
+                <div class="weui-cell__ft">@item.OperationDate.ToString("yyyy年MM月")</div>
+            </div>
+        }
+    </div>
+
+</div>
