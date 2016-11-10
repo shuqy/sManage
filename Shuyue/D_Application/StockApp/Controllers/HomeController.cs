@@ -1,5 +1,6 @@
 ﻿using Core.Entities;
 using Core.Util;
+using ManageEF;
 using ManageService.Entities;
 using ManageService.User;
 using System;
@@ -20,7 +21,17 @@ namespace StockApp.Controllers
         }
         public ActionResult Test()
         {
-            NPOIHelper.ImportExceltoDt("D:\\test.xlsx");
+            var table = NPOIHelper.ImportExceltoDt("D:\\jgd.xlsx");
+            var list = ModelHelper.ExcelFillModelList<delivery_order>(table);
+            list = list.Where(l => l.OccurrenceAmount != 0).ToList();
+            foreach (var item in list)
+            {
+                item.SecurityCode = item.SecurityCode.PadLeft(6, '0');
+                item.OperationType = item.Operation == "买入" ? 0 : 1;
+            }
+            var db = Core.AppContext.Current.DbContext;
+            db.delivery_order.AddRange(list);
+            db.SaveChanges();
             return View();
         }
 
