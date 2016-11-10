@@ -30,6 +30,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NPOI">
+      <HintPath>..\..\packages\NPOI.2.2.1\lib\net40\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>..\..\packages\NPOI.2.2.1\lib\net40\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\..\packages\NPOI.2.2.1\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\..\packages\NPOI.2.2.1\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -56,9 +68,12 @@
     <Compile Include="Util\CSharpHelper.cs" />
     <Compile Include="Util\Encryptor.cs" />
     <Compile Include="Util\MD5.cs" />
+    <Compile Include="Util\ModelHelper.cs" />
+    <Compile Include="Util\NPOIHelper.cs" />
     <Compile Include="Util\ParamHelper.cs" />
     <Compile Include="Util\RequestHelper.cs" />
     <Compile Include="Util\StringHelper.cs" />
+    <Compile Include="Util\WriteLog.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\A_Model\ManageEF\ManageEF.csproj">
