@@ -104,5 +104,54 @@ namespace Core.Util
             }
             return model;
         }
+
+        /// <summary>
+        /// 使用DataTable填充List实体
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public static IList<T> ExcelFillModelList<T>(DataTable dt) where T : new()
+        {
+            if (dt == null || dt.Rows.Count == 0)
+            {
+                return null;
+            }
+            IList<T> listT = new List<T>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                T t = new T();
+                t = ExcelFillModel<T>(dr);
+                listT.Add(t);
+            }
+            return listT;
+        }
+        /// <summary>  
+        /// 填充对象：用DataRow填充实体类 
+        /// </summary>  
+        public static T ExcelFillModel<T>(DataRow dr) where T : new()
+        {
+            if (dr == null)
+            {
+                return default(T);
+            }
+            string[] intParam = new[] { "Volume" };
+            string[] decimalParam = new[] { "TransactionPrice", "TransactionAmount", "CounterFee", "StampDuty", "OtherExpenses", "OccurrenceAmount" };
+            T model = new T();
+            foreach (PropertyInfo propertyInfo in typeof(T).GetProperties())
+            {
+                if (dr.Table.Columns.Contains(propertyInfo.Name))
+                {
+                    if (dr[propertyInfo.Name] != DBNull.Value)
+                    {
+                        var val = dr[propertyInfo.Name];
+                        if (intParam.Contains(propertyInfo.Name)) val = Convert.ToInt32(val);
+                        else if (decimalParam.Contains(propertyInfo.Name)) val = Convert.ToDecimal(val);
+                        model.GetType().GetProperty(propertyInfo.Name).SetValue(model, val, null);
+                    }
+                }
+            }
+            return model;
+        }
     }
 }
