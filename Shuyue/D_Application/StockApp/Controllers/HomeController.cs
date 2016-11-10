@@ -18,6 +18,11 @@ namespace StockApp.Controllers
         {
             return View();
         }
+        public ActionResult Test()
+        {
+            NPOIHelper.ImportExceltoDt("D:\\test.xlsx");
+            return View();
+        }
 
         [Description("登录")]
         public ActionResult Login()
