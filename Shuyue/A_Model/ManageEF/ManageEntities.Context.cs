@@ -34,5 +34,6 @@ namespace ManageEF
         public virtual DbSet<user_group_mapping> user_group_mapping { get; set; }
         public virtual DbSet<water_bill> water_bill { get; set; }
         public virtual DbSet<stock> stock { get; set; }
+        public virtual DbSet<delivery_order> delivery_order { get; set; }
     }
 }

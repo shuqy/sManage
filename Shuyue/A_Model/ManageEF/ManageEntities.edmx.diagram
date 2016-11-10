@@ -18,6 +18,7 @@
         <AssociationConnector Association="SQY_ManageModel.groupmenu_menuid_cons" />
         <AssociationConnector Association="SQY_ManageModel.usergroup_userid_cons" />
         <AssociationConnector Association="SQY_ManageModel.usergroup_groupid_cons" />
+        <EntityTypeShape EntityType="SQY_ManageModel.delivery_order" Width="1.5" PointX="8.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
