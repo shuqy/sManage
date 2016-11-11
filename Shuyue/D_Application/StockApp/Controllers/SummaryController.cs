@@ -1,6 +1,7 @@
 ﻿using Core;
 using Core.Entities;
 using Core.Enum;
+using Core.Util;
 using ManageEF;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,23 @@ namespace StockApp.Controllers
 {
     public class SummaryController : ControllerBase
     {
-        // GET: Summary
         public ActionResult Index()
         {
-            return View();
+            var db = AppContext.Current.DbContext;
+            //转入转出
+            List<turn_in_out_record> turnInOutList = db.turn_in_out_record.Where(t => t.UserId == AppContext.Current.CurrentUser.Id).ToList();
+            ViewBag.total = turnInOutList.Sum(t => t.Money);
+            List<delivery_order> deliveryOrderList = db.delivery_order.Where(t => t.UserId == AppContext.Current.CurrentUser.Id).ToList();
+            List<IGrouping<string, delivery_order>> gdList = deliveryOrderList.GroupBy(d => d.SecurityCode).ToList();
+            Dictionary<string, decimal> sDic = new Dictionary<string, decimal>();
+            foreach (var item in gdList.Where(a => a.Sum(i => i.Volume) != 0))
+            {
+                var stock = StockHelper.GetCurStockData(item.Key);
+                decimal gmoney = Convert.ToInt32(item.Sum(i => i.Volume)) * Convert.ToDecimal(stock.currentPrice);
+                sDic.Add(item.Key, gmoney);
+            }
+            ViewBag.sDic = sDic;
+            return View(gdList);
         }
 
         /// <summary>
@@ -130,6 +144,31 @@ namespace StockApp.Controllers
             List<water_bill> waterBillList = db.water_bill.Where(t => t.UserId == AppContext.Current.CurrentUser.Id).ToList();
             ViewBag.stockExchangeList = db.stock_exchange_record.Where(t => t.UserId == AppContext.Current.CurrentUser.Id).GroupBy(a => a.StockCode).ToList();
             return View(waterBillList);
+        }
+        /// <summary>
+        /// 每月统计
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MonthlyStatistics()
+        {
+            return View();
+        }
+
+        public ActionResult ImportData()
+        {
+            var table = NPOIHelper.ImportExceltoDt("D:\\workspace\\Shuyue\\G_DB\\jgd.xlsx");
+            var list = ModelHelper.ExcelFillModelList<delivery_order>(table);
+            list = list.Where(l => l.OccurrenceAmount != 0).ToList();
+            foreach (var item in list)
+            {
+                item.UserId = AppContext.Current.CurrentUser.Id;
+                item.SecurityCode = item.SecurityCode.PadLeft(6, '0');
+                item.OperationType = item.Operation == "买入" ? 0 : 1;
+            }
+            var db = Core.AppContext.Current.DbContext;
+            db.delivery_order.AddRange(list);
+            ViewBag.IsSuccess = db.SaveChanges() > 0;
+            return View();
         }
     }
 }

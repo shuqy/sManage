@@ -19,6 +19,7 @@
         </div>
         <a href="javascript:sCheckform();" class="weui-btn weui-btn_default">登录</a>
     </div>
+    @Html.HiddenFor(m=>m.Redirect)
     <div class="weui-cells__tips">@Html.ValidationSummary()</div>
 </form>
 <script type="text/javascript">

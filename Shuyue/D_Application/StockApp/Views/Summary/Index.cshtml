@@ -1,0 +1,43 @@
+﻿@using ManageEF
+@{
+    ViewBag.Title = "综合统计";
+    Dictionary<string, decimal> sDic = ViewBag.sDic;
+}
+@model List<IGrouping<string, delivery_order>>
+
+
+<div class="page__bd">
+    <div class="weui-cells__title">资金统计（实际结果请以软件结果为准）</div>
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <p>
+                <span>总成本：@ViewBag.total</span>
+                <span>werwa：@(sDic.Sum(a => a.Value) + Model.Sum(m => m.Sum(i => i.OccurrenceAmount)))</span>
+                <br />
+                @foreach (var item in Model.Where(a => a.Sum(i => i.Volume) != 0))
+                {
+                    <label>@item.FirstOrDefault().SecurityName </label>
+                    <label>@item.Sum(i => i.Volume) </label>
+                    <label>@sDic[item.Key] </label>
+                }
+            </p>
+        </div>
+    </div>
+
+    <div class="weui-cells">
+        @foreach (var item in Model.OrderByDescending(m => m.Sum(i => i.OccurrenceAmount)))
+        {
+            decimal gm = 0m;
+            if (item.Sum(i => i.Volume) != 0)
+            {
+                gm = sDic[item.Key];
+            }
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <p>@(item.FirstOrDefault().SecurityName)&nbsp;<label style="font-size:12px;">@item.Key</label></p>
+                </div>
+                <div class="weui-cell__ft">@Convert.ToDecimal(item.Sum(i => i.OccurrenceAmount) + gm).ToString("f2")</div>
+            </div>
+        }
+    </div>
+</div>
