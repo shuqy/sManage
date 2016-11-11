@@ -1,6 +1,7 @@
 drop table delivery_order
 create table delivery_order(
 	Id int identity(1,1) primary key,
+	UserId int,
 	SecurityCode varchar(100),--证券代码
 	SecurityName nvarchar(100),--证券名称
 	Volume int,--成交数量
@@ -13,5 +14,5 @@ create table delivery_order(
 	Remark nvarchar(500),--备注
 	Operation nvarchar(500),--操作
 	OperationType int,--操作类型
-	ClosingDdate varchar(50),--成交日期
+	ClosingDate varchar(50),--成交日期
 )
