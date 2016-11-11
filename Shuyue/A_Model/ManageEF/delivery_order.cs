@@ -15,6 +15,7 @@ namespace ManageEF
     public partial class delivery_order
     {
         public int Id { get; set; }
+        public Nullable<int> UserId { get; set; }
         public string SecurityCode { get; set; }
         public string SecurityName { get; set; }
         public Nullable<int> Volume { get; set; }
@@ -27,6 +28,6 @@ namespace ManageEF
         public string Remark { get; set; }
         public string Operation { get; set; }
         public Nullable<int> OperationType { get; set; }
-        public string ClosingDdate { get; set; }
+        public string ClosingDate { get; set; }
     }
 }

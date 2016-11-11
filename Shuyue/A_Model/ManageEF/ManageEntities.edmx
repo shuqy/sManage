@@ -10,6 +10,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
           <Property Name="SecurityCode" Type="varchar" MaxLength="100" />
           <Property Name="SecurityName" Type="nvarchar" MaxLength="100" />
           <Property Name="Volume" Type="int" />
@@ -22,7 +23,7 @@
           <Property Name="Remark" Type="nvarchar" MaxLength="500" />
           <Property Name="Operation" Type="nvarchar" MaxLength="500" />
           <Property Name="OperationType" Type="int" />
-          <Property Name="ClosingDdate" Type="varchar" MaxLength="50" />
+          <Property Name="ClosingDate" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="group_menu_mapping">
           <Key>
@@ -431,6 +432,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
           <Property Name="SecurityCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="SecurityName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Volume" Type="Int32" />
@@ -443,7 +445,7 @@
           <Property Name="Remark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Operation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="OperationType" Type="Int32" />
-          <Property Name="ClosingDdate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ClosingDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -577,7 +579,7 @@
           <EntitySetMapping Name="delivery_order">
             <EntityTypeMapping TypeName="SQY_ManageModel.delivery_order">
               <MappingFragment StoreEntitySet="delivery_order">
-                <ScalarProperty Name="ClosingDdate" ColumnName="ClosingDdate" />
+                <ScalarProperty Name="ClosingDate" ColumnName="ClosingDate" />
                 <ScalarProperty Name="OperationType" ColumnName="OperationType" />
                 <ScalarProperty Name="Operation" ColumnName="Operation" />
                 <ScalarProperty Name="Remark" ColumnName="Remark" />
@@ -590,6 +592,7 @@
                 <ScalarProperty Name="Volume" ColumnName="Volume" />
                 <ScalarProperty Name="SecurityName" ColumnName="SecurityName" />
                 <ScalarProperty Name="SecurityCode" ColumnName="SecurityCode" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
