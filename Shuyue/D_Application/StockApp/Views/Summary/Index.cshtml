@@ -12,13 +12,13 @@
         <div class="weui-cell__bd">
             <p>
                 <span>总成本：@ViewBag.total</span>
-                <span>werwa：@(sDic.Sum(a => a.Value) + Model.Sum(m => m.Sum(i => i.OccurrenceAmount)))</span>
+                <span>盈亏：@(sDic.Sum(a => a.Value) + Model.Sum(m => m.Sum(i => i.OccurrenceAmount)))</span>
                 <br />
                 @foreach (var item in Model.Where(a => a.Sum(i => i.Volume) != 0))
                 {
-                    <label>@item.FirstOrDefault().SecurityName </label>
-                    <label>@item.Sum(i => i.Volume) </label>
-                    <label>@sDic[item.Key] </label>
+                    <span>@item.FirstOrDefault().SecurityName </span>
+                    <span>@item.Sum(i => i.Volume) </span>
+                    <span>@sDic[item.Key] </span>
                 }
             </p>
         </div>
