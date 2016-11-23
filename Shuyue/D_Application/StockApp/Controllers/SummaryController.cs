@@ -13,6 +13,10 @@ namespace StockApp.Controllers
 {
     public class SummaryController : ControllerBase
     {
+        /// <summary>
+        /// 综合统计首页
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             var db = AppContext.Current.DbContext;
@@ -30,6 +34,18 @@ namespace StockApp.Controllers
             }
             ViewBag.sDic = sDic;
             return View(gdList);
+        }
+
+        /// <summary>
+        /// 交割单
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult DeliveryOrder()
+        {
+            var db = AppContext.Current.DbContext;
+            var dlist = db.delivery_order.Where(d => d.UserId == AppContext.Current.CurrentUser.Id).ToList();
+            List<IGrouping<string, delivery_order>> glist = dlist.GroupBy(d => d.SecurityCode).ToList();
+            return View(glist);
         }
 
         /// <summary>
@@ -126,18 +142,33 @@ namespace StockApp.Controllers
             List<turn_in_out_record> turnInOutList = db.turn_in_out_record.Where(t => t.UserId == AppContext.Current.CurrentUser.Id).ToList();
             return View(turnInOutList);
         }
+
+        /// <summary>
+        /// 交易纪律
+        /// </summary>
+        /// <returns></returns>
         public ActionResult StockExchangeList()
         {
             var db = AppContext.Current.DbContext;
             List<stock_exchange_record> stockExchangeList = db.stock_exchange_record.Where(t => t.UserId == AppContext.Current.CurrentUser.Id).ToList();
             return View(stockExchangeList);
         }
+
+        /// <summary>
+        /// 流水
+        /// </summary>
+        /// <returns></returns>
         public ActionResult WaterBill()
         {
             var db = AppContext.Current.DbContext;
             List<water_bill> waterBillList = db.water_bill.Where(t => t.UserId == AppContext.Current.CurrentUser.Id).ToList();
             return View(waterBillList);
         }
+
+        /// <summary>
+        /// 统计
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Statistics()
         {
             var db = AppContext.Current.DbContext;
@@ -145,6 +176,7 @@ namespace StockApp.Controllers
             ViewBag.stockExchangeList = db.stock_exchange_record.Where(t => t.UserId == AppContext.Current.CurrentUser.Id).GroupBy(a => a.StockCode).ToList();
             return View(waterBillList);
         }
+
         /// <summary>
         /// 每月统计
         /// </summary>
@@ -154,6 +186,10 @@ namespace StockApp.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 导入数据
+        /// </summary>
+        /// <returns></returns>
         public ActionResult ImportData()
         {
             var table = NPOIHelper.ImportExceltoDt("D:\\workspace\\Shuyue\\G_DB\\jgd.xlsx");

@@ -175,6 +175,7 @@
     <Content Include="Views\Summary\MonthlyStatistics.cshtml" />
     <Content Include="Views\Summary\Index.cshtml" />
     <Content Include="Views\Summary\ImportData.cshtml" />
+    <Content Include="Views\Summary\DeliveryOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
