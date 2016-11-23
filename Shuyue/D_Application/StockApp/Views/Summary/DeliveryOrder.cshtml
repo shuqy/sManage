@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "交割单详情";
+}
+@model List<IGrouping<string, ManageEF.delivery_order>>
+
+<div class="page__bd">
+    @foreach (var item in Model.OrderByDescending(a => a.Sum(s => s.OccurrenceAmount)))
+    {
+        <div class="weui-cells__title">
+            @(item.FirstOrDefault().SecurityName)(@item.FirstOrDefault().SecurityCode)&nbsp;
+            @item.Sum(s => s.OccurrenceAmount)
+        </div>
+        <div class="weui-cells">
+            @foreach (var t in item.OrderBy(i => i.ClosingDate))
+                {
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <p>
+                            @if (t.OperationType == 0)
+                            { <font color="red">@t.Operation</font>}
+                            else
+                            { <font color="green">@t.Operation</font>}
+                            @(Convert.ToDecimal(t.TransactionPrice).ToString("f2"))&nbsp;@((t.Volume > 0 ? "+" : "") + t.Volume + "股")
+                        </p>
+                    </div>
+                    <div class="weui-cell__ft">@t.ClosingDate</div>
+                </div>
+            }
+        </div>
+    }
+</div>
