@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "更新行业信息";
+}
+
+
+<div class="mianbaowarp  clearfix ">
+    @Html.Partial("_NavPartial")
+</div>
+<div>
+    <input type="file" id="fileAjax" />
+</div>
+
+@section scripts{
+    <script>
+        window.uploadFile = {
+            init: function () {
+                this.fileUploader.init();
+            },
+            fileUploader:{
+                init: function () {
+                    $("#fileAjax").change(function (e) {
+                        uploadFile.fileUploader.upload(e.delegateTarget.files[0]);
+                    })
+                },
+                upload: function (file) {
+                    if (!file) return;
+                    var formdata = new FormData(),
+                        that = this;
+                    formdata.append('Filedata', file)
+                    $.ajax({
+                        type: 'post',
+                        url: "/Common/Upload",
+                        data: formdata,
+                        contentType: false,
+                        processData: false,
+                        crossDomain: true,
+                        xhr: function () {
+                            var xhr = jQuery.ajaxSettings.xhr();
+                            xhr.upload.onprogress = function (event) {
+                            }
+                            return xhr;
+                        },
+                        error: function () {
+                            console.error(arguments[2]);
+                        },
+                        success: function (data, texts, xhr) {
+                            if (data.Code == 0) {
+                                console.log(data.Data);
+                            } else {
+                                alert("上传出错！");
+                                return;
+                            }
+                            that.complete();
+                        }
+                    })
+                },
+                complete: function () {
+                    console.log("文件上传成功。");
+                },
+                setValue: function (value) {
+
+                }
+            }
+        }
+        uploadFile.init();
+    </script>
+}
