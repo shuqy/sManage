@@ -76,6 +76,21 @@
     <Compile Include="stock.cs">
       <DependentUpon>ManageEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="StockEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StockEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StockEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StockEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StockEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StockEntities.edmx</DependentUpon>
+    </Compile>
     <Compile Include="stock_exchange_record.cs">
       <DependentUpon>ManageEntities.tt</DependentUpon>
     </Compile>
@@ -90,6 +105,12 @@
     </Compile>
     <Compile Include="turn_in_out_record.cs">
       <DependentUpon>ManageEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T_Industry.cs">
+      <DependentUpon>StockEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T_Stock.cs">
+      <DependentUpon>StockEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="user_group_mapping.cs">
       <DependentUpon>ManageEntities.tt</DependentUpon>
@@ -112,6 +133,13 @@
       <DependentUpon>ManageEntities.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <EntityDeploy Include="StockEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>StockEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="StockEntities.edmx.diagram">
+      <DependentUpon>StockEntities.edmx</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="ManageEntities.Context.tt">
@@ -123,6 +151,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ManageEntities.edmx</DependentUpon>
       <LastGenOutput>ManageEntities.cs</LastGenOutput>
+    </Content>
+    <Content Include="StockEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>StockEntities.edmx</DependentUpon>
+      <LastGenOutput>StockEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="StockEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>StockEntities.edmx</DependentUpon>
+      <LastGenOutput>StockEntities.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
