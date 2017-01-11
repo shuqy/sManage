@@ -227,8 +227,8 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\A_Model\ManageEF\Model.csproj">
-      <Project>{56E7A102-31B0-4C02-8905-11D31E39142E}</Project>
+    <ProjectReference Include="..\..\A_Model\Model\Model.csproj">
+      <Project>{33d17125-9e3e-42e8-95f0-29d2cb9621da}</Project>
       <Name>Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\B_Framework\EFData.Core\EF.Entity.Core.csproj">

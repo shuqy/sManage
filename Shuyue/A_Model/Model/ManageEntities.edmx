@@ -1,0 +1,624 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SQY_ManageModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="delivery_order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="SecurityCode" Type="varchar" MaxLength="100" />
+          <Property Name="SecurityName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Volume" Type="int" />
+          <Property Name="TransactionPrice" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="TransactionAmount" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="CounterFee" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="StampDuty" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="OtherExpenses" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="OccurrenceAmount" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="500" />
+          <Property Name="Operation" Type="nvarchar" MaxLength="500" />
+          <Property Name="OperationType" Type="int" />
+          <Property Name="ClosingDate" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="group_menu_mapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupId" Type="int" Nullable="false" />
+          <Property Name="MenuID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“SQY_Manage.dbo.stock”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="stock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StockCode" Type="varchar" MaxLength="100" />
+          <Property Name="StockName" Type="nvarchar" MaxLength="100" />
+          <Property Name="PyFullName" Type="varchar" MaxLength="100" />
+          <Property Name="PyAbbre" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="stock_exchange_record">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="StockCode" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="StockName" Type="nvarchar" MaxLength="20" />
+          <Property Name="BuyPrice" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="SellPrice" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="BuyDate" Type="datetime" Nullable="false" />
+          <Property Name="SellDate" Type="datetime" Nullable="false" />
+          <Property Name="Profit" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sys_user">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="UserCode" Type="varchar" MaxLength="100" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Mobile" Type="varchar" MaxLength="50" />
+          <Property Name="PassCode" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="State" Type="int" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sys_user_group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="200" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Code" Type="varchar" MaxLength="200" />
+          <Property Name="State" Type="bit" Nullable="false" />
+          <Property Name="SortValue" Type="int" />
+          <Property Name="IsFree" Type="int" />
+          <Property Name="Deleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="sys_user_menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="STitle" Type="nvarchar" MaxLength="200" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="ControllName" Type="varchar" MaxLength="100" />
+          <Property Name="ActionName" Type="varchar" MaxLength="100" />
+          <Property Name="SortValue" Type="int" />
+          <Property Name="State" Type="bit" Nullable="false" />
+          <Property Name="IsPath" Type="bit" />
+          <Property Name="ShowInMenu" Type="bit" />
+          <Property Name="Code" Type="varchar" MaxLength="200" />
+          <Property Name="Deleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="turn_in_out_record">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Money" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="OperationDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user_group_mapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="GroupId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="water_bill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="BMonthMoney" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="TurnInMoney" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="TurnOutMoney" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="ProfitMoney" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="EMonthMoney" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="groupmenu_groupid_cons">
+          <End Role="sys_user_group" Type="Self.sys_user_group" Multiplicity="1" />
+          <End Role="group_menu_mapping" Type="Self.group_menu_mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sys_user_group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="group_menu_mapping">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="groupmenu_menuid_cons">
+          <End Role="sys_user_menu" Type="Self.sys_user_menu" Multiplicity="1" />
+          <End Role="group_menu_mapping" Type="Self.group_menu_mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sys_user_menu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="group_menu_mapping">
+              <PropertyRef Name="MenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usergroup_groupid_cons">
+          <End Role="sys_user_group" Type="Self.sys_user_group" Multiplicity="1" />
+          <End Role="user_group_mapping" Type="Self.user_group_mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sys_user_group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="user_group_mapping">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usergroup_userid_cons">
+          <End Role="sys_user" Type="Self.sys_user" Multiplicity="1" />
+          <End Role="user_group_mapping" Type="Self.user_group_mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sys_user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="user_group_mapping">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SQY_ManageModelStoreContainer">
+          <EntitySet Name="delivery_order" EntityType="Self.delivery_order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="group_menu_mapping" EntityType="Self.group_menu_mapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="stock_exchange_record" EntityType="Self.stock_exchange_record" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sys_user" EntityType="Self.sys_user" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sys_user_group" EntityType="Self.sys_user_group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sys_user_menu" EntityType="Self.sys_user_menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="turn_in_out_record" EntityType="Self.turn_in_out_record" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user_group_mapping" EntityType="Self.user_group_mapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="water_bill" EntityType="Self.water_bill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="stock" EntityType="Self.stock" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [stock].[Id] AS [Id], 
+    [stock].[StockCode] AS [StockCode], 
+    [stock].[StockName] AS [StockName], 
+    [stock].[PyFullName] AS [PyFullName], 
+    [stock].[PyAbbre] AS [PyAbbre]
+    FROM [dbo].[stock] AS [stock]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="groupmenu_groupid_cons" Association="Self.groupmenu_groupid_cons">
+            <End Role="sys_user_group" EntitySet="sys_user_group" />
+            <End Role="group_menu_mapping" EntitySet="group_menu_mapping" />
+          </AssociationSet>
+          <AssociationSet Name="groupmenu_menuid_cons" Association="Self.groupmenu_menuid_cons">
+            <End Role="sys_user_menu" EntitySet="sys_user_menu" />
+            <End Role="group_menu_mapping" EntitySet="group_menu_mapping" />
+          </AssociationSet>
+          <AssociationSet Name="usergroup_groupid_cons" Association="Self.usergroup_groupid_cons">
+            <End Role="sys_user_group" EntitySet="sys_user_group" />
+            <End Role="user_group_mapping" EntitySet="user_group_mapping" />
+          </AssociationSet>
+          <AssociationSet Name="usergroup_userid_cons" Association="Self.usergroup_userid_cons">
+            <End Role="sys_user" EntitySet="sys_user" />
+            <End Role="user_group_mapping" EntitySet="user_group_mapping" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SQY_ManageModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="delivery_order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="SecurityCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SecurityName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Volume" Type="Int32" />
+          <Property Name="TransactionPrice" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="TransactionAmount" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="CounterFee" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="StampDuty" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="OtherExpenses" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="OccurrenceAmount" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="Remark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Operation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="OperationType" Type="Int32" />
+          <Property Name="ClosingDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="group_menu_mapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupId" Type="Int32" Nullable="false" />
+          <Property Name="MenuID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="sys_user_group" Relationship="Self.groupmenu_groupid_cons" FromRole="group_menu_mapping" ToRole="sys_user_group" />
+          <NavigationProperty Name="sys_user_menu" Relationship="Self.groupmenu_menuid_cons" FromRole="group_menu_mapping" ToRole="sys_user_menu" />
+        </EntityType>
+        <EntityType Name="stock_exchange_record">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="StockCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StockName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="BuyPrice" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="SellPrice" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="BuyDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SellDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Profit" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sys_user">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PassCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="State" Type="Int32" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="user_group_mapping" Relationship="Self.usergroup_userid_cons" FromRole="sys_user" ToRole="user_group_mapping" />
+        </EntityType>
+        <EntityType Name="sys_user_group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="Boolean" Nullable="false" />
+          <Property Name="SortValue" Type="Int32" />
+          <Property Name="IsFree" Type="Int32" />
+          <Property Name="Deleted" Type="Boolean" />
+          <NavigationProperty Name="group_menu_mapping" Relationship="Self.groupmenu_groupid_cons" FromRole="sys_user_group" ToRole="group_menu_mapping" />
+          <NavigationProperty Name="user_group_mapping" Relationship="Self.usergroup_groupid_cons" FromRole="sys_user_group" ToRole="user_group_mapping" />
+        </EntityType>
+        <EntityType Name="sys_user_menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="STitle" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="ControllName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ActionName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SortValue" Type="Int32" />
+          <Property Name="State" Type="Boolean" Nullable="false" />
+          <Property Name="IsPath" Type="Boolean" />
+          <Property Name="ShowInMenu" Type="Boolean" />
+          <Property Name="Code" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Deleted" Type="Boolean" />
+          <NavigationProperty Name="group_menu_mapping" Relationship="Self.groupmenu_menuid_cons" FromRole="sys_user_menu" ToRole="group_menu_mapping" />
+        </EntityType>
+        <EntityType Name="turn_in_out_record">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Money" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user_group_mapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="GroupId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="sys_user" Relationship="Self.usergroup_userid_cons" FromRole="user_group_mapping" ToRole="sys_user" />
+          <NavigationProperty Name="sys_user_group" Relationship="Self.usergroup_groupid_cons" FromRole="user_group_mapping" ToRole="sys_user_group" />
+        </EntityType>
+        <EntityType Name="water_bill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="BMonthMoney" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="TurnInMoney" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="TurnOutMoney" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="ProfitMoney" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="EMonthMoney" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedOn" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="stock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StockCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="StockName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PyFullName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PyAbbre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="groupmenu_groupid_cons">
+          <End Role="sys_user_group" Type="Self.sys_user_group" Multiplicity="1" />
+          <End Role="group_menu_mapping" Type="Self.group_menu_mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sys_user_group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="group_menu_mapping">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="groupmenu_menuid_cons">
+          <End Role="sys_user_menu" Type="Self.sys_user_menu" Multiplicity="1" />
+          <End Role="group_menu_mapping" Type="Self.group_menu_mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sys_user_menu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="group_menu_mapping">
+              <PropertyRef Name="MenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usergroup_userid_cons">
+          <End Role="sys_user" Type="Self.sys_user" Multiplicity="1" />
+          <End Role="user_group_mapping" Type="Self.user_group_mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sys_user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="user_group_mapping">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usergroup_groupid_cons">
+          <End Role="sys_user_group" Type="Self.sys_user_group" Multiplicity="1" />
+          <End Role="user_group_mapping" Type="Self.user_group_mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sys_user_group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="user_group_mapping">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SQY_ManageEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="delivery_order" EntityType="Self.delivery_order" />
+          <EntitySet Name="group_menu_mapping" EntityType="Self.group_menu_mapping" />
+          <EntitySet Name="stock_exchange_record" EntityType="Self.stock_exchange_record" />
+          <EntitySet Name="sys_user" EntityType="Self.sys_user" />
+          <EntitySet Name="sys_user_group" EntityType="Self.sys_user_group" />
+          <EntitySet Name="sys_user_menu" EntityType="Self.sys_user_menu" />
+          <EntitySet Name="turn_in_out_record" EntityType="Self.turn_in_out_record" />
+          <EntitySet Name="user_group_mapping" EntityType="Self.user_group_mapping" />
+          <EntitySet Name="water_bill" EntityType="Self.water_bill" />
+          <EntitySet Name="stock" EntityType="Self.stock" />
+          <AssociationSet Name="groupmenu_groupid_cons" Association="Self.groupmenu_groupid_cons">
+            <End Role="sys_user_group" EntitySet="sys_user_group" />
+            <End Role="group_menu_mapping" EntitySet="group_menu_mapping" />
+          </AssociationSet>
+          <AssociationSet Name="groupmenu_menuid_cons" Association="Self.groupmenu_menuid_cons">
+            <End Role="sys_user_menu" EntitySet="sys_user_menu" />
+            <End Role="group_menu_mapping" EntitySet="group_menu_mapping" />
+          </AssociationSet>
+          <AssociationSet Name="usergroup_userid_cons" Association="Self.usergroup_userid_cons">
+            <End Role="sys_user" EntitySet="sys_user" />
+            <End Role="user_group_mapping" EntitySet="user_group_mapping" />
+          </AssociationSet>
+          <AssociationSet Name="usergroup_groupid_cons" Association="Self.usergroup_groupid_cons">
+            <End Role="sys_user_group" EntitySet="sys_user_group" />
+            <End Role="user_group_mapping" EntitySet="user_group_mapping" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SQY_ManageModelStoreContainer" CdmEntityContainer="SQY_ManageEntities">
+          <EntitySetMapping Name="delivery_order">
+            <EntityTypeMapping TypeName="SQY_ManageModel.delivery_order">
+              <MappingFragment StoreEntitySet="delivery_order">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="SecurityCode" ColumnName="SecurityCode" />
+                <ScalarProperty Name="SecurityName" ColumnName="SecurityName" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="TransactionPrice" ColumnName="TransactionPrice" />
+                <ScalarProperty Name="TransactionAmount" ColumnName="TransactionAmount" />
+                <ScalarProperty Name="CounterFee" ColumnName="CounterFee" />
+                <ScalarProperty Name="StampDuty" ColumnName="StampDuty" />
+                <ScalarProperty Name="OtherExpenses" ColumnName="OtherExpenses" />
+                <ScalarProperty Name="OccurrenceAmount" ColumnName="OccurrenceAmount" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Operation" ColumnName="Operation" />
+                <ScalarProperty Name="OperationType" ColumnName="OperationType" />
+                <ScalarProperty Name="ClosingDate" ColumnName="ClosingDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="group_menu_mapping">
+            <EntityTypeMapping TypeName="SQY_ManageModel.group_menu_mapping">
+              <MappingFragment StoreEntitySet="group_menu_mapping">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stock_exchange_record">
+            <EntityTypeMapping TypeName="SQY_ManageModel.stock_exchange_record">
+              <MappingFragment StoreEntitySet="stock_exchange_record">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+                <ScalarProperty Name="StockName" ColumnName="StockName" />
+                <ScalarProperty Name="BuyPrice" ColumnName="BuyPrice" />
+                <ScalarProperty Name="SellPrice" ColumnName="SellPrice" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="BuyDate" ColumnName="BuyDate" />
+                <ScalarProperty Name="SellDate" ColumnName="SellDate" />
+                <ScalarProperty Name="Profit" ColumnName="Profit" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sys_user">
+            <EntityTypeMapping TypeName="SQY_ManageModel.sys_user">
+              <MappingFragment StoreEntitySet="sys_user">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="PassCode" ColumnName="PassCode" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sys_user_group">
+            <EntityTypeMapping TypeName="SQY_ManageModel.sys_user_group">
+              <MappingFragment StoreEntitySet="sys_user_group">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="SortValue" ColumnName="SortValue" />
+                <ScalarProperty Name="IsFree" ColumnName="IsFree" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sys_user_menu">
+            <EntityTypeMapping TypeName="SQY_ManageModel.sys_user_menu">
+              <MappingFragment StoreEntitySet="sys_user_menu">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="STitle" ColumnName="STitle" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="ControllName" ColumnName="ControllName" />
+                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+                <ScalarProperty Name="SortValue" ColumnName="SortValue" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="IsPath" ColumnName="IsPath" />
+                <ScalarProperty Name="ShowInMenu" ColumnName="ShowInMenu" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="turn_in_out_record">
+            <EntityTypeMapping TypeName="SQY_ManageModel.turn_in_out_record">
+              <MappingFragment StoreEntitySet="turn_in_out_record">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Money" ColumnName="Money" />
+                <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_group_mapping">
+            <EntityTypeMapping TypeName="SQY_ManageModel.user_group_mapping">
+              <MappingFragment StoreEntitySet="user_group_mapping">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="water_bill">
+            <EntityTypeMapping TypeName="SQY_ManageModel.water_bill">
+              <MappingFragment StoreEntitySet="water_bill">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="BMonthMoney" ColumnName="BMonthMoney" />
+                <ScalarProperty Name="TurnInMoney" ColumnName="TurnInMoney" />
+                <ScalarProperty Name="TurnOutMoney" ColumnName="TurnOutMoney" />
+                <ScalarProperty Name="ProfitMoney" ColumnName="ProfitMoney" />
+                <ScalarProperty Name="EMonthMoney" ColumnName="EMonthMoney" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stock">
+            <EntityTypeMapping TypeName="SQY_ManageModel.stock">
+              <MappingFragment StoreEntitySet="stock">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+                <ScalarProperty Name="StockName" ColumnName="StockName" />
+                <ScalarProperty Name="PyFullName" ColumnName="PyFullName" />
+                <ScalarProperty Name="PyAbbre" ColumnName="PyAbbre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
