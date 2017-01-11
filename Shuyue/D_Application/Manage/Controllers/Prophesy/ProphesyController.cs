@@ -1,4 +1,6 @@
-﻿using Core.Util;
+﻿using Core.Entities;
+using Core.Util;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -28,9 +30,13 @@ namespace Manage.Controllers.Prophesy
         [HttpPost]
         public JsonResult UpdateIndustry(string path)
         {
-            DataTable dt = NPOIHelper.ImportExceltoDt(path);
-            
-            return null;
+            DataTable dt = NPOIHelper.ImportExceltoDt(Server.MapPath(path));
+            List<T_Stock> stockList = ModelHelper.ExcelFillModelList<T_Stock>(dt).ToList();
+            foreach(var item in stockList)
+            {
+
+            }
+            return Json(new JsonData { Code = Core.Enum.ResultCode.OK }, JsonRequestBehavior.DenyGet);
         }
     }
 }

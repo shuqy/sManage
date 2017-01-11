@@ -459,7 +459,14 @@ namespace Core.Util
             IWorkbook wb;
             using (FileStream file = new FileStream(strFileName, FileMode.Open, FileAccess.Read))
             {
-                wb = WorkbookFactory.Create(file);
+                if (strFileName.EndsWith(".xls"))
+                {
+                    wb = new HSSFWorkbook(file);
+                }
+                else
+                {
+                    wb = WorkbookFactory.Create(file);
+                }
             }
             ISheet sheet = wb.GetSheetAt(0);
             dt = ImportDt(sheet, 0, true);

@@ -8,11 +8,13 @@
     @Html.Partial("_NavPartial")
 </div>
 <div>
-    <input type="file" id="fileAjax" />
+    <label>请上传更新文件：</label><input type="file" id="fileAjax" /><br />
+    <label id="tipText"></label>
 </div>
 
 @section scripts{
     <script>
+        var path = "";
         window.uploadFile = {
             init: function () {
                 this.fileUploader.init();
@@ -46,6 +48,7 @@
                         },
                         success: function (data, texts, xhr) {
                             if (data.Code == 0) {
+                                path = data.Data;
                                 console.log(data.Data);
                             } else {
                                 alert("上传出错！");
@@ -56,12 +59,20 @@
                     })
                 },
                 complete: function () {
+                    $("#tipText").text("文件上传成功，正在更新行业内容...");
                     console.log("文件上传成功。");
+                    if(path=="")$("#tipText").text("更新失败！")
+                    else updateIndustry(path);
                 },
                 setValue: function (value) {
 
                 }
             }
+        }
+        function updateIndustry(path) {
+            $.post("/Prophesy/UpdateIndustry", { path: path }, function (d) {
+                $("#tipText").text("行业内容更新完成！");
+            });
         }
         uploadFile.init();
     </script>

@@ -136,7 +136,7 @@ namespace Core.Util
                 return default(T);
             }
             string[] intParam = new[] { "Volume" };
-            string[] decimalParam = new[] { "TransactionPrice", "TransactionAmount", "CounterFee", "StampDuty", "OtherExpenses", "OccurrenceAmount" };
+            string[] decimalParam = new[] { "TransactionPrice", "TransactionAmount", "CounterFee", "StampDuty", "OtherExpenses", "OccurrenceAmount", "TotalAmount", "TotalMarketValue", "CirculationMarketValue" };
             T model = new T();
             foreach (PropertyInfo propertyInfo in typeof(T).GetProperties())
             {
@@ -146,7 +146,12 @@ namespace Core.Util
                     {
                         var val = dr[propertyInfo.Name];
                         if (intParam.Contains(propertyInfo.Name)) val = Convert.ToInt32(val);
-                        else if (decimalParam.Contains(propertyInfo.Name)) val = Convert.ToDecimal(val);
+                        else if (decimalParam.Contains(propertyInfo.Name))
+                        {
+                            decimal dval = 0;
+                            decimal.TryParse(val.ToString(), out dval);
+                            val = dval;
+                        }
                         model.GetType().GetProperty(propertyInfo.Name).SetValue(model, val, null);
                     }
                 }

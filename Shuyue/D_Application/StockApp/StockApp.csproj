@@ -216,7 +216,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Attributes\SmAuthorizeAttribute.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
-    <Compile Include="Controllers\ProphesyController.cs" />
     <Compile Include="Controllers\SummaryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
