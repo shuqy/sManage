@@ -19,7 +19,7 @@ namespace StockApp.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            var db = AppContext.Current.DbContext;
+            var db = AppContext.Current.ManageDbContext;
             //转入转出
             List<turn_in_out_record> turnInOutList = db.turn_in_out_record.Where(t => t.UserId == AppContext.Current.CurrentUser.Id).ToList();
             ViewBag.total = turnInOutList.Sum(t => t.Money);
@@ -42,7 +42,7 @@ namespace StockApp.Controllers
         /// <returns></returns>
         public ActionResult DeliveryOrder()
         {
-            var db = AppContext.Current.DbContext;
+            var db = AppContext.Current.ManageDbContext;
             var dlist = db.delivery_order.Where(d => d.UserId == AppContext.Current.CurrentUser.Id).ToList();
             List<IGrouping<string, delivery_order>> glist = dlist.GroupBy(d => d.SecurityCode).ToList();
             return View(glist);
@@ -60,7 +60,7 @@ namespace StockApp.Controllers
         [HttpPost]
         public JsonResult TurnInAndOut(turn_in_out_record record)
         {
-            var db = AppContext.Current.DbContext;
+            var db = AppContext.Current.ManageDbContext;
             record.Deleted = false;
             record.CreatedOn = DateTime.Now;
             db.turn_in_out_record.Add(record);
@@ -79,7 +79,7 @@ namespace StockApp.Controllers
         [HttpPost]
         public ActionResult AddStockExchange(stock_exchange_record record)
         {
-            var db = AppContext.Current.DbContext;
+            var db = AppContext.Current.ManageDbContext;
             record.CreatedOn = DateTime.Now;
             record.Deleted = false;
             record.StockName = db.stock.FirstOrDefault(a => a.StockCode == record.StockCode).StockName;
@@ -93,7 +93,7 @@ namespace StockApp.Controllers
         {
             DateTime dtn = DateTime.Now;
             int userId = AppContext.Current.CurrentUser.Id;
-            var db = AppContext.Current.DbContext;
+            var db = AppContext.Current.ManageDbContext;
             //获取转入转出数据
             var turnInOutList = db.turn_in_out_record.Where(r => r.UserId == userId && !r.Deleted).OrderBy(a => a.OperationDate);
             var stockExchangeList = db.stock_exchange_record.Where(r => r.UserId == userId && !r.Deleted).OrderBy(a => a.SellDate);
@@ -138,7 +138,7 @@ namespace StockApp.Controllers
         /// <returns></returns>
         public ActionResult TurnInOutList()
         {
-            var db = AppContext.Current.DbContext;
+            var db = AppContext.Current.ManageDbContext;
             List<turn_in_out_record> turnInOutList = db.turn_in_out_record.Where(t => t.UserId == AppContext.Current.CurrentUser.Id).ToList();
             return View(turnInOutList);
         }
@@ -149,7 +149,7 @@ namespace StockApp.Controllers
         /// <returns></returns>
         public ActionResult StockExchangeList()
         {
-            var db = AppContext.Current.DbContext;
+            var db = AppContext.Current.ManageDbContext;
             List<stock_exchange_record> stockExchangeList = db.stock_exchange_record.Where(t => t.UserId == AppContext.Current.CurrentUser.Id).ToList();
             return View(stockExchangeList);
         }
@@ -160,7 +160,7 @@ namespace StockApp.Controllers
         /// <returns></returns>
         public ActionResult WaterBill()
         {
-            var db = AppContext.Current.DbContext;
+            var db = AppContext.Current.ManageDbContext;
             List<water_bill> waterBillList = db.water_bill.Where(t => t.UserId == AppContext.Current.CurrentUser.Id).ToList();
             return View(waterBillList);
         }
@@ -171,7 +171,7 @@ namespace StockApp.Controllers
         /// <returns></returns>
         public ActionResult Statistics()
         {
-            var db = AppContext.Current.DbContext;
+            var db = AppContext.Current.ManageDbContext;
             List<water_bill> waterBillList = db.water_bill.Where(t => t.UserId == AppContext.Current.CurrentUser.Id).ToList();
             ViewBag.stockExchangeList = db.stock_exchange_record.Where(t => t.UserId == AppContext.Current.CurrentUser.Id).GroupBy(a => a.StockCode).ToList();
             return View(waterBillList);
@@ -201,7 +201,7 @@ namespace StockApp.Controllers
                 item.SecurityCode = item.SecurityCode.PadLeft(6, '0');
                 item.OperationType = item.Operation == "买入" ? 0 : 1;
             }
-            var db = Core.AppContext.Current.DbContext;
+            var db = Core.AppContext.Current.ManageDbContext;
             db.delivery_order.AddRange(list);
             ViewBag.IsSuccess = db.SaveChanges() > 0;
             return View();

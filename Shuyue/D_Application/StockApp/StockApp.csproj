@@ -176,6 +176,7 @@
     <Content Include="Views\Summary\Index.cshtml" />
     <Content Include="Views\Summary\ImportData.cshtml" />
     <Content Include="Views\Summary\DeliveryOrder.cshtml" />
+    <Content Include="Views\Prophesy\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -215,6 +216,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Attributes\SmAuthorizeAttribute.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
+    <Compile Include="Controllers\ProphesyController.cs" />
     <Compile Include="Controllers\SummaryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

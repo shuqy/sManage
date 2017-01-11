@@ -233,6 +233,8 @@
     <Content Include="Views\Sort\Shell.cshtml" />
     <Content Include="Views\Sort\Insertion.cshtml" />
     <Content Include="Views\Sort\Quick.cshtml" />
+    <Content Include="Views\Prophesy\Index.cshtml" />
+    <Content Include="Views\Prophesy\UpdateIndustry.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -586,10 +588,12 @@
     <Compile Include="Attributes\UserGroupAttribute.cs" />
     <Compile Include="Controllers\Algorithm\AlgorithmController.cs" />
     <Compile Include="Controllers\Algorithm\SortController.cs" />
+    <Compile Include="Controllers\Common\CommonController.cs" />
     <Compile Include="Controllers\Common\MenuCommon.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Menu\MenuController.cs" />
+    <Compile Include="Controllers\Prophesy\ProphesyController.cs" />
     <Compile Include="Controllers\User\UserController.cs" />
     <Compile Include="Controllers\User\UserGroupController.cs" />
     <Compile Include="Controllers\WebSite\WebSiteController.cs" />
@@ -600,6 +604,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\UploadFile\File\" />
+    <Folder Include="Views\Common\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\A_Model\Model\Model.csproj">
