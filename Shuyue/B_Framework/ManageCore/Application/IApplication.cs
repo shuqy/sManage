@@ -10,7 +10,8 @@ namespace Core.Application
 {
     public interface IApplication
     {
-        SQY_ManageEntities DbContext { get; }
+        SQY_ManageEntities ManageDbContext { get; }
+        SQY_StockEntities StockDbContext { get; }
         BaseUser CurrentUser { get; }
         List<sys_user_menu> UserMenu { get; set; }
     }

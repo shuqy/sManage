@@ -30,11 +30,18 @@ namespace Core.Application
             }
         }
 
-        public SQY_ManageEntities DbContext
+        public SQY_ManageEntities ManageDbContext
         {
             get
             {
                 return new SQY_ManageEntities();
+            }
+        }
+        public SQY_StockEntities StockDbContext
+        {
+            get
+            {
+                return new SQY_StockEntities();
             }
         }
 
