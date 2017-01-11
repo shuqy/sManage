@@ -1,12 +1,4 @@
-﻿using Core;
-using EF.Entity.Core;
-using ManageEF.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+﻿using EF.Entity.Core;
 
 namespace ManageService
 {

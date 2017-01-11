@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ManageEF
+namespace Model
 {
     using System;
     using System.Data.Entity;
@@ -25,6 +25,7 @@ namespace ManageEF
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<delivery_order> delivery_order { get; set; }
         public virtual DbSet<group_menu_mapping> group_menu_mapping { get; set; }
         public virtual DbSet<stock_exchange_record> stock_exchange_record { get; set; }
         public virtual DbSet<sys_user> sys_user { get; set; }
@@ -34,6 +35,5 @@ namespace ManageEF
         public virtual DbSet<user_group_mapping> user_group_mapping { get; set; }
         public virtual DbSet<water_bill> water_bill { get; set; }
         public virtual DbSet<stock> stock { get; set; }
-        public virtual DbSet<delivery_order> delivery_order { get; set; }
     }
 }

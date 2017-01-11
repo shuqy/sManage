@@ -1,5 +1,4 @@
-﻿using ManageEF;
-using ManageService.User;
+﻿using Model;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;

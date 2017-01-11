@@ -1,5 +1,5 @@
-﻿using ManageEF;
-using ManageEF.ViewModel;
+﻿using Model.ViewModel;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

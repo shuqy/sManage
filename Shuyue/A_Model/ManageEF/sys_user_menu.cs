@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ManageEF
+namespace Model
 {
     using System;
     using System.Collections.Generic;

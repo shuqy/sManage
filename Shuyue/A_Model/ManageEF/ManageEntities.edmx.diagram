@@ -5,20 +5,20 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d8554c7d9c444f2d94707c8ec720f351" Name="Diagram1">
-        <EntityTypeShape EntityType="SQY_ManageModel.group_menu_mapping" Width="1.5" PointX="3" PointY="3.75" />
-        <EntityTypeShape EntityType="SQY_ManageModel.stock_exchange_record" Width="1.5" PointX="5.75" PointY="2.125" />
-        <EntityTypeShape EntityType="SQY_ManageModel.sys_user" Width="1.5" PointX="0.75" PointY="7.625" />
+        <EntityTypeShape EntityType="SQY_ManageModel.delivery_order" Width="1.5" PointX="5.75" PointY="2.125" />
+        <EntityTypeShape EntityType="SQY_ManageModel.group_menu_mapping" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="SQY_ManageModel.stock_exchange_record" Width="1.5" PointX="2.75" PointY="7.125" />
+        <EntityTypeShape EntityType="SQY_ManageModel.sys_user" Width="1.5" PointX="0.75" PointY="12.125" />
         <EntityTypeShape EntityType="SQY_ManageModel.sys_user_group" Width="1.5" PointX="0.75" PointY="3.25" />
-        <EntityTypeShape EntityType="SQY_ManageModel.sys_user_menu" Width="1.5" PointX="0.75" PointY="11.875" />
-        <EntityTypeShape EntityType="SQY_ManageModel.turn_in_out_record" Width="1.5" PointX="2.75" PointY="7.125" />
-        <EntityTypeShape EntityType="SQY_ManageModel.user_group_mapping" Width="1.5" PointX="3" PointY="0.75" />
-        <EntityTypeShape EntityType="SQY_ManageModel.water_bill" Width="1.5" PointX="4.75" PointY="7.125" />
-        <EntityTypeShape EntityType="SQY_ManageModel.stock" Width="1.5" PointX="6.75" PointY="7.125" />
+        <EntityTypeShape EntityType="SQY_ManageModel.sys_user_menu" Width="1.5" PointX="0.75" PointY="7.125" />
+        <EntityTypeShape EntityType="SQY_ManageModel.turn_in_out_record" Width="1.5" PointX="4.75" PointY="7.125" />
+        <EntityTypeShape EntityType="SQY_ManageModel.user_group_mapping" Width="1.5" PointX="3" PointY="3.75" />
+        <EntityTypeShape EntityType="SQY_ManageModel.water_bill" Width="1.5" PointX="6.75" PointY="7.125" />
+        <EntityTypeShape EntityType="SQY_ManageModel.stock" Width="1.5" PointX="7.75" PointY="2.125" />
         <AssociationConnector Association="SQY_ManageModel.groupmenu_groupid_cons" />
         <AssociationConnector Association="SQY_ManageModel.groupmenu_menuid_cons" />
         <AssociationConnector Association="SQY_ManageModel.usergroup_userid_cons" />
         <AssociationConnector Association="SQY_ManageModel.usergroup_groupid_cons" />
-        <EntityTypeShape EntityType="SQY_ManageModel.delivery_order" Width="1.5" PointX="8.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,9 +1,9 @@
 ﻿using Core.Entities;
 using Core.Enum;
 using Core.Util;
-using ManageEF;
-using ManageEF.ViewModel;
+using Model.ViewModel;
 using ManageService.User;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

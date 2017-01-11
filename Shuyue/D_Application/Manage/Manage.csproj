@@ -602,9 +602,9 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\A_Model\ManageEF\ManageEF.csproj">
+    <ProjectReference Include="..\..\A_Model\ManageEF\Model.csproj">
       <Project>{56e7a102-31b0-4c02-8905-11d31e39142e}</Project>
-      <Name>ManageEF</Name>
+      <Name>Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\B_Framework\EFData.Core\EF.Entity.Core.csproj">
       <Project>{0ab13f11-be54-4233-a7aa-c7f5140efd11}</Project>

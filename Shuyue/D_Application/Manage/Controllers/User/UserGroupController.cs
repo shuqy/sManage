@@ -1,8 +1,8 @@
 ﻿using Core.Entities;
 using Core.Enum;
 using Core.Util;
-using ManageEF;
-using ManageEF.ViewModel;
+using Model;
+using Model.ViewModel;
 using ManageService.Menu;
 using ManageService.User;
 using System;

@@ -1,5 +1,5 @@
 ﻿using Core.Entities;
-using ManageEF;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

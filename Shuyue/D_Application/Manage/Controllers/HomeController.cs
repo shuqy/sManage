@@ -1,8 +1,8 @@
 ﻿using Core.Entities;
 using Core.Util;
 using Manage.Attributes;
-using ManageEF;
-using ManageEF.ViewModel;
+using Model;
+using Model.ViewModel;
 using ManageService.Entities;
 using ManageService.User;
 using System;

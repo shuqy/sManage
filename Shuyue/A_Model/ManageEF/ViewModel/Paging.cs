@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ManageEF.ViewModel
+namespace Model.ViewModel
 {
     public class Paging
     {
