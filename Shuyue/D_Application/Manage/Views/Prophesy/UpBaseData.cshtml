@@ -20,11 +20,13 @@
                 this.fileUploader.init();
             },
             fileUploader: {
+                //初始化操作
                 init: function () {
                     $("#fileAjax").change(function (e) {
                         uploadFile.fileUploader.upload(e.delegateTarget.files[0]);
                     })
                 },
+                //文件上传
                 upload: function (file) {
                     if (!file) return;
                     var formdata = new FormData(),
@@ -58,6 +60,7 @@
                         }
                     })
                 },
+                //完成
                 complete: function () {
                     var that = this;
                     that.Tip("文件上传成功，正在更新行业内容...");
@@ -76,6 +79,7 @@
                 setValue: function (value) {
 
                 },
+                //提示
                 Tip: function (text) {
                     $("#tipText").text(text);
                 }
