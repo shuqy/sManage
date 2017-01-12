@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model.Extend
+namespace Model
 {
     public partial class T_Stock
     {

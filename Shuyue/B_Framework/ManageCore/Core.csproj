@@ -77,6 +77,7 @@
     <Compile Include="Util\ModelHelper.cs" />
     <Compile Include="Util\NPOIHelper.cs" />
     <Compile Include="Util\ParamHelper.cs" />
+    <Compile Include="Util\PyHelper.cs" />
     <Compile Include="Util\RequestHelper.cs" />
     <Compile Include="Util\StockHelper.cs" />
     <Compile Include="Util\StringHelper.cs" />
