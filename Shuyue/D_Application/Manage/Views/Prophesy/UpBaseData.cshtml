@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "更新行业信息";
+}
+
+
+<div class="mianbaowarp  clearfix ">
+    @Html.Partial("_NavPartial")
+</div>
+<div>
+    <label>请上传更新文件：</label><input type="file" id="fileAjax" /><br />
+    <label id="tipText"></label>
+</div>
+
+@section scripts{
+    <script>
+        var path = "";
+        window.uploadFile = {
+            init: function () {
+                this.fileUploader.init();
+            },
+            fileUploader: {
+                init: function () {
+                    $("#fileAjax").change(function (e) {
+                        uploadFile.fileUploader.upload(e.delegateTarget.files[0]);
+                    })
+                },
+                upload: function (file) {
+                    if (!file) return;
+                    var formdata = new FormData(),
+                        that = this;
+                    formdata.append('Filedata', file)
+                    $.ajax({
+                        type: 'post',
+                        url: "/Common/Upload",
+                        data: formdata,
+                        contentType: false,
+                        processData: false,
+                        crossDomain: true,
+                        xhr: function () {
+                            var xhr = jQuery.ajaxSettings.xhr();
+                            xhr.upload.onprogress = function (event) {
+                            }
+                            return xhr;
+                        },
+                        error: function () {
+                            console.error(arguments[2]);
+                        },
+                        success: function (data, texts, xhr) {
+                            if (data.Code == 0) {
+                                path = data.Data;
+                                console.log(data.Data);
+                            } else {
+                                that.Tip("上传出错！");
+                                return;
+                            }
+                            that.complete();
+                        }
+                    })
+                },
+                complete: function () {
+                    var that = this;
+                    that.Tip("文件上传成功，正在更新行业内容...");
+                    console.log("文件上传成功");
+                    if (path == "") that.Tip("更新失败！")
+                    else {
+                        $.post("/Prophesy/UpBaseData", { path: path }, function (d) {
+                            if (d && d.Code == 0) {
+                                that.Tip("成功！更新" + d.Data.count1 + "条行业信息，" + d.Data.count2 + "条股票数据。");
+                            } else {
+                                that.Tip("失败");
+                            }
+                        });
+                    }
+                },
+                setValue: function (value) {
+
+                },
+                Tip: function (text) {
+                    $("#tipText").text(text);
+                }
+            }
+        }
+        uploadFile.init();
+    </script>
+}
