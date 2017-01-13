@@ -52,6 +52,8 @@
     <Compile Include="Menu\MenuTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryBase.cs" />
+    <Compile Include="Stock\CreateTableBLL.cs" />
+    <Compile Include="Stock\StockBLL.cs" />
     <Compile Include="User\GroupMenuMappingBLL.cs" />
     <Compile Include="User\UserBLL.cs" />
     <Compile Include="User\UserGroupBLL.cs" />

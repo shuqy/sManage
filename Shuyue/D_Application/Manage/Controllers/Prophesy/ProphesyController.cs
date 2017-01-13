@@ -1,6 +1,7 @@
 ﻿using Core.Entities;
 using Core.Util;
 using Core.Utilities;
+using ManageService.Stock;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -46,7 +47,7 @@ namespace Manage.Controllers.Prophesy
             List<T_Stock> currentStockList = db.T_Stock.ToList(), newStockList = new List<T_Stock>();
             foreach (var item in stockList)
             {
-                if (!industryList.Any(i => i.Name.Equals(item.IndustryName)) && !newIndustryList.Any(i => i.Name.Equals(item.IndustryName)))
+                if (!string.IsNullOrEmpty(item.IndustryName) && !industryList.Any(i => i.Name.Equals(item.IndustryName)) && !newIndustryList.Any(i => i.Name.Equals(item.IndustryName)))
                     newIndustryList.Add(new T_Industry { Name = item.IndustryName });
                 if (!currentStockList.Any(s => s.FullCode == item.FullCode))
                 {
@@ -82,6 +83,36 @@ namespace Manage.Controllers.Prophesy
                 db.SaveChanges();
             }
             return Json(new JsonData { Code = Core.Enum.ResultCode.OK, Data = new { count1 = count1, count2 = count2 } }, JsonRequestBehavior.DenyGet);
+        }
+
+        /// <summary>
+        /// 更新股票信息
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult UpSingleStockData(string path)
+        {
+            try
+            {
+                DateTime dtn = DateTime.Now;
+                string stockCode = path.Substring(path.LastIndexOf('.') - 6, 6);
+                var db = Core.AppContext.Current.StockDbContext;
+                if (!db.T_Stock.Any(a => a.StockCode == stockCode))
+                    return Json(new JsonData { Code = Core.Enum.ResultCode.Fail, Message = "操作失败，证券代码不存在！" }, JsonRequestBehavior.DenyGet);
+                //读取Excel中的数据
+                DataTable dt = NPOIHelper.ImportExceltoDt(Server.MapPath(path));
+                StockBLL stockBLL = new StockBLL();
+                int count = stockBLL.UpSingleStockData(stockCode, dt);
+                return Json(new JsonData
+                {
+                    Code = count == 0 ? Core.Enum.ResultCode.Fail : Core.Enum.ResultCode.OK,
+                    Data = new { count = count, time = Convert.ToInt32((DateTime.Now - dtn).TotalSeconds) }
+                }, JsonRequestBehavior.DenyGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new JsonData { Code = Core.Enum.ResultCode.Fail, Message = "操作失败，非正确的文件！" }, JsonRequestBehavior.DenyGet);
+            }
         }
     }
 }

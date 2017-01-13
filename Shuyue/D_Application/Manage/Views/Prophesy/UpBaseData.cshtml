@@ -2,18 +2,94 @@
 @{
     ViewBag.Title = "更新行业信息";
 }
+@section styles{
+    <style>
+        .file {
+            position: relative;
+            display: inline-block;
+            background: #D0EEFF;
+            border: 1px solid #99D3F5;
+            border-radius: 4px;
+            padding: 4px 12px;
+            overflow: hidden;
+            color: #1E88C7;
+            text-decoration: none;
+            text-indent: 0;
+            line-height: 20px;
+        }
 
+            .file input {
+                position: absolute;
+                font-size: 100px;
+                right: 0;
+                top: 0;
+                opacity: 0;
+            }
+
+            .file:hover {
+                background: #AADFFD;
+                border-color: #78C3F3;
+                color: #004974;
+                text-decoration: none;
+            }
+    </style>
+}
 
 <div class="mianbaowarp  clearfix ">
     @Html.Partial("_NavPartial")
 </div>
-<div>
-    <label>请上传更新文件：</label><input type="file" id="fileAjax" /><br />
-    <label id="tipText"></label>
+<div class="smContent">
+    <table class="table table-form" style="line-height:50px;">
+        <tr>
+            <td class="right w-15" valign="top"><label>行业及STOCK数据更新</label></td>
+            <td class="w-85">
+                <a href="javascript:;" class="file">
+                    <input type="file" id="fileAjax">选择文件
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td valign="top"><label>STOCK历史记录数据更新</label></td>
+            <td>
+                <a href="javascript:;" class="file">
+                    <input type="file" id="stockFile">选择文件
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td valign="top"><label>所有STOCK最新数据更新</label></td>
+            <td>
+                <a href="javascript:;" class="file">
+                    <input type="file" id="stockFile">选择文件
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:left;">
+                <label>提示：</label>
+                <label id="tipText">^_^</label>
+            </td>
+        </tr>
+    </table>
 </div>
 
 @section scripts{
     <script>
+        $(function () {
+            $(".file").on("change", "input[type='file']", function () {
+                var filePath = $(this).val();
+                if (filePath.indexOf("jpg") != -1 || filePath.indexOf("png") != -1) {
+                    $(".fileerrorTip").html("").hide();
+                    var arr = filePath.split('\\');
+                    var fileName = arr[arr.length - 1];
+                    $(".showFileName").html(fileName);
+                } else {
+                    $(".showFileName").html("");
+                    $(".fileerrorTip").html("您未上传文件，或者您上传文件类型有误！").show();
+                    return false
+                }
+            })
+        });
         var path = "";
         window.uploadFile = {
             init: function () {
@@ -23,11 +99,14 @@
                 //初始化操作
                 init: function () {
                     $("#fileAjax").change(function (e) {
-                        uploadFile.fileUploader.upload(e.delegateTarget.files[0]);
-                    })
+                        uploadFile.fileUploader.upload(e.delegateTarget.files[0], 0);
+                    });
+                    $("#stockFile").change(function (e) {
+                        uploadFile.fileUploader.upload(e.delegateTarget.files[0], 1);
+                    });
                 },
                 //文件上传
-                upload: function (file) {
+                upload: function (file, type) {
                     if (!file) return;
                     var formdata = new FormData(),
                         that = this;
@@ -56,24 +135,36 @@
                                 that.Tip("上传出错！");
                                 return;
                             }
-                            that.complete();
+                            that.complete(type);
                         }
                     })
                 },
                 //完成
-                complete: function () {
+                complete: function (type) {
+                    console.log(type)
                     var that = this;
-                    that.Tip("文件上传成功，正在更新行业内容...");
+                    that.Tip("文件上传成功，数据处理中...");
                     console.log("文件上传成功");
                     if (path == "") that.Tip("更新失败！")
                     else {
-                        $.post("/Prophesy/UpBaseData", { path: path }, function (d) {
-                            if (d && d.Code == 0) {
-                                that.Tip("成功！更新" + d.Data.count1 + "条行业信息，" + d.Data.count2 + "条股票数据。");
-                            } else {
-                                that.Tip("失败");
-                            }
-                        });
+                        //根据不同上传类型进行不同的操作
+                        if (type == 0) {
+                            $.post("/Prophesy/UpBaseData", { path: path }, function (d) {
+                                if (d && d.Code == 0) {
+                                    that.Tip("成功！更新" + d.Data.count1 + "条行业信息，" + d.Data.count2 + "条股票数据。");
+                                } else {
+                                    that.Tip("操作失败，请重试！");
+                                }
+                            });
+                        } else if (type == 1) {
+                            $.post("/Prophesy/UpSingleStockData", { path: path }, function (d) {
+                                if (d && d.Code == 0) {
+                                    that.Tip("成功！更新" + d.Data.count + "条数据。用时：" + d.Data.time + "秒");
+                                } else {
+                                    that.Tip(d.Message == undefined ? "操作失败，请重试！" : d.Message);
+                                }
+                            });
+                        }
                     }
                 },
                 setValue: function (value) {
