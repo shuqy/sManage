@@ -13,5 +13,15 @@ namespace Core.Util
         {
             return ConfigurationManager.AppSettings[key];
         }
+
+        public static ConnectionStringSettings GetConn(string key)
+        {
+            return ConfigurationManager.ConnectionStrings[key];
+        }
+
+        public static string GetConnStr(string key)
+        {
+            return ConfigurationManager.ConnectionStrings[key].ConnectionString;
+        }
     }
 }
