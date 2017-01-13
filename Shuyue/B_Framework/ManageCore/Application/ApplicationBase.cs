@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 using Core.Entities;
 using System.Web;
 using Model;
+using Core.Util;
+using Core.Enum;
 
 namespace Core.Application
 {
     public class ApplicationBase : IApplication
     {
+
         public BaseUser CurrentUser
         {
             get
@@ -63,6 +66,24 @@ namespace Core.Application
                     HttpContext.Current.Session[SessionKey.UserMenu] = value;
                 }
             }
+        }
+
+        public CommonSqlHelper SqlHelper(SqlTypeEnum sqlTypeEnum)
+        {
+            CommonSqlHelper sqlHelper;
+            switch (sqlTypeEnum)
+            {
+                case SqlTypeEnum.Manage:
+                    sqlHelper = new CommonSqlHelper(ConfigHelper.GetConn("ManageConn").ConnectionString);
+                    break;
+                case SqlTypeEnum.Stock:
+                    sqlHelper = new CommonSqlHelper(ConfigHelper.GetConn("StockConn").ConnectionString);
+                    break;
+                default:
+                    sqlHelper = new CommonSqlHelper(ConfigHelper.GetConn("ManageConn").ConnectionString);
+                    break;
+            }
+            return sqlHelper;
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using Core.Entities;
+using Core.Enum;
+using Core.Util;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -14,5 +16,7 @@ namespace Core.Application
         SQY_StockEntities StockDbContext { get; }
         BaseUser CurrentUser { get; }
         List<sys_user_menu> UserMenu { get; set; }
+
+        CommonSqlHelper SqlHelper(SqlTypeEnum sqlTypeEnum);
     }
 }
