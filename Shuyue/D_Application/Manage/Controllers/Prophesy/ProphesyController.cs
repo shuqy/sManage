@@ -114,5 +114,23 @@ namespace Manage.Controllers.Prophesy
                 return Json(new JsonData { Code = Core.Enum.ResultCode.Fail, Message = "操作失败，非正确的文件！" }, JsonRequestBehavior.DenyGet);
             }
         }
+
+        public ActionResult UpAllStockData(string path)
+        {
+            try
+            {
+                DateTime dtn = DateTime.Now;
+                string data = path.Substring(path.LastIndexOf('.') - 10, 10);
+                //读取Excel中的数据
+                DataTable dt = NPOIHelper.ImportExceltoDt(Server.MapPath(path));
+                StockBLL stockBLL = new StockBLL();
+                stockBLL.UpAllStockData(dt, Convert.ToDateTime(data));
+                return Json(new JsonData { Code = Core.Enum.ResultCode.OK }, JsonRequestBehavior.DenyGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new JsonData { Code = Core.Enum.ResultCode.Fail, Message = "操作失败，请稍后重试！" }, JsonRequestBehavior.DenyGet);
+            }
+        }
     }
 }

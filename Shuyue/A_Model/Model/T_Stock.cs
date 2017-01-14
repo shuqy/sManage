@@ -27,5 +27,9 @@ namespace Model
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
         public Nullable<bool> Deleted { get; set; }
+        public Nullable<decimal> MainCount { get; set; }
+        public Nullable<decimal> Earning { get; set; }
+        public Nullable<decimal> PERatio { get; set; }
+        public string IndustryName { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SQY_StockModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SQY_StockModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="T_Industry">
           <Key>
             <PropertyRef Name="Id" />
@@ -21,10 +21,14 @@
           <Property Name="StockCode" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="FullCode" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="StockName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="TotalAmount" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="TotalMarketValue" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="CirculationMarketValue" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TotalAmount" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="TotalMarketValue" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="CirculationMarketValue" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="MainCount" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="Earning" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PERatio" Type="decimal" Precision="18" Scale="4" />
           <Property Name="Industry" Type="int" Nullable="false" />
+          <Property Name="IndustryName" Type="nvarchar" MaxLength="100" />
           <Property Name="PyAbbre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="PyFullName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" />
@@ -35,8 +39,7 @@
           <EntitySet Name="T_Industry" EntityType="Self.T_Industry" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="T_Stock" EntityType="Self.T_Stock" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SQY_StockModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -56,15 +59,19 @@
           <Property Name="StockCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="FullCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="StockName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="TotalMarketValue" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="CirculationMarketValue" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="TotalMarketValue" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="CirculationMarketValue" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="Industry" Type="Int32" Nullable="false" />
           <Property Name="PyAbbre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PyFullName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
           <Property Name="Deleted" Type="Boolean" />
+          <Property Name="MainCount" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Earning" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PERatio" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="IndustryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="SQY_StockEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="T_Industry" EntityType="Self.T_Industry" />
@@ -88,6 +95,10 @@
           <EntitySetMapping Name="T_Stock">
             <EntityTypeMapping TypeName="SQY_StockModel.T_Stock">
               <MappingFragment StoreEntitySet="T_Stock">
+                <ScalarProperty Name="IndustryName" ColumnName="IndustryName" />
+                <ScalarProperty Name="PERatio" ColumnName="PERatio" />
+                <ScalarProperty Name="Earning" ColumnName="Earning" />
+                <ScalarProperty Name="MainCount" ColumnName="MainCount" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="StockCode" ColumnName="StockCode" />
                 <ScalarProperty Name="FullCode" ColumnName="FullCode" />

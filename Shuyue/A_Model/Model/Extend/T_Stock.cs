@@ -8,6 +8,5 @@ namespace Model
 {
     public partial class T_Stock
     {
-        public string IndustryName { get; set; }
     }
 }
