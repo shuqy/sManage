@@ -60,7 +60,7 @@
             <td valign="top"><label>所有STOCK最新数据更新</label></td>
             <td>
                 <a href="javascript:;" class="file">
-                    <input type="file" id="stockFile">选择文件
+                    <input type="file" id="th">选择文件
                 </a>
             </td>
         </tr>
@@ -101,8 +101,11 @@
                     $("#fileAjax").change(function (e) {
                         uploadFile.fileUploader.upload(e.delegateTarget.files[0], 0);
                     });
-                    $("#stockFile").change(function (e) {
+                    $("#th").change(function (e) {
                         uploadFile.fileUploader.upload(e.delegateTarget.files[0], 1);
+                    });
+                    $("#stockFile").change(function (e) {
+                        uploadFile.fileUploader.upload(e.delegateTarget.files[0], 2);
                     });
                 },
                 //文件上传
@@ -149,14 +152,22 @@
                     else {
                         //根据不同上传类型进行不同的操作
                         if (type == 0) {
-                            $.post("/Prophesy/UpBaseData", { path: path }, function (d) {
+                            $.post("/Prophesy/UpAllStockData", { path: path, type: 0 }, function (d) {
                                 if (d && d.Code == 0) {
-                                    that.Tip("成功！更新" + d.Data.count1 + "条行业信息，" + d.Data.count2 + "条股票数据。");
+                                    that.Tip("成功！");
                                 } else {
                                     that.Tip("操作失败，请重试！");
                                 }
                             });
                         } else if (type == 1) {
+                            $.post("/Prophesy/UpAllStockData", { path: path, type: 1 }, function (d) {
+                                if (d && d.Code == 0) {
+                                    that.Tip("成功！");
+                                } else {
+                                    that.Tip("操作失败，请重试！");
+                                }
+                            });
+                        } else if (type == 2) {
                             $.post("/Prophesy/UpSingleStockData", { path: path }, function (d) {
                                 if (d && d.Code == 0) {
                                     that.Tip("成功！更新" + d.Data.count + "条数据。用时：" + d.Data.time + "秒");

@@ -115,7 +115,13 @@ namespace Manage.Controllers.Prophesy
             }
         }
 
-        public ActionResult UpAllStockData(string path)
+        /// <summary>
+        /// 更新STOCK数据或交易历史
+        /// </summary>
+        /// <param name="path">文件路径</param>
+        /// <param name="type">更新类型 0STOCK数据 1历史交易数据</param>
+        /// <returns></returns>
+        public ActionResult UpAllStockData(string path, int type)
         {
             try
             {
@@ -124,7 +130,7 @@ namespace Manage.Controllers.Prophesy
                 //读取Excel中的数据
                 DataTable dt = NPOIHelper.ImportExceltoDt(Server.MapPath(path));
                 StockBLL stockBLL = new StockBLL();
-                stockBLL.UpAllStockData(dt, Convert.ToDateTime(data));
+                stockBLL.UpAllStockData(dt, type, Convert.ToDateTime(data));
                 return Json(new JsonData { Code = Core.Enum.ResultCode.OK }, JsonRequestBehavior.DenyGet);
             }
             catch (Exception ex)

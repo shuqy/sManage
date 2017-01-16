@@ -12,7 +12,15 @@ namespace ManageService.Stock
 {
     public class StockBLL
     {
-        public int UpAllStockData(DataTable dt, DateTime tradingDate)
+        protected string[] CreatedStockTable = new[] { "002416", "000721", "600821" };
+        /// <summary>
+        /// 更新所有
+        /// </summary>
+        /// <param name="dt">数据源</param>
+        /// <param name="tradingDate">交易日期</param>
+        /// <param name="type">更新类型 0股票数据 1历史交易数据</param>
+        /// <returns></returns>
+        public int UpAllStockData(DataTable dt, int type, DateTime tradingDate = default(DateTime))
         {
             //每次执行条数
             int runCount = 500;
@@ -20,18 +28,18 @@ namespace ManageService.Stock
             //更新行业数据
             UpdateIndustry(dt);
             List<T_Industry> industryList = commonSql.GetDataList<T_Industry>();
-            List<T_Stock> stockList = commonSql.GetDataList<T_Stock>();
+            List<T_Stock> stockList = commonSql.GetDataList<T_Stock>() ?? new List<T_Stock>();
             int begin = 0, end = dt.Rows.Count >= runCount ? runCount : dt.Rows.Count;
             for (int i = 0; i < dt.Rows.Count / runCount + 1; i++)
             {
+                upAllStockData(tradingDate, dt, begin, end, stockList, industryList, type);
                 begin = end + 1;
-                upAllStockData(tradingDate, dt, begin, end, stockList, industryList);
                 end = dt.Rows.Count >= end + runCount ? end + runCount : dt.Rows.Count - 1;
             }
             return 0;
         }
 
-        private void upAllStockData(DateTime tradingDate, DataTable dt, int begin, int end, List<T_Stock> stockList, List<T_Industry> industryList)
+        private void upAllStockData(DateTime tradingDate, DataTable dt, int begin, int end, List<T_Stock> stockList, List<T_Industry> industryList, int type)
         {
             var commonSql = Core.AppContext.Current.SqlHelper(Core.Enum.SqlTypeEnum.Stock);
             //股票信息添加列表、股票信息更新列表
@@ -94,28 +102,48 @@ namespace ManageService.Stock
                     else upStockList.Add(stock);
                 }
                 //拼接历史交易记录sql
-                upStockHistorySql.Append(string.Format("insert into T_TransactionRecord_{0} (StockCode,TradingDate,[Open],[High],[Low],[Close],[Rose],[Amplitude],[Hands],[Amount],[Turnover],[VOLAMOUNT]) values ('{0}','{1}',{2},{3},{4},{5},{6},{7},{8},{9},{10},{11}) go "
-                    , stockCode, tradingDate, open, high, low, close, rose, amplitude, hands, amount, turnover, VOLAMOUNT));
+                if (type == 1)
+                {
+                    //if(CreateTableBLL.IsExistTable(string.Format("T_TransactionRecord_{0}", stockCode)))
+                    if (CreatedStockTable.Any(s => s == stockCode))
+                        upStockHistorySql.Append(string.Format("insert into T_TransactionRecord_{0} (StockCode,TradingDate,[Open],[High],[Low],[Close],[Rose],[Amplitude],[Hands],[Amount],[Turnover],[VOLAMOUNT]) values ('{0}','{1}',{2},{3},{4},{5},{6},{7},{8},{9},{10},{11});"
+                            , stockCode, tradingDate, open, high, low, close, rose, amplitude, hands, amount, turnover, VOLAMOUNT));
+                }
             }
-            //拼接更新或插入股票信息sql
-            addStockSql.Append("insert into T_Stock (StockCode,FullCode,StockName,TotalAmount,TotalMarketValue,CirculationMarketValue,MainCount,Earning,PERatio,Industry,IndustryName,PyAbbre,PyFullName) ");
-            int addStockIndex = 0;
-            foreach (var item in addStockList)
+            //更新股票数据
+            if (type == 0)
             {
-                addStockSql.Append(string.Format("select '{0}','{1}','{2}',{3},{4},{5},{6},{7},{8},{9},'{10}','{11}','{12}'",
-                    item.StockCode, item.FullCode, item.StockName, item.TotalAmount, item.TotalMarketValue, item.CirculationMarketValue, item.MainCount
-                    , item.Earning, item.PERatio, item.Industry, item.IndustryName, item.PyAbbre, item.PyFullName));
-                if (++addStockIndex < addStockList.Count) sqlsb.Append(" union ");
+                if (addStockList.Any())
+                {
+                    //拼接更新或插入股票信息sql
+                    addStockSql.Append("insert into T_Stock (StockCode,FullCode,StockName,TotalAmount,TotalMarketValue,CirculationMarketValue,MainCount,Earning,PERatio,Industry,IndustryName,PyAbbre,PyFullName) ");
+                    int addStockIndex = 0;
+                    foreach (var item in addStockList)
+                    {
+                        addStockSql.Append(string.Format("select '{0}','{1}','{2}',{3},{4},{5},{6},{7},{8},{9},'{10}','{11}','{12}'",
+                            item.StockCode, item.FullCode, item.StockName, item.TotalAmount, item.TotalMarketValue, item.CirculationMarketValue, item.MainCount
+                            , item.Earning, item.PERatio, item.Industry, item.IndustryName, item.PyAbbre, item.PyFullName));
+                        if (++addStockIndex < addStockList.Count) addStockSql.Append(" union ");
+                    }
+                    SqlHelper.ExecuteNonQuery(ConfigHelper.GetConnStr("StockConn"), CommandType.Text, addStockSql.ToString());
+                }
+                if (upStockList.Any())
+                {
+                    foreach (var item in upStockList)
+                    {
+                        upStockSql.Append(string.Format("update T_Stock set StockName='{0}',TotalAmount={1},TotalMarketValue={2},CirculationMarketValue={3},MainCount={4},Earning={5},PERatio={6},Industry={7},IndustryName={8},PyAbbre={9},PyFullName={10} where StockCode={11} go",
+                            item.StockName, item.TotalAmount, item.TotalMarketValue, item.CirculationMarketValue, item.MainCount
+                            , item.Earning, item.PERatio, item.Industry, item.IndustryName, item.PyAbbre, item.PyFullName, item.StockCode));
+                    }
+                    //执行sql
+                    SqlHelper.ExecuteNonQuery(ConfigHelper.GetConnStr("StockConn"), CommandType.Text, upStockSql.ToString());
+                }
             }
-            foreach (var item in upStockList)
+            else if (type == 1)//更新历史交易
             {
-                upStockSql.Append(string.Format("update T_Stock set StockName='{0}',TotalAmount={1},TotalMarketValue={2},CirculationMarketValue={3},MainCount={4},Earning={5},PERatio={6},Industry={7},IndustryName={8},PyAbbre={9},PyFullName={10} where StockCode={11} go",
-                    item.StockName, item.TotalAmount, item.TotalMarketValue, item.CirculationMarketValue, item.MainCount
-                    , item.Earning, item.PERatio, item.Industry, item.IndustryName, item.PyAbbre, item.PyFullName, item.StockCode));
+                if (!string.IsNullOrEmpty(upStockHistorySql.ToString()))
+                    SqlHelper.ExecuteNonQuery(ConfigHelper.GetConnStr("StockConn"), CommandType.Text, upStockHistorySql.ToString());
             }
-            //执行sql
-            SqlHelper.ExecuteNonQuery(ConfigHelper.GetConnStr("StockConn"), CommandType.Text, addStockSql.ToString());
-            SqlHelper.ExecuteNonQuery(ConfigHelper.GetConnStr("StockConn"), CommandType.Text, upStockSql.ToString());
         }
 
         /// <summary>
@@ -136,6 +164,7 @@ namespace ManageService.Stock
                 if (!string.IsNullOrEmpty(industry) && !industryList.Any(item => item.Name.Equals(industry)) && !newIndustryList.Any(item => item.Name.Equals(industry)))
                     newIndustryList.Add(new T_Industry { Name = industry });
             }
+            if (!newIndustryList.Any()) return true;
             //拼接sql语句
             sqlsb.Append("insert into T_Industry (Name) ");
             int index = 0;
