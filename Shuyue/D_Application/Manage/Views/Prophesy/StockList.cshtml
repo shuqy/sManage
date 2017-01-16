@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "STOCK列表";
+}
+@section styles{
+}
+<div class="smContent">
+    <div class="mianbaowarp margin-top20  clearfix">
+        @Html.Partial("_NavPartial")
+    </div>
+    <div id="serverList" class="row-fluid">
+        <table id="dataTable" class="grid">
+            <thead>
+                <tr>
+                    <th>代码</th>
+                    <th>名称</th>
+                    <th>总市值</th>
+                    <th>流通市值</th>
+                    <th>主力净量</th>
+                    <th>市盈</th>
+                    <th>市盈率</th>
+                    <th>所属行业</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot></tfoot>
+        </table>
+    </div>
+</div>
+@section scripts{
+    <script src="~/scripts/prophesy/stocklist.js"></script>
+}
