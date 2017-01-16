@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Model.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -217,5 +219,28 @@ namespace Core.Util
             sqlsb.Append(";select @@identity;");
             return sqlsb.ToString();
         }
+
+        //public List<T> GetPageList<T>(Paging paging, out int count, string where = "1=1", string fieldsString = "*", string orderstring = "ID DESC") where T : new()
+        //{
+        //    string tableName = new T().GetType().Name;
+        //    StringBuilder sql = new StringBuilder();
+        //    sql.Append(string.Format("select @TotalRecord=count(1) from {1};select {0} from {1} where {2} order by {3}", fieldsString,tableName,where, orderstring));
+        //    SqlParameter[] paras = new SqlParameter[]
+        //    {
+        //        new SqlParameter("@tablename", SqlDbType.NVarChar, 1024) {Value = tableName},
+        //        new SqlParameter("@fieldsString", SqlDbType.NVarChar, 2000){Value = fieldsString},
+        //        new SqlParameter("@wherestring", SqlDbType.NVarChar, 1000) {Value = where},
+        //        new SqlParameter("@orderstring", SqlDbType.NVarChar, 500) {Value = orderstring},
+        //        new SqlParameter("@pagesize", SqlDbType.Int, 4) {Value = paging.PageSize},
+        //        new SqlParameter("@pageindex", SqlDbType.Int, 4) {Value = paging.SkipNumber},
+        //        new SqlParameter("@totalRecord", SqlDbType.Int, 4, ParameterDirection.Output, false, 0,0, "", DataRowVersion.Current, null)
+        //    };
+        //    DataSet ds = SqlHelper.ExecuteDataSet(SqlConnStr, CommandType.StoredProcedure, "ccoo_page_new", paras);
+        //    int.TryParse(paras[6].Value.ToString(), out count);
+        //    List<T> serverList = new List<T>();
+        //    if (ds.Tables.Count > 0 && ds.Tables[0] != null && ds.Tables[0].Rows.Count > 0)
+        //        return ModelHelper.FillModelList<T>(ds.Tables[0]).ToList();
+        //    return null;
+        //}
     }
 }

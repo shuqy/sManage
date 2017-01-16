@@ -76,7 +76,7 @@ namespace ManageService.Stock
                 string industry = dt.Rows[i][32].ToString();//行业
                 //判断股票是否新增或有数据更改
                 var currentStock = stockList.FirstOrDefault(s => s.StockCode == stockCode);
-                if (currentStock == null || currentStock.StockName != stockName || currentStock.TotalAmount != totalAmount || currentStock.TotalMarketValue != totalMarketValue
+                if (currentStock == null || currentStock.StockName != stockName || currentStock.TotalMarketValue != totalMarketValue
                     || currentStock.CirculationMarketValue != circulationMarketValue || currentStock.IndustryName != industry || currentStock.MainCount != mainCount
                     || currentStock.Earning != earning || currentStock.PERatio != peRatio)
                 {
@@ -84,7 +84,7 @@ namespace ManageService.Stock
                     {
                         FullCode = fullCode,
                         StockName = stockName,
-                        TotalAmount = totalAmount,
+                        TotalAmount = 0,
                         TotalMarketValue = totalMarketValue,
                         CirculationMarketValue = circulationMarketValue,
                         CreatedOn = DateTime.Now,
@@ -107,7 +107,7 @@ namespace ManageService.Stock
                     //if(CreateTableBLL.IsExistTable(string.Format("T_TransactionRecord_{0}", stockCode)))
                     if (CreatedStockTable.Any(s => s == stockCode))
                         upStockHistorySql.Append(string.Format("insert into T_TransactionRecord_{0} (StockCode,TradingDate,[Open],[High],[Low],[Close],[Rose],[Amplitude],[Hands],[Amount],[Turnover],[VOLAMOUNT]) values ('{0}','{1}',{2},{3},{4},{5},{6},{7},{8},{9},{10},{11});"
-                            , stockCode, tradingDate, open, high, low, close, rose, amplitude, hands, amount, turnover, VOLAMOUNT));
+                            , stockCode, tradingDate, open, high, low, close, rose, amplitude, hands, totalAmount, turnover, VOLAMOUNT));
                 }
             }
             //更新股票数据

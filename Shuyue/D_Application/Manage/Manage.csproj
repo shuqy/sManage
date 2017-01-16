@@ -195,6 +195,7 @@
     </Content>
     <Content Include="scripts\common.js" />
     <Content Include="scripts\menu\menulist.js" />
+    <Content Include="scripts\prophesy\stocklist.js" />
     <Content Include="scripts\user\usergroup.js" />
     <Content Include="scripts\user\userlist.js" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -237,6 +238,7 @@
     <Content Include="Views\Sort\Quick.cshtml" />
     <Content Include="Views\Prophesy\Index.cshtml" />
     <Content Include="Views\Prophesy\UpBaseData.cshtml" />
+    <Content Include="Views\Prophesy\StockList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -3,6 +3,7 @@ using Core.Util;
 using Core.Utilities;
 using ManageService.Stock;
 using Model;
+using Model.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -31,6 +32,7 @@ namespace Manage.Controllers.Prophesy
 
         /// <summary>
         /// 更新数据信息
+        /// 暂时废弃没用
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
@@ -137,6 +139,44 @@ namespace Manage.Controllers.Prophesy
             {
                 return Json(new JsonData { Code = Core.Enum.ResultCode.Fail, Message = "操作失败，请稍后重试！" }, JsonRequestBehavior.DenyGet);
             }
+        }
+
+        /// <summary>
+        /// STOCK列表
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult StockList()
+        {
+            return View();
+        }
+        [HttpPost]
+        public JsonResult GetStockList(DataTableRequest param)
+        {
+            var db = Core.AppContext.Current.StockDbContext;
+            int count = db.T_Stock.Count();
+            Paging paging = new Paging();
+            paging.SkipNumber = param.iDisplayStart;
+            paging.PageSize = param.iDisplayLength;
+            paging.SkipNumber = paging.SkipNumber / paging.PageSize;
+            List<T_Stock> stockList = db.T_Stock.OrderBy(t=>t.PyAbbre).Skip(paging.SkipNumber).Take(paging.PageSize).ToList();
+            var nlist = stockList.Select(s => new
+            {
+                s.FullCode,
+                s.StockName,
+                s.IndustryName,
+                TotalMarketValue = Convert.ToDecimal(s.TotalMarketValue / 10000).ToString("f2") + "万",
+                CirculationMarketValue = Convert.ToDecimal(s.CirculationMarketValue / 10000).ToString("f2") + "万",
+                MainCount = Convert.ToDecimal(s.MainCount).ToString("f2"),
+                Earning = Convert.ToDecimal(s.Earning).ToString("f2"),
+                PERatio = Convert.ToDecimal(s.PERatio).ToString("f2"),
+            });
+            return Json(new
+            {
+                sEcho = param.sEcho,
+                iTotalRecords = count,
+                iTotalDisplayRecords = count,
+                aaData = stockList.ToArray()
+            }, JsonRequestBehavior.AllowGet);
         }
     }
 }
