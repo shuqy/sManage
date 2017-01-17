@@ -117,7 +117,9 @@
       <DependentUpon>ManageEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\DataTableRequest.cs" />
+    <Compile Include="ViewModel\SubarrayRose.cs" />
     <Compile Include="ViewModel\Paging.cs" />
+    <Compile Include="ViewModel\T_TransactionRecord.cs" />
     <Compile Include="water_bill.cs">
       <DependentUpon>ManageEntities.tt</DependentUpon>
     </Compile>

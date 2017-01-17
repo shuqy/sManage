@@ -239,6 +239,7 @@
     <Content Include="Views\Prophesy\Index.cshtml" />
     <Content Include="Views\Prophesy\UpBaseData.cshtml" />
     <Content Include="Views\Prophesy\StockList.cshtml" />
+    <Content Include="Views\Prophesy\StockAnalysis.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

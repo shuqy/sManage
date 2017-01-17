@@ -1,6 +1,7 @@
 ﻿using Core.Util;
 using Core.Utilities;
 using Model;
+using Model.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -59,18 +60,20 @@ namespace ManageService.Stock
                 string stockCode = fullCode.Substring(2);
                 string stockName = dt.Rows[i][1].ToString();
                 decimal.TryParse(dt.Rows[i][2].ToString(), out rose);
+                rose = rose / 100.00m;
                 decimal.TryParse(dt.Rows[i][3].ToString(), out close);
                 decimal.TryParse(dt.Rows[i][5].ToString(), out turnover);
                 decimal.TryParse(dt.Rows[i][6].ToString(), out amplitude);
+                amplitude = amplitude / 100.00m;
                 decimal.TryParse(dt.Rows[i][8].ToString(), out totalAmount);
                 decimal.TryParse(dt.Rows[i][9].ToString(), out totalMarketValue);
                 decimal.TryParse(dt.Rows[i][10].ToString(), out circulationMarketValue);
                 int.TryParse(dt.Rows[i][11].ToString(), out hands);
+                int.TryParse(dt.Rows[i][29].ToString(), out VOLAMOUNT);
                 decimal.TryParse(dt.Rows[i][14].ToString(), out mainCount);
                 decimal.TryParse(dt.Rows[i][15].ToString(), out earning);
                 decimal.TryParse(dt.Rows[i][16].ToString(), out peRatio);
                 decimal.TryParse(dt.Rows[i][18].ToString(), out open);
-                decimal.TryParse(dt.Rows[i][19].ToString(), out close);
                 decimal.TryParse(dt.Rows[i][20].ToString(), out high);
                 decimal.TryParse(dt.Rows[i][21].ToString(), out low);
                 string industry = dt.Rows[i][32].ToString();//行业
@@ -234,6 +237,19 @@ namespace ManageService.Stock
                 if (i != end) sqlsb.Append(" union ");
             }
             return sqlsb.ToString();
+        }
+
+        /// <summary>
+        /// 根据代码获取交易记录
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public List<T_TransactionRecord> GetTransactionRecordByCode(string code)
+        {
+            var commonSql = Core.AppContext.Current.SqlHelper(Core.Enum.SqlTypeEnum.Stock);
+            string sql = string.Format("SELECT * FROM T_TransactionRecord_{0}", code);
+            List<T_TransactionRecord> recordList = commonSql.GetDataListBySql<T_TransactionRecord>(sql);
+            return recordList.OrderBy(r => r.TradingDate).ToList();
         }
     }
 }

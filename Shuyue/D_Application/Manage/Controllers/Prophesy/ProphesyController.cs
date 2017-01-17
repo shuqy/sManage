@@ -1,4 +1,5 @@
-﻿using Core.Entities;
+﻿using Core.Algorithm;
+using Core.Entities;
 using Core.Util;
 using Core.Utilities;
 using ManageService.Stock;
@@ -15,6 +16,7 @@ namespace Manage.Controllers.Prophesy
 {
     public class ProphesyController : ControllerBase
     {
+        protected StockBLL stockBLL = new StockBLL();
         // GET: Prophesy
         public ActionResult Index()
         {
@@ -103,7 +105,6 @@ namespace Manage.Controllers.Prophesy
                     return Json(new JsonData { Code = Core.Enum.ResultCode.Fail, Message = "操作失败，证券代码不存在！" }, JsonRequestBehavior.DenyGet);
                 //读取Excel中的数据
                 DataTable dt = NPOIHelper.ImportExceltoDt(Server.MapPath(path));
-                StockBLL stockBLL = new StockBLL();
                 int count = stockBLL.UpSingleStockData(stockCode, dt);
                 return Json(new JsonData
                 {
@@ -131,7 +132,6 @@ namespace Manage.Controllers.Prophesy
                 string data = path.Substring(path.LastIndexOf('.') - 10, 10);
                 //读取Excel中的数据
                 DataTable dt = NPOIHelper.ImportExceltoDt(Server.MapPath(path));
-                StockBLL stockBLL = new StockBLL();
                 stockBLL.UpAllStockData(dt, type, Convert.ToDateTime(data));
                 return Json(new JsonData { Code = Core.Enum.ResultCode.OK }, JsonRequestBehavior.DenyGet);
             }
@@ -157,26 +157,40 @@ namespace Manage.Controllers.Prophesy
             Paging paging = new Paging();
             paging.SkipNumber = param.iDisplayStart;
             paging.PageSize = param.iDisplayLength;
-            paging.SkipNumber = paging.SkipNumber / paging.PageSize;
-            List<T_Stock> stockList = db.T_Stock.OrderBy(t=>t.PyAbbre).Skip(paging.SkipNumber).Take(paging.PageSize).ToList();
+            List<T_Stock> stockList = db.T_Stock.OrderByDescending(t => t.PyAbbre).Skip(paging.SkipNumber).Take(paging.PageSize).ToList();
             var nlist = stockList.Select(s => new
             {
+                s.Id,
                 s.FullCode,
                 s.StockName,
                 s.IndustryName,
-                TotalMarketValue = Convert.ToDecimal(s.TotalMarketValue / 10000).ToString("f2") + "万",
-                CirculationMarketValue = Convert.ToDecimal(s.CirculationMarketValue / 10000).ToString("f2") + "万",
-                MainCount = Convert.ToDecimal(s.MainCount).ToString("f2"),
-                Earning = Convert.ToDecimal(s.Earning).ToString("f2"),
-                PERatio = Convert.ToDecimal(s.PERatio).ToString("f2"),
+                TotalMarketValue = Convert.ToDecimal(s.TotalMarketValue / 100000000).ToString("f2") + "亿",
+                CirculationMarketValue = Convert.ToDecimal(s.CirculationMarketValue / 100000000).ToString("f2") + "亿",
+                s.MainCount,
+                s.Earning,
+                s.PERatio,
             });
             return Json(new
             {
                 sEcho = param.sEcho,
                 iTotalRecords = count,
                 iTotalDisplayRecords = count,
-                aaData = stockList.ToArray()
+                aaData = nlist.ToArray()
             }, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 分析
+        /// </summary>
+        /// <param name="stockCode"></param>
+        /// <returns></returns>
+        public ActionResult StockAnalysis(string stockCode)
+        {
+            var db = Core.AppContext.Current.StockDbContext;
+            var stock = stockBLL.GetTransactionRecordByCode(stockCode);
+            ViewBag.maxsr = MaximumSubarray.GetMaximumSubarrayRose(stock);
+            ViewBag.minsr = MaximumSubarray.GetMinimumSubarrayRose(stock);
+            return View();
         }
     }
 }

@@ -20,6 +20,25 @@ namespace Core.Application
             {
                 if (HttpContext.Current.Session[SessionKey.CurrentUser] == null)
                 {
+                    //判断cookie是否存在
+                    if (CookieHelper.GetCookie("manageuser", "username") != null && CookieHelper.GetCookie("manageuser", "password") != null)
+                    {
+                        var u = Encryptor.DecryptDES(CookieHelper.GetCookie("manageuser", "username"));
+                        var p = CookieHelper.GetCookie("manageuser", "password");
+                        var user = this.ManageDbContext.sys_user.FirstOrDefault(s => s.UserCode == u && s.PassCode == p && !s.Deleted);
+                        if (user != null)
+                        {
+                            BaseUser baseUser = new BaseUser
+                            {
+                                Id = user.Id,
+                                UserCode = user.UserCode,
+                                UserName = user.UserName,
+                                State = (int)user.State,
+                            };
+                            HttpContext.Current.Session[SessionKey.CurrentUser] = baseUser;
+                            return baseUser;
+                        }
+                    }
                     //开启调试模式
                     if (Util.ConfigHelper.Get("IsDebug") == "1")
                     {

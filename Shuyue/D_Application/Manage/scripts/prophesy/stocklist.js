@@ -7,7 +7,7 @@ managebase.data.loadPage = function () {
         "bServerSide": true,
         "sAjaxSource": "/Prophesy/GetStockList",
         "sDom": "Rlfrtip",
-        "iDisplayLength": 10,
+        "iDisplayLength": 20,
         "bFilter": false,
         "bPaginate": true,
         "bLengthChange": false,
