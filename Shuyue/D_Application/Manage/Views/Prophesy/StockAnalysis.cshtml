@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "分析";
+    Model.ViewModel.MaximumSubarrayRose maxsr = ViewBag.maxsr;
+    Model.ViewModel.MinimumSubarrayRose minsr = ViewBag.minsr;
+}
+
+
+
+<h3>@maxsr.RecordList.FirstOrDefault().StockCode</h3>
+
+<hr />
+<label>最强</label><br />
+<label>@maxsr.BeginData - @maxsr.EndDate</label><br />
+<label>@(maxsr.RecordList.Sum(r => r.Rose) * 100 + "%")</label><br />
+<label>@maxsr.RecordList.FirstOrDefault(r => r.TradingDate == maxsr.BeginData).Close - @maxsr.RecordList.FirstOrDefault(r => r.TradingDate == maxsr.EndDate).Close</label>
+
+<hr />
+<label>最弱</label><br />
+<label>@minsr.BeginData - @minsr.EndDate</label><br />
+<label>@(minsr.RecordList.Sum(r => r.Rose) * 100 + "%")</label><br />
+<label>@minsr.RecordList.FirstOrDefault(r => r.TradingDate == minsr.BeginData).Close - @minsr.RecordList.FirstOrDefault(r => r.TradingDate == minsr.EndDate).Close</label>
