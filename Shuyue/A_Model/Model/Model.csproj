@@ -54,6 +54,7 @@
     <Compile Include="delivery_order.cs">
       <DependentUpon>ManageEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Extend\SubarrayRoseEnum.cs" />
     <Compile Include="Extend\T_Stock.cs" />
     <Compile Include="group_menu_mapping.cs">
       <DependentUpon>ManageEntities.tt</DependentUpon>

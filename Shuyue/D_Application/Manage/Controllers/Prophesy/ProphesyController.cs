@@ -188,8 +188,10 @@ namespace Manage.Controllers.Prophesy
         {
             var db = Core.AppContext.Current.StockDbContext;
             var stock = stockBLL.GetTransactionRecordByCode(stockCode);
-            ViewBag.maxsr = MaximumSubarray.GetMaximumSubarrayRose(stock);
-            ViewBag.minsr = MaximumSubarray.GetMinimumSubarrayRose(stock);
+            //ViewBag.maxsr = MaximumSubarray.GetMaximumSubarrayRose(stock);
+            //ViewBag.minsr = MaximumSubarray.GetMinimumSubarrayRose(stock);
+            ViewBag.RecordList = stock;
+            ViewBag.SubarryRose = MaximumSubarray.GetSubarrayRose(stock);
             return View();
         }
     }

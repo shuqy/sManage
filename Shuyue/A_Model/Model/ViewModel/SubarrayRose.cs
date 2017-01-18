@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.Extend;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,10 @@ namespace Model.ViewModel
     /// </summary>
     public class SubarrayRose
     {
+        /// <summary>
+        /// 类型
+        /// </summary>
+        public SubarrayRoseEnum Type { get; set; }
         /// <summary>
         /// 开始日期
         /// </summary>

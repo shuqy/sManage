@@ -1,21 +1,34 @@
 ﻿@{
     ViewBag.Title = "分析";
-    Model.ViewModel.MaximumSubarrayRose maxsr = ViewBag.maxsr;
-    Model.ViewModel.MinimumSubarrayRose minsr = ViewBag.minsr;
+    //Model.ViewModel.MaximumSubarrayRose maxsr = ViewBag.maxsr;
+    //Model.ViewModel.MinimumSubarrayRose minsr = ViewBag.minsr;
+    List<Model.ViewModel.T_TransactionRecord> recordList = ViewBag.RecordList;
+    List<Model.ViewModel.SubarrayRose> subarrayRose = ViewBag.SubarryRose;
+}
+
+@foreach (var item in subarrayRose)
+{
+    <div style="padding:20px;border-bottom:1px solid #ccc;">
+        <p>
+            @item.BeginData.ToShortDateString() - @item.EndDate.ToShortDateString()  |  
+            @((recordList.Where(a => a.TradingDate >= item.BeginData && a.TradingDate <= item.EndDate).Sum(r => r.Rose) * 100).ToString("f2") + "%")  |  
+            @recordList.FirstOrDefault(r => r.TradingDate == item.BeginData).Close.ToString("f2") - @recordList.FirstOrDefault(r => r.TradingDate == item.EndDate).Close.ToString("f2")  |  
+            @(item.Type.ToString())
+        </p>
+    </div>
 }
 
 
+@*<h3>@maxsr.RecordList.FirstOrDefault().StockCode</h3>
 
-<h3>@maxsr.RecordList.FirstOrDefault().StockCode</h3>
+    <hr />
+    <label>最强</label><br />
+    <label>@maxsr.BeginData - @maxsr.EndDate</label><br />
+    <label>@(maxsr.RecordList.Sum(r => r.Rose) * 100 + "%")</label><br />
+    <label>@maxsr.RecordList.FirstOrDefault(r => r.TradingDate == maxsr.BeginData).Close - @maxsr.RecordList.FirstOrDefault(r => r.TradingDate == maxsr.EndDate).Close</label>
 
-<hr />
-<label>最强</label><br />
-<label>@maxsr.BeginData - @maxsr.EndDate</label><br />
-<label>@(maxsr.RecordList.Sum(r => r.Rose) * 100 + "%")</label><br />
-<label>@maxsr.RecordList.FirstOrDefault(r => r.TradingDate == maxsr.BeginData).Close - @maxsr.RecordList.FirstOrDefault(r => r.TradingDate == maxsr.EndDate).Close</label>
-
-<hr />
-<label>最弱</label><br />
-<label>@minsr.BeginData - @minsr.EndDate</label><br />
-<label>@(minsr.RecordList.Sum(r => r.Rose) * 100 + "%")</label><br />
-<label>@minsr.RecordList.FirstOrDefault(r => r.TradingDate == minsr.BeginData).Close - @minsr.RecordList.FirstOrDefault(r => r.TradingDate == minsr.EndDate).Close</label>
+    <hr />
+    <label>最弱</label><br />
+    <label>@minsr.BeginData - @minsr.EndDate</label><br />
+    <label>@(minsr.RecordList.Sum(r => r.Rose) * 100 + "%")</label><br />
+    <label>@minsr.RecordList.FirstOrDefault(r => r.TradingDate == minsr.BeginData).Close - @minsr.RecordList.FirstOrDefault(r => r.TradingDate == minsr.EndDate).Close</label>*@
