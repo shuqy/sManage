@@ -191,7 +191,7 @@ namespace Manage.Controllers.Prophesy
             //ViewBag.maxsr = MaximumSubarray.GetMaximumSubarrayRose(stock);
             //ViewBag.minsr = MaximumSubarray.GetMinimumSubarrayRose(stock);
             ViewBag.RecordList = stock;
-            ViewBag.SubarryRose = MaximumSubarray.GetSubarrayRose(stock);
+            ViewBag.SubarryRose = MaximumSubarray.GetSubarray(stock);
             return View();
         }
     }

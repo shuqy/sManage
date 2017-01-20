@@ -34,6 +34,87 @@ namespace Core.Algorithm
         }
 
         /// <summary>
+        /// 获取子序列时间段
+        /// </summary>
+        /// <param name="recordList"></param>
+        /// <returns></returns>
+        public static List<SubarrayRose> GetSubarray(List<T_TransactionRecord> recordList)
+        {
+            List<SubarrayRose> srList = new List<SubarrayRose>();
+            int shockday = 60;//shock days
+            decimal rose = 0.2m, drop = -0.2m;//rose or drop range
+            decimal max = 0, smax = 0, min = 0, smin = 0, cval = 0;
+            bool isRose = false, isDrop = false, isShock = false;
+            DateTime beginDate, endDate, maxbegin, maxend, minbegin, minend;
+            beginDate = endDate = maxbegin = maxend = minbegin = minend = default(DateTime);
+            SubarrayRoseEnum lastType = SubarrayRoseEnum.Default;
+            //handle
+            Action<SubarrayRoseEnum, DateTime, DateTime> run = (a, b, c) =>
+            {
+                if (lastType == a)
+                {
+                    srList.LastOrDefault().EndDate = c;
+                }
+                else
+                {
+                    srList.Add(new SubarrayRose { Type = a, BeginData = b, EndDate = c, });
+                }
+                lastType = a;
+                switch (a)
+                {
+                    case SubarrayRoseEnum.Rose: isRose = false; break;
+                    case SubarrayRoseEnum.Drop: isDrop = false; break;
+                    case SubarrayRoseEnum.Shock: isShock = false; break;
+                }
+            };
+            for (int i = 0; i < recordList.Count(); i++)
+            {
+                cval += recordList[i].Rose;
+                smax += recordList[i].Rose;
+                smin += recordList[i].Rose;
+                //first
+                if (i == 0) beginDate = endDate = maxbegin = minbegin = recordList[i].TradingDate;
+
+                //is rose
+                if (smax > (rose > max ? rose : max))
+                {
+                    if (isDrop) run(SubarrayRoseEnum.Drop, minbegin, minend);
+                    if (isShock) run(SubarrayRoseEnum.Shock, beginDate, endDate);
+                    isRose = true; max = smax; min = smin = cval = 0;
+                    minbegin = beginDate = maxend = recordList[i].TradingDate;
+                }
+
+                //is drop
+                else if (smin < (drop < min ? drop : min))
+                {
+                    if (isRose) run(SubarrayRoseEnum.Rose, maxbegin, maxend);
+                    if (isShock) run(SubarrayRoseEnum.Shock, beginDate, endDate);
+                    isDrop = true; min = smin; max = smax = cval = 0;
+                    maxbegin = beginDate = minend = recordList[i].TradingDate;
+                }
+
+                //is shock
+                else if ((recordList[i].TradingDate - beginDate).Days > shockday && drop <= cval && cval <= rose)
+                {
+                    if (isRose) run(SubarrayRoseEnum.Rose, maxbegin, maxend);
+                    if (isDrop) run(SubarrayRoseEnum.Drop, minbegin, minend);
+                    isShock = true; max = smax = min = smin = 0;
+                    maxbegin = minbegin = endDate = recordList[i].TradingDate;
+                    run(SubarrayRoseEnum.Shock, beginDate, endDate);
+                }
+
+                //last
+                if (i == recordList.Count() - 1)
+                {
+                    if (isRose) run(SubarrayRoseEnum.Rose, maxbegin, maxend);
+                    if (isDrop) run(SubarrayRoseEnum.Drop, minbegin, minend);
+                    if (isShock) run(SubarrayRoseEnum.Shock, beginDate, endDate);
+                }
+            }
+            return srList;
+        }
+
+        /// <summary>
         /// 最大子序列
         /// </summary>
         /// <param name="recordList"></param>
@@ -61,154 +142,6 @@ namespace Core.Algorithm
             }
             msr.RecordList = recordList.Where(a => a.TradingDate >= msr.BeginData && a.TradingDate <= msr.EndDate).ToList();
             return msr;
-        }
-
-        public static List<SubarrayRose> GetSubarrayRose(List<T_TransactionRecord> recordList)
-        {
-            List<SubarrayRose> srList = new List<SubarrayRose>();
-            int shockday = 20;
-            decimal shockrose = 0.1m, shockdrop = -0.1m;
-            decimal rose = 0.3m, drop = -0.3m;
-            decimal max = 0, smax = 0, min = 0, smin = 0, cval = 0;
-            bool isRose = false, isDrop = false, isShock = false;
-            DateTime beginDate = default(DateTime), endDate = default(DateTime), maxbegin = default(DateTime), maxend = default(DateTime), minbegin = default(DateTime), minend = default(DateTime);
-            int go = 0;
-            for (int i = 0; i < recordList.Count(); i++)
-            {
-                cval += recordList[i].Rose;
-                smax += recordList[i].Rose;
-                smin += recordList[i].Rose;
-                if (i == 0)
-                {
-                    beginDate = endDate = maxbegin = minbegin = recordList[i].TradingDate;
-                }
-
-                //is rose
-                if (smax > (rose > max ? rose : max))
-                {
-                    if (isDrop)
-                    {
-                        srList.Add(new SubarrayRose
-                        {
-                            Type = SubarrayRoseEnum.Drop,
-                            BeginData = minbegin,
-                            EndDate = minend,
-                        });
-                        isDrop = false;
-                        //minbegin = beginDate = recordList[i].TradingDate;
-                        min = smin = cval = 0;
-                    }
-                    if (isShock)
-                    {
-                        srList.Add(new SubarrayRose
-                        {
-                            Type = SubarrayRoseEnum.Shock,
-                            BeginData = beginDate,
-                            EndDate = endDate,
-                        });
-                        isShock = false;
-                        //beginDate = minbegin = recordList[i].TradingDate;
-                        cval = min = smin = 0;
-                    }
-                    isRose = true;
-                    max = smax;
-                    minbegin = beginDate = maxend = recordList[i].TradingDate;
-                }
-                //is drop
-                if (smin < (drop < min ? drop : min))
-                {
-                    if (isRose)
-                    {
-                        srList.Add(new SubarrayRose
-                        {
-                            Type = SubarrayRoseEnum.Rose,
-                            BeginData = maxbegin,
-                            EndDate = maxend,
-                        });
-                        isRose = false;
-                        //maxbegin = beginDate = recordList[i].TradingDate;
-                        max = smax = cval = 0;
-                    }
-                    if (isShock)
-                    {
-                        srList.Add(new SubarrayRose
-                        {
-                            Type = SubarrayRoseEnum.Shock,
-                            BeginData = beginDate,
-                            EndDate = endDate,
-                        });
-                        isShock = false;
-                        //beginDate = maxbegin = recordList[i].TradingDate;
-                        cval = max = smax = 0;
-                    }
-                    isDrop = true;
-                    min = smin;
-                    maxbegin = beginDate = minend = recordList[i].TradingDate;
-                }
-
-                //is shock
-                if ((recordList[i].TradingDate - beginDate).Days > shockday && shockdrop <= cval && cval <= shockrose)
-                {
-                    if (isRose)
-                    {
-                        srList.Add(new SubarrayRose
-                        {
-                            Type = SubarrayRoseEnum.Rose,
-                            BeginData = maxbegin,
-                            EndDate = maxend,
-                        });
-                        isRose = false;
-                        //maxbegin = minbegin = recordList[i].TradingDate;
-                        max = smax = min = smin = 0;
-                    }
-                    if (isDrop)
-                    {
-                        srList.Add(new SubarrayRose
-                        {
-                            Type = SubarrayRoseEnum.Drop,
-                            BeginData = minbegin,
-                            EndDate = minend,
-                        });
-                        isDrop = false;
-                        //minbegin = maxbegin = recordList[i].TradingDate;
-                        max = smax = min = smin = 0;
-                    }
-                    isShock = true;
-                    maxbegin = minbegin = endDate = recordList[i].TradingDate;
-                }
-                //最后一天
-                if (i == recordList.Count() - 1)
-                {
-                    if (isRose)
-                    {
-                        srList.Add(new SubarrayRose
-                        {
-                            Type = SubarrayRoseEnum.Rose,
-                            BeginData = maxbegin,
-                            EndDate = maxend,
-                        });
-                    }
-                    if (isDrop)
-                    {
-                        srList.Add(new SubarrayRose
-                        {
-                            Type = SubarrayRoseEnum.Drop,
-                            BeginData = minbegin,
-                            EndDate = minend,
-                        });
-                    }
-                    if (isShock)
-                    {
-                        srList.Add(new SubarrayRose
-                        {
-                            Type = SubarrayRoseEnum.Shock,
-                            BeginData = beginDate,
-                            EndDate = endDate,
-                        });
-                    }
-                }
-            }
-            return srList;
         }
 
         /// <summary>
