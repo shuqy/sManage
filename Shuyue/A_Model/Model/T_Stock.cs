@@ -31,5 +31,6 @@ namespace Model
         public Nullable<decimal> Earning { get; set; }
         public Nullable<decimal> PERatio { get; set; }
         public string IndustryName { get; set; }
+        public Nullable<bool> IsCreatedTable { get; set; }
     }
 }

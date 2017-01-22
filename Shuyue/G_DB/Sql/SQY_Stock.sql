@@ -25,3 +25,5 @@ create table T_Stock(
 	UpdatedOn datetime,
 	Deleted bit default 0,
 )
+--是否已建表
+alter table T_Stock add IsCreatedTable bit default 0

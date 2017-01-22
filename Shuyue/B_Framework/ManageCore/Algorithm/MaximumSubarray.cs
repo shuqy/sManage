@@ -41,7 +41,7 @@ namespace Core.Algorithm
         public static List<SubarrayRose> GetSubarray(List<T_TransactionRecord> recordList)
         {
             List<SubarrayRose> srList = new List<SubarrayRose>();
-            int shockday = 60;//shock days
+            int shockday = 30;//shock days
             decimal rose = 0.2m, drop = -0.2m;//rose or drop range
             decimal max = 0, smax = 0, min = 0, smin = 0, cval = 0;
             bool isRose = false, isDrop = false, isShock = false;

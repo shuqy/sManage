@@ -33,6 +33,68 @@ namespace Manage.Controllers.Prophesy
         }
 
         /// <summary>
+        /// 一键更新所有股票历史数据
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult UpStockAllHistory()
+        {
+            try
+            {
+                AutoStockBLL autoStockBLL = new AutoStockBLL();
+                var stockList = Core.AppContext.Current.StockDbContext.T_Stock;
+                foreach (var item in stockList)
+                    autoStockBLL.UpSingleStockHistory(item.StockCode, "20000101", "20170121");
+                return Json(new JsonData { Code = Core.Enum.ResultCode.OK, Message = "更新完成！" }, JsonRequestBehavior.DenyGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new JsonData { Code = Core.Enum.ResultCode.Fail, Message = "操作失败，请稍后重试！" }, JsonRequestBehavior.DenyGet);
+            }
+        }
+
+        /// <summary>
+        /// 更新单个股票历史数据
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult UpSingleStockAllHistory(string code)
+        {
+            try
+            {
+                AutoStockBLL autoStockBLL = new AutoStockBLL();
+                var stockList = Core.AppContext.Current.StockDbContext.T_Stock;
+                autoStockBLL.UpSingleStockHistory(code, "20000101", "20170121");
+                return Json(new JsonData { Code = Core.Enum.ResultCode.OK, Message = "更新完成！" }, JsonRequestBehavior.DenyGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new JsonData { Code = Core.Enum.ResultCode.Fail, Message = "操作失败，请稍后重试！" }, JsonRequestBehavior.DenyGet);
+            }
+        }
+
+        /// <summary>
+        /// 一键更新所有股票最新日数据
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult UpAllStockNewData()
+        {
+            try
+            {
+                AutoStockBLL autoStockBLL = new AutoStockBLL();
+                autoStockBLL.UpAllStockNewData();
+                return Json(new JsonData { Code = Core.Enum.ResultCode.OK, Message = "更新完成！" }, JsonRequestBehavior.DenyGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new JsonData { Code = Core.Enum.ResultCode.Fail, Message = "操作失败，请稍后重试！" }, JsonRequestBehavior.DenyGet);
+            }
+        }
+
+        #region 废弃旧代码
+
+        /// <summary>
         /// 更新数据信息
         /// 暂时废弃没用
         /// </summary>
@@ -140,6 +202,7 @@ namespace Manage.Controllers.Prophesy
                 return Json(new JsonData { Code = Core.Enum.ResultCode.Fail, Message = "操作失败，请稍后重试！" }, JsonRequestBehavior.DenyGet);
             }
         }
+        #endregion
 
         /// <summary>
         /// STOCK列表
@@ -161,6 +224,7 @@ namespace Manage.Controllers.Prophesy
             var nlist = stockList.Select(s => new
             {
                 s.Id,
+                s.StockCode,
                 s.FullCode,
                 s.StockName,
                 s.IndustryName,
@@ -169,6 +233,7 @@ namespace Manage.Controllers.Prophesy
                 s.MainCount,
                 s.Earning,
                 s.PERatio,
+                IsCreatedTable = s.IsCreatedTable == true ? 1 : 0,
             });
             return Json(new
             {
@@ -187,9 +252,16 @@ namespace Manage.Controllers.Prophesy
         public ActionResult StockAnalysis(string stockCode)
         {
             var db = Core.AppContext.Current.StockDbContext;
+            if (!db.T_Stock.Any(s => s.StockCode == stockCode && s.IsCreatedTable == true))
+            {
+                ViewBag.ErrorTip = "未更新数据，请先更新数据后在查看！";
+                return View();
+            }
             var stock = stockBLL.GetTransactionRecordByCode(stockCode);
+            if (stock == null || !stock.Any()) return View();
             //ViewBag.maxsr = MaximumSubarray.GetMaximumSubarrayRose(stock);
             //ViewBag.minsr = MaximumSubarray.GetMinimumSubarrayRose(stock);
+            stock = stock.Where(s => s.TradingDate > Convert.ToDateTime("2000-01-01")).ToList();
             ViewBag.RecordList = stock;
             ViewBag.SubarryRose = MaximumSubarray.GetSubarray(stock);
             return View();

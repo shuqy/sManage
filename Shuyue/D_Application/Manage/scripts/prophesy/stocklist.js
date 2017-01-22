@@ -1,7 +1,30 @@
 ﻿managebase.data = {};
 managebase.data.initPage = function () {
     managebase.data.loadPage();
+    //更新数据
+    $(".smContent").on("click", ".smUpdate", function (e) {
+        e.preventDefault();
+        var id = $(this).closest("td").data("code");
+        managebase.data.update(id);
+    });
 }
+managebase.data.update = function (code) {
+    $.dialog.confirm('确定更新？', function () {
+        $.post("/Prophesy/UpSingleStockAllHistory", { code: code }, function (d) {
+            if (d && d.Code == 0) {
+                showTip(d.Message, 3, 0.8);
+                managebase.data.refreshTable();
+            }
+            else {
+                showTip(d.Message, 3, 0.8);
+            }
+        })
+    }, function () {
+    });
+}
+managebase.data.refreshTable = function () {
+    managebase.data.listTable.fnReloadAjax('/Prophesy/GetStockList');
+};
 managebase.data.loadPage = function () {
     managebase.data.listTable = $("#dataTable").smDataTable({
         "bServerSide": true,
@@ -58,12 +81,14 @@ managebase.data.loadPage = function () {
             },
             {
                 "sWidth": "10%",
-                "mData": "Id",
+                "mData": "StockCode",
                 "sClass": "center",
                 "bSortable": false,
                 "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                    $(nTd).data("Id", sData);
-                    $(nTd).html('<div class="tr-icon"><a class="smEdit" href="#"><i class="iconf icon-x-ser"></i><div>查看</div></a></div>');
+                    console.log((oData["IsCreatedTable"] == 1))
+                    $(nTd).data("code", sData);
+                    $(nTd).html('<div class="tr-icon"><a href="/Prophesy/StockAnalysis?stockCode=' + sData + '"><i class="iconf icon-x-ser"></i><div>查看</div></a>' +
+                        '<a class="smUpdate" href="#"><i class="iconf ' + ((oData["IsCreatedTable"] == 1) ? "icon-s-guanzhu" : "icon-x-collect") + '"></i><div>更新数据</div></a></div>');
                 }
             }
         ]

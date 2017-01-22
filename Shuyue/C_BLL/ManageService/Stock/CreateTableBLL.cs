@@ -50,8 +50,11 @@ namespace ManageService.Stock
             sqlsb.Append("[UpdatedOn] datetime null,");
             sqlsb.Append("[Deleted] bit not null default 0,");
             sqlsb.Append(") ");
-            sqlsb.Append(string.Format("CREATE INDEX Ix_T_TransactionRecord_{0}_Date ON T_TransactionRecord_{0}(TradingDate)", stockCode));
+            sqlsb.Append(string.Format("CREATE INDEX Ix_T_TransactionRecord_{0}_Date ON T_TransactionRecord_{0}(TradingDate);", stockCode));
+            sqlsb.Append(string.Format("update T_Stock set IsCreatedTable=1 where StockCode='{0}'", stockCode));
             return SqlHelper.ExecuteNonQuery(ConfigHelper.GetConnStr("StockConn"), CommandType.Text, sqlsb.ToString()) > 0;
         }
+
+
     }
 }

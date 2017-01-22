@@ -11,6 +11,10 @@ using System.Threading.Tasks;
 
 namespace ManageService.Stock
 {
+    /// <summary>
+    /// 文件上传的方式获取数据
+    /// 太费事不用了
+    /// </summary>
     public class StockBLL
     {
         protected string[] CreatedStockTable = new[] { "002416", "000721", "600821" };

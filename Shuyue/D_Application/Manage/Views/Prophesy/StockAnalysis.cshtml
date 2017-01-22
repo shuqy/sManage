@@ -10,22 +10,30 @@
         {0,"↑" }, {1,"↓" }, {2,"-" },
     };
 }
-<style>
-    p {
-        line-height: 30px;
-    }
-</style>
-@foreach (var item in subarrayRose)
-{
-    <div style="padding:20px;border-bottom:1px solid #ccc;">
-        <p>
-            @item.BeginData.ToShortDateString() 至 @item.EndDate.ToShortDateString()
-            <font color="@(item.Type== SubarrayRoseEnum.Rose?"red":item.Type== SubarrayRoseEnum.Drop?"green":"")">@(dic[(int)item.Type])</font> <br />
-            @recordList.FirstOrDefault(r => r.TradingDate == item.BeginData).Close.ToString("f2") 到 @recordList.FirstOrDefault(r => r.TradingDate == item.EndDate).Close.ToString("f2")  |
-            @((recordList.Where(a => a.TradingDate >= item.BeginData && a.TradingDate <= item.EndDate).Sum(r => r.Rose) * 100).ToString("f2") + "%") 
-        </p>
+<div class="smContent">
+    <div class="mianbaowarp margin-top20  clearfix">
+        @Html.Partial("_NavPartial")
     </div>
-}
+    @if (ViewBag.ErrorTip == null)
+    {
+        foreach (var item in subarrayRose)
+        {
+            <div style="padding:20px;border-bottom:1px solid #ccc;">
+                <p>
+                    @item.BeginData.ToShortDateString() 至 @item.EndDate.ToShortDateString()
+                    <font color="@(item.Type== SubarrayRoseEnum.Rose?"red":item.Type== SubarrayRoseEnum.Drop?"green":"")">@(dic[(int)item.Type])</font> <br />
+                    @recordList.FirstOrDefault(r => r.TradingDate == item.BeginData).Close.ToString("f2") 到 @recordList.FirstOrDefault(r => r.TradingDate == item.EndDate).Close.ToString("f2")  |
+                    @((recordList.Where(a => a.TradingDate >= item.BeginData && a.TradingDate <= item.EndDate).Sum(r => r.Rose) * 100).ToString("f2") + "%")
+                </p>
+            </div>
+        }
+
+    }
+    else
+    {
+        <label>@ViewBag.ErrorTip</label>
+    }
+</div>
 
 
 @*<h3>@maxsr.RecordList.FirstOrDefault().StockCode</h3>
