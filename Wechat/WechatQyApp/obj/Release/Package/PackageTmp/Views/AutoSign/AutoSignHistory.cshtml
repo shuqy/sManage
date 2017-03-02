@@ -1,0 +1,31 @@
+﻿
+@{
+    Layout = null;
+    ViewBag.Week = new[] { "周日", "周一", "周二", "周三", "周四", "周五", "周六", };
+}
+@model IList<YaoService.LeShare.SignHistory>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link rel="stylesheet" href="/Content/Weui/weui.min.css" />
+</head>
+<body>
+    <div class="weui_cells_title">自动签到历史纪录</div>
+    <div class="weui_cells">
+        @foreach (var history in Model) {
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>
+                        <label style="width:60px;display:inline-block;">@history.MansUser.RealName</label>
+                        <label style="width:180px;display:inline-block;">@history.AutoSignHistory.SignDateTime.ToString("yyyy-MM-dd HH:mm:ss") </label>
+                        <label>@ViewBag.Week[(int)history.AutoSignHistory.SignDateTime.DayOfWeek] &nbsp;@history.SignType</label>
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+</body>
+</html>

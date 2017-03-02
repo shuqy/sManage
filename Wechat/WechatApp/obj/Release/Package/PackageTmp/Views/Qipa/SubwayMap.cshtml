@@ -1,0 +1,85 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link rel="stylesheet" href="~/Content/Weui/weui.min.css" />
+    <link rel="stylesheet" href="/Content/css/jquery-ui.min.css" />
+</head>
+<body>
+    <div class="weui_cells_title">换乘查询</div>
+    <div class="weui_cells weui_cells_access">
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">从这走</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" id="from" type="text" placeholder="出发地">
+            </div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">到这去</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" id="to" type="text" placeholder="目的地">
+            </div>
+        </div>
+        <div class="weui_cells_tips">查询结果仅供参考，具体情况请以实际的地铁信息为准。</div>
+        <div class="weui_btn_area">
+            <a class="weui_btn weui_btn_primary" href="javascript:" id="search">告诉我怎么走</a>
+        </div>
+        <div id="searchResult" class="weui_cells weui_cells_access">
+        </div>
+    </div>
+</body>
+</html>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="/Scripts/jquery-ui.min.js"></script>
+<script>
+    $(function () {
+        $.get("/Qipa/GetStations", function (data) {
+            $("#from").autocomplete({
+                source: eval(data)
+            });
+            $("#to").autocomplete({
+                source: eval(data)
+            });
+        });
+    });
+    $("#search").click(function () {
+        $.get("/Qipa/GetSubwayPath", { from: $("#from").val(), to: $("#to").val() }, function (data) {
+            var jsondata = eval(data);
+            console.log(jsondata);
+            var showtext = "";
+            if (jsondata == null || jsondata == "") {
+                showtext = "<div class=\"weui_cell\"><div class=\"weui_cell_bd weui_cell_primary\"><p>未获取到信息！</p></div></div>";
+                $("#searchResult").html(showtext);
+                return;
+            }
+            //alert(JSON.stringify(jsondata));
+            for (var i = 0; i < jsondata.length; i++) {
+                //alert(jsondata[i].Stations);
+                for (var j = 0; j < jsondata[i].Stations.length; j++) {
+                    showtext += "<div class=\"weui_cell\"><div class=\"weui_cell_bd weui_cell_primary\"><p>";
+                    if (j == 0)
+                        showtext += "●";
+                    else
+                        showtext += "&nbsp;&nbsp;";
+                    showtext += jsondata[i].Stations[j].Name;
+                    if (j == 0) {
+                        showtext += "<label style=\"color:#ccc;font-size:12px;\">";
+                        if (i == 0) showtext += "&nbsp;乘";
+                        else showtext += "&nbsp;换乘";
+                        showtext += jsondata[i].Line;
+                        showtext += "</label>";
+                    }
+                    showtext += "</p></div></div>";
+                }
+            }
+            $("#searchResult").html(showtext);
+        });
+    })
+</script>

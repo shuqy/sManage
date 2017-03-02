@@ -1,0 +1,11 @@
+ExecptionMessage:文件“G:\WeixinApplication\WechatApp\WechatApp\App_Data\MP\2016-01-26\635894185685290982_Request_o_AaDv43agGZYOET_RxdsoQnvE7s.txt”正由另一进程使用，因此该进程无法访问此文件。
+mscorlib
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, Boolean useAsync)
+   在 System.Xml.XmlWriterSettings.CreateWriter(String outputFileName)
+   在 System.Xml.XmlWriter.Create(String outputFileName, XmlWriterSettings settings)
+   在 System.Xml.Linq.XDocument.Save(String fileName, SaveOptions options)
+   在 System.Xml.Linq.XDocument.Save(String fileName)
+   在 WechatApp.Controllers.WeixinController.Index(PostModel postModel) 位置 G:\WeixinApplication\WechatApp\WechatApp\Controllers\WeixinController.cs:行号 65

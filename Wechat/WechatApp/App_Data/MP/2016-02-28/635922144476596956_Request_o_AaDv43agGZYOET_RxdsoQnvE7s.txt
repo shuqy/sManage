@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+  <ToUserName><![CDATA[gh_77bc5df793ac]]></ToUserName>
+<FromUserName><![CDATA[o_AaDv43agGZYOET_RxdsoQnvE7s]]></FromUserName>
+<CreateTime>1456588852</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://xgege.vicp.cc]]></EventKey>
+<MenuId>403950427</MenuId>
+</xml>

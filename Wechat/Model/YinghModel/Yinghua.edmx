@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="YinghModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="500" />
+          <Property Name="Email" Type="varchar" MaxLength="200" />
+          <Property Name="Mobile" Type="varchar" MaxLength="200" />
+          <Property Name="Password" Type="varchar" MaxLength="500" />
+          <Property Name="Realname" Type="varchar" MaxLength="200" />
+          <Property Name="LastIpAddress" Type="varchar" MaxLength="200" />
+          <Property Name="LastLoginOn" Type="datetime" />
+          <Property Name="CreateOn" Type="datetime" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer_CustomerRole_Mapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Customer_Id" Type="int" Nullable="false" />
+          <Property Name="CustomerRole_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CustomerRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Describe" Type="varchar" MaxLength="500" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WeixinCustomer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerId" Type="int" />
+          <Property Name="OpenId" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Nickname" Type="nvarchar" MaxLength="200" />
+          <Property Name="Gender" Type="bit" />
+          <Property Name="Country" Type="nvarchar" MaxLength="200" />
+          <Property Name="Province" Type="nvarchar" MaxLength="200" />
+          <Property Name="City" Type="nvarchar" MaxLength="200" />
+          <Property Name="HeadImg" Type="varchar" MaxLength="500" />
+          <Property Name="Language" Type="varchar" MaxLength="100" />
+          <Property Name="SubscribeDate" Type="datetime" />
+          <Property Name="UnSubscribed" Type="bit" />
+          <Property Name="UnSubscribeDate" Type="datetime" />
+          <Property Name="CreateOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifyOn" Type="datetime" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="LastActivityTime" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__Customer___Custo__15502E78">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Customer_CustomerRole_Mapping" Type="Self.Customer_CustomerRole_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Customer_CustomerRole_Mapping">
+              <PropertyRef Name="Customer_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Customer___Custo__164452B1">
+          <End Role="CustomerRole" Type="Self.CustomerRole" Multiplicity="1" />
+          <End Role="Customer_CustomerRole_Mapping" Type="Self.Customer_CustomerRole_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Customer_CustomerRole_Mapping">
+              <PropertyRef Name="CustomerRole_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="YinghModelStoreContainer">
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer_CustomerRole_Mapping" EntityType="Self.Customer_CustomerRole_Mapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerRole" EntityType="Self.CustomerRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WeixinCustomer" EntityType="Self.WeixinCustomer" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Customer___Custo__15502E78" Association="Self.FK__Customer___Custo__15502E78">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Customer_CustomerRole_Mapping" EntitySet="Customer_CustomerRole_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Customer___Custo__164452B1" Association="Self.FK__Customer___Custo__164452B1">
+            <End Role="CustomerRole" EntitySet="CustomerRole" />
+            <End Role="Customer_CustomerRole_Mapping" EntitySet="Customer_CustomerRole_Mapping" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="YinghModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="YinghEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customer" EntityType="YinghModel.Customer" />
+          <EntitySet Name="Customer_CustomerRole_Mapping" EntityType="YinghModel.Customer_CustomerRole_Mapping" />
+          <EntitySet Name="CustomerRole" EntityType="YinghModel.CustomerRole" />
+          <EntitySet Name="WeixinCustomer" EntityType="YinghModel.WeixinCustomer" />
+          <AssociationSet Name="FK__Customer___Custo__15502E78" Association="YinghModel.FK__Customer___Custo__15502E78">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Customer_CustomerRole_Mapping" EntitySet="Customer_CustomerRole_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Customer___Custo__164452B1" Association="YinghModel.FK__Customer___Custo__164452B1">
+            <End Role="CustomerRole" EntitySet="CustomerRole" />
+            <End Role="Customer_CustomerRole_Mapping" EntitySet="Customer_CustomerRole_Mapping" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Realname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="LastIpAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="LastLoginOn" Type="DateTime" Precision="3" />
+          <Property Name="CreateOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Customer_CustomerRole_Mapping" Relationship="YinghModel.FK__Customer___Custo__15502E78" FromRole="Customer" ToRole="Customer_CustomerRole_Mapping" />
+        </EntityType>
+        <EntityType Name="Customer_CustomerRole_Mapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Customer_Id" Type="Int32" Nullable="false" />
+          <Property Name="CustomerRole_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="YinghModel.FK__Customer___Custo__15502E78" FromRole="Customer_CustomerRole_Mapping" ToRole="Customer" />
+          <NavigationProperty Name="CustomerRole" Relationship="YinghModel.FK__Customer___Custo__164452B1" FromRole="Customer_CustomerRole_Mapping" ToRole="CustomerRole" />
+        </EntityType>
+        <EntityType Name="CustomerRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Describe" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Customer_CustomerRole_Mapping" Relationship="YinghModel.FK__Customer___Custo__164452B1" FromRole="CustomerRole" ToRole="Customer_CustomerRole_Mapping" />
+        </EntityType>
+        <EntityType Name="WeixinCustomer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="OpenId" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Nickname" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="Boolean" />
+          <Property Name="Country" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Province" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="HeadImg" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Language" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SubscribeDate" Type="DateTime" Precision="3" />
+          <Property Name="UnSubscribed" Type="Boolean" />
+          <Property Name="UnSubscribeDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifyOn" Type="DateTime" Precision="3" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="LastActivityTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK__Customer___Custo__15502E78">
+          <End Type="YinghModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="YinghModel.Customer_CustomerRole_Mapping" Role="Customer_CustomerRole_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Customer_CustomerRole_Mapping">
+              <PropertyRef Name="Customer_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Customer___Custo__164452B1">
+          <End Type="YinghModel.CustomerRole" Role="CustomerRole" Multiplicity="1" />
+          <End Type="YinghModel.Customer_CustomerRole_Mapping" Role="Customer_CustomerRole_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Customer_CustomerRole_Mapping">
+              <PropertyRef Name="CustomerRole_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="YinghModelStoreContainer" CdmEntityContainer="YinghEntities">
+          <EntitySetMapping Name="Customer">
+            <EntityTypeMapping TypeName="YinghModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
+                <ScalarProperty Name="LastLoginOn" ColumnName="LastLoginOn" />
+                <ScalarProperty Name="LastIpAddress" ColumnName="LastIpAddress" />
+                <ScalarProperty Name="Realname" ColumnName="Realname" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customer_CustomerRole_Mapping">
+            <EntityTypeMapping TypeName="YinghModel.Customer_CustomerRole_Mapping">
+              <MappingFragment StoreEntitySet="Customer_CustomerRole_Mapping">
+                <ScalarProperty Name="CustomerRole_Id" ColumnName="CustomerRole_Id" />
+                <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerRole">
+            <EntityTypeMapping TypeName="YinghModel.CustomerRole">
+              <MappingFragment StoreEntitySet="CustomerRole">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Describe" ColumnName="Describe" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WeixinCustomer">
+            <EntityTypeMapping TypeName="YinghModel.WeixinCustomer">
+              <MappingFragment StoreEntitySet="WeixinCustomer">
+                <ScalarProperty Name="LastActivityTime" ColumnName="LastActivityTime" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="ModifyOn" ColumnName="ModifyOn" />
+                <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
+                <ScalarProperty Name="UnSubscribeDate" ColumnName="UnSubscribeDate" />
+                <ScalarProperty Name="UnSubscribed" ColumnName="UnSubscribed" />
+                <ScalarProperty Name="SubscribeDate" ColumnName="SubscribeDate" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="HeadImg" ColumnName="HeadImg" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+                <ScalarProperty Name="OpenId" ColumnName="OpenId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

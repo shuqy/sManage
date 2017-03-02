@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+您 Web 项目的发布/打包进程将使用此文件。您可以通过编辑此 MSBuild 文件
+来自定义该进程的行为。若要了解与此相关的详细信息，请访问 http://go.microsoft.com/fwlink/?LinkID=208121。
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>ftp://qxw1151970042.my3w.com/</_PublishTargetUrl>
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAxuNrdXLYn0i3wManIm6wYAAAAAACAAAAAAAQZgAAAAEAACAAAAAmReeVEfgCyXVJerXsLodgGgFY7JDhG59MVSVr+gf7hgAAAAAOgAAAAAIAACAAAAAfYHPNDKgwwJKMWFFPgn4taEK3/JCRxV/omYTyFgmNfyAAAAA7CXW+N8maBjIr0EW75joSy3UJfAWJ21yxvT4KSwWooUAAAAB76Y7LlBbDBnAJ7N24rzGIIqjSrHSv2UYTr2aun64j4WLLngei1Tn/1lF13xa+D89bYcnBQDyqNl8RzBojeDO/</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="AppSettings.config">
+      <publishTime>04/12/2016 21:27:34</publishTime>
+    </File>
+    <File Include="bin/AliYunModel.dll">
+      <publishTime>03/06/2016 12:23:53</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>01/25/2016 13:58:54</publishTime>
+    </File>
+    <File Include="bin/Core.dll">
+      <publishTime>03/08/2016 09:56:05</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>01/25/2016 13:59:02</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>01/25/2016 13:59:02</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
+      <publishTime>01/25/2016 13:59:05</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.EntityFramework.dll">
+      <publishTime>01/25/2016 13:59:06</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Owin.dll">
+      <publishTime>01/25/2016 13:59:06</publishTime>
+    </File>
+    <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
+      <publishTime>01/25/2016 13:59:13</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.dll">
+      <publishTime>01/25/2016 13:59:06</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
+      <publishTime>01/25/2016 13:59:06</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Cookies.dll">
+      <publishTime>01/25/2016 13:59:07</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.dll">
+      <publishTime>01/25/2016 13:59:06</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Facebook.dll">
+      <publishTime>01/25/2016 13:59:07</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Google.dll">
+      <publishTime>01/25/2016 13:59:07</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.MicrosoftAccount.dll">
+      <publishTime>01/25/2016 13:59:08</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.OAuth.dll">
+      <publishTime>01/25/2016 13:59:07</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Twitter.dll">
+      <publishTime>01/25/2016 13:59:07</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>01/25/2016 13:58:53</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>12/21/2015 11:41:44</publishTime>
+    </File>
+    <File Include="bin/Owin.dll">
+      <publishTime>01/25/2016 13:59:06</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe">
+      <publishTime>01/25/2016 13:59:11</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
+      <publishTime>01/25/2016 13:59:11</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
+      <publishTime>01/25/2016 13:59:11</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
+      <publishTime>01/25/2016 13:59:11</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
+      <publishTime>01/25/2016 13:59:12</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
+      <publishTime>01/25/2016 13:59:12</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
+      <publishTime>01/25/2016 13:59:12</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Collections.Immutable.dll">
+      <publishTime>01/25/2016 13:59:12</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Reflection.Metadata.dll">
+      <publishTime>01/25/2016 13:59:12</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe">
+      <publishTime>01/25/2016 13:59:12</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe">
+      <publishTime>01/25/2016 13:59:12</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe.config">
+      <publishTime>01/25/2016 13:59:12</publishTime>
+    </File>
+    <File Include="bin/Senparc.Weixin.dll">
+      <publishTime>01/25/2016 22:51:36</publishTime>
+    </File>
+    <File Include="bin/Senparc.Weixin.MP.dll">
+      <publishTime>01/25/2016 22:51:43</publishTime>
+    </File>
+    <File Include="bin/Senparc.Weixin.QY.dll">
+      <publishTime>12/21/2015 11:41:46</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>01/25/2016 13:58:52</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>01/25/2016 13:58:53</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>01/25/2016 13:58:52</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>01/25/2016 13:58:52</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>01/25/2016 13:58:52</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>01/25/2016 13:58:53</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>01/25/2016 13:58:53</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>01/25/2016 13:58:55</publishTime>
+    </File>
+    <File Include="bin/WechatQyApp.dll">
+      <publishTime>04/12/2016 21:26:58</publishTime>
+    </File>
+    <File Include="bin/WeixinService.dll">
+      <publishTime>03/08/2016 09:56:06</publishTime>
+    </File>
+    <File Include="bin/YaoService.dll">
+      <publishTime>04/12/2016 21:26:56</publishTime>
+    </File>
+    <File Include="bin/YinghModel.dll">
+      <publishTime>02/19/2016 22:54:25</publishTime>
+    </File>
+    <File Include="Content/TxtFile/364b4f9b748955c285c306.txt">
+      <publishTime>03/05/2016 00:10:41</publishTime>
+    </File>
+    <File Include="Content/TxtFile/ab4063ac3ca3f1cff7b13e.txt">
+      <publishTime>03/05/2016 00:18:20</publishTime>
+    </File>
+    <File Include="Content/TxtFile/b848b2bf73622911d2f5d2.txt">
+      <publishTime>03/05/2016 00:18:10</publishTime>
+    </File>
+    <File Include="Content/Weui/example.css">
+      <publishTime>02/21/2016 10:44:33</publishTime>
+    </File>
+    <File Include="Content/Weui/images/icon_nav_actionSheet.png">
+      <publishTime>02/21/2016 10:44:34</publishTime>
+    </File>
+    <File Include="Content/Weui/images/icon_nav_article.png">
+      <publishTime>02/21/2016 10:44:34</publishTime>
+    </File>
+    <File Include="Content/Weui/images/icon_nav_button.png">
+      <publishTime>02/21/2016 10:44:34</publishTime>
+    </File>
+    <File Include="Content/Weui/images/icon_nav_cell.png">
+      <publishTime>02/21/2016 10:44:34</publishTime>
+    </File>
+    <File Include="Content/Weui/images/icon_nav_dialog.png">
+      <publishTime>02/21/2016 10:44:34</publishTime>
+    </File>
+    <File Include="Content/Weui/images/icon_nav_icons.png">
+      <publishTime>02/21/2016 10:44:34</publishTime>
+    </File>
+    <File Include="Content/Weui/images/icon_nav_msg.png">
+      <publishTime>02/21/2016 10:44:34</publishTime>
+    </File>
+    <File Include="Content/Weui/images/icon_nav_toast.png">
+      <publishTime>02/21/2016 10:44:34</publishTime>
+    </File>
+    <File Include="Content/Weui/images/loading.gif">
+      <publishTime>02/21/2016 10:44:34</publishTime>
+    </File>
+    <File Include="Content/Weui/images/vcode.jpg">
+      <publishTime>02/21/2016 10:44:34</publishTime>
+    </File>
+    <File Include="Content/Weui/weui.js">
+      <publishTime>02/21/2016 10:44:34</publishTime>
+    </File>
+    <File Include="Content/Weui/weui.min.css">
+      <publishTime>02/21/2016 10:44:34</publishTime>
+    </File>
+    <File Include="Content/Weui/zepto.min.js">
+      <publishTime>02/21/2016 10:44:34</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>02/21/2016 09:48:56</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>02/21/2016 09:48:58</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>02/21/2016 09:48:58</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>02/21/2016 09:48:58</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>02/21/2016 09:48:58</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>02/21/2016 09:48:56</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>02/21/2016 09:49:17</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.js">
+      <publishTime>02/21/2016 09:48:59</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.js">
+      <publishTime>02/21/2016 09:48:59</publishTime>
+    </File>
+    <File Include="Scripts/Utility.js">
+      <publishTime>02/28/2016 02:55:02</publishTime>
+    </File>
+    <File Include="Views/AutoSign/AutoSignDetials.cshtml">
+      <publishTime>03/01/2016 22:42:15</publishTime>
+    </File>
+    <File Include="Views/AutoSign/AutoSignHistory.cshtml">
+      <publishTime>02/29/2016 23:25:32</publishTime>
+    </File>
+    <File Include="Views/AutoSign/AutoSignList.cshtml">
+      <publishTime>03/01/2016 22:19:58</publishTime>
+    </File>
+    <File Include="Views/AutoSign/CheckLogin.cshtml">
+      <publishTime>02/28/2016 09:13:13</publishTime>
+    </File>
+    <File Include="Views/AutoSign/Index.cshtml">
+      <publishTime>02/24/2016 22:23:34</publishTime>
+    </File>
+    <File Include="Views/Home/BindMobile.cshtml">
+      <publishTime>02/29/2016 17:22:47</publishTime>
+    </File>
+    <File Include="Views/Home/GetIp.cshtml">
+      <publishTime>02/27/2016 13:22:46</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>02/23/2016 21:47:27</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>02/21/2016 10:59:25</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>02/21/2016 09:48:56</publishTime>
+    </File>
+    <File Include="Views/Zhihu/QADetials.cshtml">
+      <publishTime>03/06/2016 16:04:55</publishTime>
+    </File>
+    <File Include="Views/Zhihu/QAList.cshtml">
+      <publishTime>03/06/2016 16:37:13</publishTime>
+    </File>
+    <File Include="Views/ZhihuRecommend/QADetials.cshtml">
+      <publishTime>03/05/2016 00:54:56</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>02/21/2016 09:48:56</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>03/08/2016 09:56:10</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

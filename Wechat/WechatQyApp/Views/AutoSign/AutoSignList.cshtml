@@ -1,0 +1,44 @@
+﻿
+@{
+    Layout = null;
+}
+@model List<YaoService.LeShare.SignModel>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link rel="stylesheet" href="/Content/Weui/weui.min.css" />
+</head>
+<body>
+    <div class="weui_cells_title">已加入自动签到用户列表</div>
+    <div class="weui_cells weui_cells_access">
+        @foreach (var res in Model) {
+            <a class="weui_cell" href="AutoSignDetials?username=@res.MansUser.Mobile">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>
+                        <label style="width:60px;display:inline-block;">@res.MansUser.RealName</label>
+                        <label style="width:120px;display:inline-block;">@res.MansUser.Mobile</label>
+                    </p>
+                </div>
+                <div class="weui_cell_ft">
+                    <label>签到 @res.AutoSignUser.SuccessTimes 次</label>
+                </div>
+            </a>
+        }
+    </div>
+</body>
+</html>
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(function () {
+        var reg = /[\u4E00-\u9FA5]{2}/g;
+        $(".realname").each(function () {
+            var username = $(this).html();
+            var arr = username.split('');
+            if (arr.length == 2)
+                $(this).html(arr[0] + "    " + arr[1]);
+        });
+    });
+</script>*@

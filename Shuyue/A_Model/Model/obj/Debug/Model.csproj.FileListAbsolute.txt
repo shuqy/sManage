@@ -1,0 +1,11 @@
+D:\workspace\Shuyue\A_Model\Model\bin\Debug\Model.dll.config
+D:\workspace\Shuyue\A_Model\Model\bin\Debug\Model.dll
+D:\workspace\Shuyue\A_Model\Model\bin\Debug\Model.pdb
+D:\workspace\Shuyue\A_Model\Model\bin\Debug\EntityFramework.dll
+D:\workspace\Shuyue\A_Model\Model\bin\Debug\EntityFramework.SqlServer.dll
+D:\workspace\Shuyue\A_Model\Model\bin\Debug\EntityFramework.xml
+D:\workspace\Shuyue\A_Model\Model\bin\Debug\EntityFramework.SqlServer.xml
+D:\workspace\Shuyue\A_Model\Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\workspace\Shuyue\A_Model\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+D:\workspace\Shuyue\A_Model\Model\obj\Debug\Model.dll
+D:\workspace\Shuyue\A_Model\Model\obj\Debug\Model.pdb

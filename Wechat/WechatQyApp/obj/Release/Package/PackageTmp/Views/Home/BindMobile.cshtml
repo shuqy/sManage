@@ -1,0 +1,48 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link rel="stylesheet" href="/Content/Weui/weui.min.css" />
+</head>
+<body>
+    <div class="weui_cells_title">请输入手机号进行账号绑定</div>
+    <div class="weui_cells weui_cells_access">
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">手机号</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" id="phone" type="text" placeholder="请输入手机号">
+            </div>
+        </div>
+        <div class="weui_btn_area">
+            <a class="weui_btn weui_btn_primary" href="javascript:" id="bind">绑定</a>
+            <br />
+        </div>
+    </div>
+</body>
+</html>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/Utility.js"></script>
+<script>
+    $(function () {
+        var redirect = getQueryString("redirect_url");
+        $("#bind").click(function () {
+            if ($("#phone").val() == "") return;
+            $.get("/Home/BindMobileService", { mobile: $("#phone").val() }, function (data) {
+                data = eval(data);
+                if (data.code == 0) {
+                    window.location.href = redirect;
+                } else {
+                    alert(data.msg);
+                }
+            });
+
+        })
+    });
+</script>

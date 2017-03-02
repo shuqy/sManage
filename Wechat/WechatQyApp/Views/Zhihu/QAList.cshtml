@@ -1,0 +1,40 @@
+﻿
+@{
+    Layout = null;
+}
+@model List<AliYunModel.ZhihuAnswer>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link rel="stylesheet" href="/Content/Weui/weui.min.css" />
+</head>
+<body>
+    <div class="weui_cells_title">所有内容取自知乎</div>
+    <div class="weui_cells weui_cells_access">
+        @foreach (var ans in Model) {
+            {
+                ViewBag.Zan = ans.ZanCount >= 10000 ? Convert.ToInt32(ans.ZanCount / 1000) + "k赞" : ans.ZanCount + "赞";
+                ViewBag.Summary = ans.Summary.Length > 44 ? ans.Summary.Substring(0, 43) + "..." : ans.Summary;
+            }
+            <a class="weui_cell" href="http://www.wmylife.com/Zhihu/QADetials?zid=@ans.Id">
+                <div class="weui_cell_bd weui_cell_primary" style="font-size:16px;">
+                    <p style="color:#696969;font-weight:500;">
+                        @ans.Question
+                    </p>
+                    <p style="color:gray;">
+                        <label style="color:#708090;">@ans.Author</label>
+                        <label>的回答</label>
+                        <label>，@ViewBag.Zan</label>
+                    </p>
+                    <p style="color:gray;margin-top:5px;">
+                        @ViewBag.Summary
+                    </p>
+                </div>
+            </a>
+        }
+    </div>
+</body>
+</html>

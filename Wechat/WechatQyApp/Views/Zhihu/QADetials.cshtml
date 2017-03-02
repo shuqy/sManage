@@ -1,0 +1,51 @@
+﻿
+@{
+    Layout = null;
+}
+@model AliYunModel.ZhihuAnswer
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link rel="stylesheet" href="/Content/Weui/weui.min.css" />
+</head>
+<body>
+    <div class="page slideIn article">
+        <div class="hd" style="padding:15px;font-size:15px;margin-bottom:10px;">
+            <p class="page_title" style="font-size:28px;"><label id="questionName"></label></p>
+            <label id="author"></label>
+            <label id="bio" style="color:#ccc;"></label>
+            <label id="zancount" style="color:#ccc;"></label>
+        </div>
+        <article class="weui_article" style="color:dimgray;line-height:30px;">
+            <section>
+                <h2 class="title"></h2>
+                <section>
+                    <h3></h3>
+                    <p id="content">
+                    </p>
+                </section>
+            </section>
+        </article>
+    </div>
+</body>
+</html>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/Utility.js"></script>
+<script>
+    $(function () {
+        var param = getQueryString("zid");
+        if (param == "") return;
+        $.get("/zhihu/GetQADetials", { zid: param }, function (data) {
+            data = eval(data);
+            if (data == null || data.code != 0) return;
+            $("#questionName").html(data.data.Question);
+            $("#author").html(data.data.Author);
+            $("#bio").html("，" + data.data.Bio);
+            $("#zancount").html("&nbsp;&nbsp;" + data.data.ZanCount + "赞");
+            $("#content").html(data.data.Content);
+        });
+    });
+</script>

@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SQY_ManageModelStoreContainer" CdmEntityContainer="SQY_ManageEntities">
+    <EntitySetMapping Name="delivery_order">
+      <EntityTypeMapping TypeName="SQY_ManageModel.delivery_order">
+        <MappingFragment StoreEntitySet="delivery_order">
+          <ScalarProperty Name="ClosingDate" ColumnName="ClosingDate" />
+          <ScalarProperty Name="OperationType" ColumnName="OperationType" />
+          <ScalarProperty Name="Operation" ColumnName="Operation" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="OccurrenceAmount" ColumnName="OccurrenceAmount" />
+          <ScalarProperty Name="OtherExpenses" ColumnName="OtherExpenses" />
+          <ScalarProperty Name="StampDuty" ColumnName="StampDuty" />
+          <ScalarProperty Name="CounterFee" ColumnName="CounterFee" />
+          <ScalarProperty Name="TransactionAmount" ColumnName="TransactionAmount" />
+          <ScalarProperty Name="TransactionPrice" ColumnName="TransactionPrice" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="SecurityName" ColumnName="SecurityName" />
+          <ScalarProperty Name="SecurityCode" ColumnName="SecurityCode" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="group_menu_mapping">
+      <EntityTypeMapping TypeName="SQY_ManageModel.group_menu_mapping">
+        <MappingFragment StoreEntitySet="group_menu_mapping">
+          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="stock_exchange_record">
+      <EntityTypeMapping TypeName="SQY_ManageModel.stock_exchange_record">
+        <MappingFragment StoreEntitySet="stock_exchange_record">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Profit" ColumnName="Profit" />
+          <ScalarProperty Name="SellDate" ColumnName="SellDate" />
+          <ScalarProperty Name="BuyDate" ColumnName="BuyDate" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="SellPrice" ColumnName="SellPrice" />
+          <ScalarProperty Name="BuyPrice" ColumnName="BuyPrice" />
+          <ScalarProperty Name="StockName" ColumnName="StockName" />
+          <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sys_user">
+      <EntityTypeMapping TypeName="SQY_ManageModel.sys_user">
+        <MappingFragment StoreEntitySet="sys_user">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="PassCode" ColumnName="PassCode" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sys_user_group">
+      <EntityTypeMapping TypeName="SQY_ManageModel.sys_user_group">
+        <MappingFragment StoreEntitySet="sys_user_group">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="IsFree" ColumnName="IsFree" />
+          <ScalarProperty Name="SortValue" ColumnName="SortValue" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sys_user_menu">
+      <EntityTypeMapping TypeName="SQY_ManageModel.sys_user_menu">
+        <MappingFragment StoreEntitySet="sys_user_menu">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="ShowInMenu" ColumnName="ShowInMenu" />
+          <ScalarProperty Name="IsPath" ColumnName="IsPath" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="SortValue" ColumnName="SortValue" />
+          <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+          <ScalarProperty Name="ControllName" ColumnName="ControllName" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="STitle" ColumnName="STitle" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="turn_in_out_record">
+      <EntityTypeMapping TypeName="SQY_ManageModel.turn_in_out_record">
+        <MappingFragment StoreEntitySet="turn_in_out_record">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="Money" ColumnName="Money" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="user_group_mapping">
+      <EntityTypeMapping TypeName="SQY_ManageModel.user_group_mapping">
+        <MappingFragment StoreEntitySet="user_group_mapping">
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="water_bill">
+      <EntityTypeMapping TypeName="SQY_ManageModel.water_bill">
+        <MappingFragment StoreEntitySet="water_bill">
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="EMonthMoney" ColumnName="EMonthMoney" />
+          <ScalarProperty Name="ProfitMoney" ColumnName="ProfitMoney" />
+          <ScalarProperty Name="TurnOutMoney" ColumnName="TurnOutMoney" />
+          <ScalarProperty Name="TurnInMoney" ColumnName="TurnInMoney" />
+          <ScalarProperty Name="BMonthMoney" ColumnName="BMonthMoney" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="stock">
+      <EntityTypeMapping TypeName="SQY_ManageModel.stock">
+        <MappingFragment StoreEntitySet="stock">
+          <ScalarProperty Name="PyAbbre" ColumnName="PyAbbre" />
+          <ScalarProperty Name="PyFullName" ColumnName="PyFullName" />
+          <ScalarProperty Name="StockName" ColumnName="StockName" />
+          <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

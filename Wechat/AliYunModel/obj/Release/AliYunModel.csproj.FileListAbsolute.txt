@@ -1,0 +1,10 @@
+G:\WeixinApplication\Wechat\AliYunModel\bin\Release\AliYunModel.dll.config
+G:\WeixinApplication\Wechat\AliYunModel\bin\Release\AliYunModel.dll
+G:\WeixinApplication\Wechat\AliYunModel\bin\Release\AliYunModel.pdb
+G:\WeixinApplication\Wechat\AliYunModel\bin\Release\EntityFramework.dll
+G:\WeixinApplication\Wechat\AliYunModel\bin\Release\EntityFramework.SqlServer.dll
+G:\WeixinApplication\Wechat\AliYunModel\bin\Release\EntityFramework.xml
+G:\WeixinApplication\Wechat\AliYunModel\bin\Release\EntityFramework.SqlServer.xml
+G:\WeixinApplication\Wechat\AliYunModel\obj\Release\AliYunModel.csprojResolveAssemblyReference.cache
+G:\WeixinApplication\Wechat\AliYunModel\obj\Release\AliYunModel.dll
+G:\WeixinApplication\Wechat\AliYunModel\obj\Release\AliYunModel.pdb

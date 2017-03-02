@@ -1,0 +1,50 @@
+﻿
+@{
+    Layout = null;
+    ViewBag.Gender = (bool)Model.Gender ? "男" : "女";
+}
+@model YinghModel.WeixinCustomer
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link rel="stylesheet" href="~/Content/Weui/weui.min.css" />
+</head>
+<body>
+    <div class="page slideIn cell">
+        @*<div class="hd">
+                <h1 class="page_title">个人资料</h1>
+            </div>*@
+        <div class="weui_cells_title">个人资料</div>
+        <div class="weui_cells">
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p><img style="width:70px;height:70px;" src="@Model.HeadImg" /></p>
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>昵称:<label>@Model.Nickname</label></p>
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>地址:<label>@Model.Country-@Model.Province-@Model.City</label></p>
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>性别:<label>@ViewBag.Gender</label></p>
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>关注日期:<label>@Model.CreateOn</label></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

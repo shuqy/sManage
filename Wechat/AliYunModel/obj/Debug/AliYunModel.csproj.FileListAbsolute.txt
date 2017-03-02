@@ -1,0 +1,9 @@
+G:\WeixinApplication\Wechat\AliYunModel\bin\Debug\AliYunModel.dll.config
+G:\WeixinApplication\Wechat\AliYunModel\bin\Debug\AliYunModel.dll
+G:\WeixinApplication\Wechat\AliYunModel\bin\Debug\AliYunModel.pdb
+G:\WeixinApplication\Wechat\AliYunModel\bin\Debug\EntityFramework.dll
+G:\WeixinApplication\Wechat\AliYunModel\bin\Debug\EntityFramework.SqlServer.dll
+G:\WeixinApplication\Wechat\AliYunModel\bin\Debug\EntityFramework.xml
+G:\WeixinApplication\Wechat\AliYunModel\bin\Debug\EntityFramework.SqlServer.xml
+G:\WeixinApplication\Wechat\AliYunModel\obj\Debug\AliYunModel.dll
+G:\WeixinApplication\Wechat\AliYunModel\obj\Debug\AliYunModel.pdb

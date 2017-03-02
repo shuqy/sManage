@@ -1,0 +1,13 @@
+D:\workspace\Shuyue\B_Framework\EFData.Core\bin\Debug\EF.Entity.Core.dll
+D:\workspace\Shuyue\B_Framework\EFData.Core\bin\Debug\EF.Entity.Core.pdb
+D:\workspace\Shuyue\B_Framework\EFData.Core\bin\Debug\EntityFramework.dll
+D:\workspace\Shuyue\B_Framework\EFData.Core\bin\Debug\EntityFramework.SqlServer.dll
+D:\workspace\Shuyue\B_Framework\EFData.Core\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+D:\workspace\Shuyue\B_Framework\EFData.Core\bin\Debug\EntityFramework.xml
+D:\workspace\Shuyue\B_Framework\EFData.Core\bin\Debug\EntityFramework.SqlServer.xml
+D:\workspace\Shuyue\B_Framework\EFData.Core\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+D:\workspace\Shuyue\B_Framework\EFData.Core\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\workspace\Shuyue\B_Framework\EFData.Core\bin\Debug\zh-Hans\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+D:\workspace\Shuyue\B_Framework\EFData.Core\obj\Debug\EF.Entity.Core.dll
+D:\workspace\Shuyue\B_Framework\EFData.Core\obj\Debug\EF.Entity.Core.pdb
+D:\workspace\Shuyue\B_Framework\EFData.Core\obj\Debug\EF.Entity.Core.csprojResolveAssemblyReference.cache

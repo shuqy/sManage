@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AliDbModelStoreContainer" CdmEntityContainer="AliDbEntities">
+    <EntitySetMapping Name="AutoSignHistory">
+      <EntityTypeMapping TypeName="AliDbModel.AutoSignHistory">
+        <MappingFragment StoreEntitySet="AutoSignHistory">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MansUserId" ColumnName="MansUserId" />
+          <ScalarProperty Name="SignDateTime" ColumnName="SignDateTime" />
+          <ScalarProperty Name="SignType" ColumnName="SignType" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AutoSignUser">
+      <EntityTypeMapping TypeName="AliDbModel.AutoSignUser">
+        <MappingFragment StoreEntitySet="AutoSignUser">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MansUserId" ColumnName="MansUserId" />
+          <ScalarProperty Name="NextSignDateTime" ColumnName="NextSignDateTime" />
+          <ScalarProperty Name="NextSignType" ColumnName="NextSignType" />
+          <ScalarProperty Name="SuccessTimes" ColumnName="SuccessTimes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MansUser">
+      <EntityTypeMapping TypeName="AliDbModel.MansUser">
+        <MappingFragment StoreEntitySet="MansUser">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="LeShareUserName" ColumnName="LeShareUserName" />
+          <ScalarProperty Name="RealName" ColumnName="RealName" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="HeadImg" ColumnName="HeadImg" />
+          <ScalarProperty Name="LeSharePwd" ColumnName="LeSharePwd" />
+          <ScalarProperty Name="IsAutoSign" ColumnName="IsAutoSign" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customer">
+      <EntityTypeMapping TypeName="AliDbModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
+          <ScalarProperty Name="LastLoginOn" ColumnName="LastLoginOn" />
+          <ScalarProperty Name="LastIpAddress" ColumnName="LastIpAddress" />
+          <ScalarProperty Name="Realname" ColumnName="Realname" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WeixinCustomer">
+      <EntityTypeMapping TypeName="AliDbModel.WeixinCustomer">
+        <MappingFragment StoreEntitySet="WeixinCustomer">
+          <ScalarProperty Name="LastActivityTime" ColumnName="LastActivityTime" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="ModifyOn" ColumnName="ModifyOn" />
+          <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
+          <ScalarProperty Name="UnSubscribeDate" ColumnName="UnSubscribeDate" />
+          <ScalarProperty Name="UnSubscribed" ColumnName="UnSubscribed" />
+          <ScalarProperty Name="SubscribeDate" ColumnName="SubscribeDate" />
+          <ScalarProperty Name="Language" ColumnName="Language" />
+          <ScalarProperty Name="HeadImg" ColumnName="HeadImg" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Province" ColumnName="Province" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+          <ScalarProperty Name="OpenId" ColumnName="OpenId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employee">
+      <EntityTypeMapping TypeName="AliDbModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="SupervisorCustomerId" ColumnName="SupervisorCustomerId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="HeadImg" ColumnName="HeadImg" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="WeixinId" ColumnName="WeixinId" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="RealName" ColumnName="RealName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customer_MansUser_Mapping">
+      <EntityTypeMapping TypeName="AliDbModel.Customer_MansUser_Mapping">
+        <MappingFragment StoreEntitySet="Customer_MansUser_Mapping">
+          <ScalarProperty Name="MansUserId" ColumnName="MansUserId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ZhihuAnswer">
+      <EntityTypeMapping TypeName="AliDbModel.ZhihuAnswer">
+        <MappingFragment StoreEntitySet="ZhihuAnswer">
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
+          <ScalarProperty Name="Recommended" ColumnName="Recommended" />
+          <ScalarProperty Name="ZanCount" ColumnName="ZanCount" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Summary" ColumnName="Summary" />
+          <ScalarProperty Name="Bio" ColumnName="Bio" />
+          <ScalarProperty Name="Author" ColumnName="Author" />
+          <ScalarProperty Name="Question" ColumnName="Question" />
+          <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
+          <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ZhihuReadHistory">
+      <EntityTypeMapping TypeName="AliDbModel.ZhihuReadHistory">
+        <MappingFragment StoreEntitySet="ZhihuReadHistory">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="ZhihuId" ColumnName="ZhihuId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SQY_StockModelStoreContainer" CdmEntityContainer="SQY_StockEntities">
+    <EntitySetMapping Name="T_Industry">
+      <EntityTypeMapping TypeName="SQY_StockModel.T_Industry">
+        <MappingFragment StoreEntitySet="T_Industry">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Stock">
+      <EntityTypeMapping TypeName="SQY_StockModel.T_Stock">
+        <MappingFragment StoreEntitySet="T_Stock">
+          <ScalarProperty Name="IsCreatedTable" ColumnName="IsCreatedTable" />
+          <ScalarProperty Name="IndustryName" ColumnName="IndustryName" />
+          <ScalarProperty Name="PERatio" ColumnName="PERatio" />
+          <ScalarProperty Name="Earning" ColumnName="Earning" />
+          <ScalarProperty Name="MainCount" ColumnName="MainCount" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+          <ScalarProperty Name="FullCode" ColumnName="FullCode" />
+          <ScalarProperty Name="StockName" ColumnName="StockName" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="TotalMarketValue" ColumnName="TotalMarketValue" />
+          <ScalarProperty Name="CirculationMarketValue" ColumnName="CirculationMarketValue" />
+          <ScalarProperty Name="Industry" ColumnName="Industry" />
+          <ScalarProperty Name="PyAbbre" ColumnName="PyAbbre" />
+          <ScalarProperty Name="PyFullName" ColumnName="PyFullName" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

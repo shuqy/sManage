@@ -1,0 +1,10 @@
+G:\WeixinApplication\WechatApp\Model\YinghModel\bin\Release\YinghModel.dll.config
+G:\WeixinApplication\WechatApp\Model\YinghModel\bin\Release\YinghModel.dll
+G:\WeixinApplication\WechatApp\Model\YinghModel\bin\Release\YinghModel.pdb
+G:\WeixinApplication\WechatApp\Model\YinghModel\bin\Release\EntityFramework.dll
+G:\WeixinApplication\WechatApp\Model\YinghModel\bin\Release\EntityFramework.SqlServer.dll
+G:\WeixinApplication\WechatApp\Model\YinghModel\bin\Release\EntityFramework.xml
+G:\WeixinApplication\WechatApp\Model\YinghModel\bin\Release\EntityFramework.SqlServer.xml
+G:\WeixinApplication\WechatApp\Model\YinghModel\obj\Release\YinghModel.csprojResolveAssemblyReference.cache
+G:\WeixinApplication\WechatApp\Model\YinghModel\obj\Release\YinghModel.dll
+G:\WeixinApplication\WechatApp\Model\YinghModel\obj\Release\YinghModel.pdb

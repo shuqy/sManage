@@ -1,0 +1,71 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link rel="stylesheet" href="/Content/Weui/weui.min.css" />
+</head>
+<body>
+    <div class="weui_cells_title">录入自动打卡信息</div>
+    <div class="weui_cells weui_cells_access">
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">手机号</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" id="phone" type="text" value="@ViewBag.Mobile" placeholder="请输入手机号">
+            </div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">密码</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" id="password" type="password" placeholder="请输入密码">
+            </div>
+        </div>
+        <div class="weui_cells_tips">暂不考虑调休情况、节假日等情况</div>
+        <div class="weui_btn_area">
+            <a class="weui_btn weui_btn_primary" href="javascript:" id="autosign">开启自动打卡</a>
+            <br />
+        </div>
+    </div>
+    <div class="weui_cells_title">开启结果</div>
+    <div class="weui_cells" id="res" style="line-height:30px;">
+        <div class="weui_cells_tips">
+            <p id="autosignRes"></p>
+            <p id="signDateTime"></p>
+        </div>
+    </div>
+</body>
+</html>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(function () {
+        $("#autosign").bind("click", function () {
+            var reg = /^(1)\d{10}$/i;
+            if ($("#phone").val() == "" || $("#password").val() == "") {
+                $("#autosignRes").html("请输入用户名和密码");
+                return;
+            }
+            if (!reg.test($("#phone").val())) {
+                $("#autosignRes").html("手机号格式不正确");
+                return;
+            }
+            if ($("#password").val().length <= 4) {
+                $("#autosignRes").html("密码格式不正确");
+                return;
+            }
+            $.get("/AutoSign/AddAutoLogin", { loginUserName: $("#phone").val(), password: $("#password").val() }, function (data) {
+                data = eval(data);
+                console.log(JSON.stringify(data));
+                $("#autosignRes").html(data.msg);
+                //if (data.code == 0) {
+                //    $("#signDateTime").html("下次打卡时间:" + data.data);
+                //}
+            });
+        });
+    });
+</script>

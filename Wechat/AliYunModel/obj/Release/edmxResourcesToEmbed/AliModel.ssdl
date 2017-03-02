@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AliDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AutoSignHistory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MansUserId" Type="int" Nullable="false" />
+    <Property Name="SignDateTime" Type="datetime" Nullable="false" />
+    <Property Name="SignType" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="Deleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="AutoSignUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MansUserId" Type="int" Nullable="false" />
+    <Property Name="NextSignDateTime" Type="datetime" Nullable="false" />
+    <Property Name="NextSignType" Type="int" Nullable="false" />
+    <Property Name="SuccessTimes" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="500" />
+    <Property Name="Email" Type="varchar" MaxLength="200" />
+    <Property Name="Mobile" Type="varchar" MaxLength="200" />
+    <Property Name="Password" Type="varchar" MaxLength="500" />
+    <Property Name="Realname" Type="varchar" MaxLength="200" />
+    <Property Name="LastIpAddress" Type="varchar" MaxLength="200" />
+    <Property Name="LastLoginOn" Type="datetime" />
+    <Property Name="CreateOn" Type="datetime" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customer_MansUser_Mapping">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerId" Type="int" Nullable="false" />
+    <Property Name="MansUserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="200" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="RealName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="1" />
+    <Property Name="Age" Type="int" />
+    <Property Name="WeixinId" Type="nvarchar" MaxLength="200" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="200" />
+    <Property Name="Email" Type="nvarchar" MaxLength="200" />
+    <Property Name="HeadImg" Type="nvarchar(max)" />
+    <Property Name="CustomerId" Type="int" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="SupervisorCustomerId" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="Deleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="MansUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LeShareUserName" Type="varchar" MaxLength="50" />
+    <Property Name="RealName" Type="nvarchar" MaxLength="200" />
+    <Property Name="Mobile" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="HeadImg" Type="varchar" MaxLength="200" />
+    <Property Name="LeSharePwd" Type="varchar" MaxLength="200" />
+    <Property Name="IsAutoSign" Type="bit" />
+    <Property Name="Deleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="WeixinCustomer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerId" Type="int" />
+    <Property Name="OpenId" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Nickname" Type="nvarchar" MaxLength="200" />
+    <Property Name="Gender" Type="bit" />
+    <Property Name="Country" Type="nvarchar" MaxLength="200" />
+    <Property Name="Province" Type="nvarchar" MaxLength="200" />
+    <Property Name="City" Type="nvarchar" MaxLength="200" />
+    <Property Name="HeadImg" Type="varchar" MaxLength="500" />
+    <Property Name="Language" Type="varchar" MaxLength="100" />
+    <Property Name="SubscribeDate" Type="datetime" />
+    <Property Name="UnSubscribed" Type="bit" />
+    <Property Name="UnSubscribeDate" Type="datetime" />
+    <Property Name="CreateOn" Type="datetime" Nullable="false" />
+    <Property Name="ModifyOn" Type="datetime" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="LastActivityTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ZhihuAnswer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QuestionId" Type="varchar" MaxLength="100" />
+    <Property Name="AnswerId" Type="varchar" MaxLength="100" />
+    <Property Name="Question" Type="nvarchar(max)" />
+    <Property Name="Author" Type="nvarchar" MaxLength="200" />
+    <Property Name="Bio" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Summary" Type="nvarchar(max)" />
+    <Property Name="Content" Type="nvarchar(max)" />
+    <Property Name="ZanCount" Type="int" />
+    <Property Name="Recommended" Type="bit" Nullable="false" />
+    <Property Name="ViewCount" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="deleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ZhihuReadHistory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerId" Type="int" />
+    <Property Name="ZhihuId" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="AliDbModelStoreContainer">
+    <EntitySet Name="AutoSignHistory" EntityType="Self.AutoSignHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AutoSignUser" EntityType="Self.AutoSignUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer_MansUser_Mapping" EntityType="Self.Customer_MansUser_Mapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MansUser" EntityType="Self.MansUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WeixinCustomer" EntityType="Self.WeixinCustomer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ZhihuAnswer" EntityType="Self.ZhihuAnswer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ZhihuReadHistory" EntityType="Self.ZhihuReadHistory" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
