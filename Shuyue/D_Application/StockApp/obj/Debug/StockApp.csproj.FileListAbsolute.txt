@@ -74,3 +74,5 @@ D:\workspace\Shuyue\D_Application\StockApp\bin\NPOI.OpenXmlFormats.dll
 D:\workspace\Shuyue\D_Application\StockApp\bin\NPOI.xml
 D:\workspace\Shuyue\D_Application\StockApp\bin\Model.dll
 D:\workspace\Shuyue\D_Application\StockApp\bin\Model.pdb
+D:\workspace\Shuyue\D_Application\StockApp\bin\YaoService.dll
+D:\workspace\Shuyue\D_Application\StockApp\bin\YaoService.pdb

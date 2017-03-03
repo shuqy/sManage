@@ -244,6 +244,10 @@
       <Project>{ACB66AA8-31ED-4E64-88F8-58EF6BEF7871}</Project>
       <Name>ManageService</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\C_BLL\YaoService\YaoService.csproj">
+      <Project>{b183557b-a80e-4375-b552-7ccf67c8e2a8}</Project>
+      <Name>YaoService</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

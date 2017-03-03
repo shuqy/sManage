@@ -1,0 +1,8 @@
+D:\workspace\Shuyue\D_Application\SpiderService\obj\Debug\SpiderService.csprojResolveAssemblyReference.cache
+D:\workspace\Shuyue\D_Application\SpiderService\obj\Debug\SpiderService.ZhihuSpider.resources
+D:\workspace\Shuyue\D_Application\SpiderService\obj\Debug\SpiderService.csproj.GenerateResource.Cache
+D:\workspace\Shuyue\D_Application\SpiderService\bin\Debug\SpiderService.exe.config
+D:\workspace\Shuyue\D_Application\SpiderService\bin\Debug\SpiderService.exe
+D:\workspace\Shuyue\D_Application\SpiderService\bin\Debug\SpiderService.pdb
+D:\workspace\Shuyue\D_Application\SpiderService\obj\Debug\SpiderService.exe
+D:\workspace\Shuyue\D_Application\SpiderService\obj\Debug\SpiderService.pdb

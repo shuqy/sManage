@@ -4,6 +4,7 @@ using ManageService.Entities;
 using ManageService.User;
 using System.ComponentModel;
 using System.Web.Mvc;
+using YaoService.Zhihu;
 
 namespace StockApp.Controllers
 {
@@ -12,6 +13,8 @@ namespace StockApp.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            ZhihuLogin login = new ZhihuLogin();
+            login.TryEmailLogin("617086902@qq.com", "2131402780");
             return View();
         }
 
