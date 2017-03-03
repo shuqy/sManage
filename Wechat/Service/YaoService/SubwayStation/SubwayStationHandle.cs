@@ -23,9 +23,9 @@ namespace YaoService.SubwayStation {
         private static Dictionary<string, string> stationLinesDic;
         static SubwayStationHandle() {
             subwayStationsPath = @"G:\Qipa\SubwayStations.txt";
-            linkedSubwayPath = @"G:\Qipa\LinkedSubwayStations.txt";
-            stationLinesPath = @"G:\Qipa\StationLines.txt";
-            stationsPath = @"G:\Qipa\Stations.txt";
+            linkedSubwayPath = @"D:\workspace\Wechat\Qipa\LinkedSubwayStations.txt";
+            stationLinesPath = @"D:\workspace\Wechat\Qipa\StationLines.txt";
+            stationsPath = @"D:\workspace\Wechat\Qipa\Stations.txt";
             stationLinesDic = GetStationLines(stationLinesPath);
             SymbolGraph = GetGraph(linkedSubwayPath);
         }
