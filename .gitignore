@@ -1,0 +1,17 @@
+/Wechat/AliYunModel/bin
+/Wechat/AliYunModel/obj
+/Wechat/Framework/Core/obj
+/Wechat/Framework/Core/bin
+/Wechat/Service/YaoService/bin
+/Wechat/Service/YaoService/obj
+/Wechat/Service/WeixinService/obj
+/Wechat/Service/WeixinService/bin
+/Wechat/UnitTest/YaoTest/bin
+/Wechat/UnitTest/YaoTest/obj
+/Wechat/UnitTest/CoreTests/obj
+/Wechat/UnitTest/CoreTests/bin
+/Wechat/WechatApp/obj
+/Wechat/WechatApp/bin
+/Wechat/WechatQyApp/obj
+/Wechat/WechatQyApp/bin
+/Wechat/.vs/Wechat/v14
