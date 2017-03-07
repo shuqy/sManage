@@ -18,5 +18,12 @@ namespace Core.Application
         List<sys_user_menu> UserMenu { get; set; }
 
         CommonSqlHelper SqlHelper(SqlTypeEnum sqlTypeEnum);
+
+        /// <summary>
+        /// 获取数据库连接
+        /// </summary>
+        /// <param name="dbConnEnum"></param>
+        /// <returns></returns>
+        CommonSqlUtility ESqlUtil(DbConnEnum dbConnEnum);
     }
 }

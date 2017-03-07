@@ -52,6 +52,9 @@ namespace Core.Application
             }
         }
 
+        /// <summary>
+        /// 获取数据库EF上下文
+        /// </summary>
         public SQY_ManageEntities ManageDbContext
         {
             get
@@ -59,6 +62,10 @@ namespace Core.Application
                 return new SQY_ManageEntities();
             }
         }
+
+        /// <summary>
+        /// 获取数据库EF上下文
+        /// </summary>
         public SQY_StockEntities StockDbContext
         {
             get
@@ -87,6 +94,11 @@ namespace Core.Application
             }
         }
 
+        /// <summary>
+        /// 获取数据库连接(弃用)
+        /// </summary>
+        /// <param name="sqlTypeEnum"></param>
+        /// <returns></returns>
         public CommonSqlHelper SqlHelper(SqlTypeEnum sqlTypeEnum)
         {
             CommonSqlHelper sqlHelper;
@@ -100,6 +112,26 @@ namespace Core.Application
                     break;
                 default:
                     sqlHelper = new CommonSqlHelper(ConfigHelper.GetConn("ManageConn").ConnectionString);
+                    break;
+            }
+            return sqlHelper;
+        }
+
+        /// <summary>
+        /// 获取数据库连接
+        /// </summary>
+        /// <param name="dbConnEnum"></param>
+        /// <returns></returns>
+        public CommonSqlUtility ESqlUtil(DbConnEnum dbConnEnum)
+        {
+            CommonSqlUtility sqlHelper;
+            switch (dbConnEnum)
+            {
+                case DbConnEnum.ZhiHu:
+                    sqlHelper = new CommonSqlUtility(ConfigHelper.GetConn("ZhiHuConnStr").ConnectionString);
+                    break;
+                default:
+                    sqlHelper = new CommonSqlUtility(ConfigHelper.GetConn("ZhiHuConnStr").ConnectionString);
                     break;
             }
             return sqlHelper;

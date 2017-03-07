@@ -50,8 +50,8 @@ namespace YaoService.Zhihu
 
         public List<ZhihuAnswer> PageQuestionListHandel(string html)
         {
-            //var dbcontext = AppContext.Current.DbContext;
-            //var nqalist = dbcontext.ZhihuAnswer.ToList();
+            var dbcontext = AppContext.Current.ESqlUtil(Core.Enum.DbConnEnum.ZhiHu);
+            var nqalist = dbcontext.Get<ZhihuAnswer>().ToList();
             List<ZhihuAnswer> answerList = new List<ZhihuAnswer>();
             List<string> contentList = MelonReg.FindList(html, "<div class=\"feed-item-inner\">", "<div class=\"feed-meta\">");
             foreach (var content in contentList)
@@ -66,7 +66,7 @@ namespace YaoService.Zhihu
                 string author = MelonReg.FindContent(content, "data-author-name=\"", "\"");
                 author = string.IsNullOrEmpty(author) ? "匿名用户" : author;
                 //判断文章是否已存在
-                //if (nqalist.Any(n => n.QuestionId == questionId && n.AnswerId == answerId)) continue;
+                if (nqalist.Any(n => n.QuestionId == questionId && n.AnswerId == answerId)) continue;
                 //作者介绍
                 string bio = MelonReg.FindContent(content, "<span.*?class=\"bio\">", "</span>");
                 bio = bio.Length > 0 ? bio.Substring(1) : "";

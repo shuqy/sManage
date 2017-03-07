@@ -14,12 +14,17 @@ namespace SpiderService
         /// </summary>
         static void Main()
         {
+#if DEBUG
+            ZhihuSpider zs = new ZhihuSpider();
+            zs.GetZhihuAnswer(null);
+#else
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
             {
-                //new Service1()
+                new ZhihuSpider()
             };
             ServiceBase.Run(ServicesToRun);
+#endif
         }
     }
 }
