@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Model.ViewModel.Zhihu;
+using Core.Util;
+using System.Net;
 
 namespace Core.Html
 {
@@ -77,32 +80,32 @@ namespace Core.Html
             return clist;
         }
 
-        //public static List<ImgData> FindImgList(string htmlContent)
-        //{
-        //    Regex imglinkreg = new Regex("<img.*?(?<content>[^>]*)");
-        //    Regex imgurlreg = new Regex("src=\"(?<src>[^\"]*)");
-        //    var res = imglinkreg.Match(htmlContent);
-        //    List<ImgData> clist = new List<ImgData>();
-        //    while (res.Success)
-        //    {
-        //        string imgcontent = "<img" + res.Groups["content"].Value + ">";
-        //        string src = imgurlreg.Match(imgcontent).Groups["src"].ToString();
-        //        string realPath = WebUtility.UrlDecode(src);
-        //        if (realPath.StartsWith("//")) realPath = realPath.Replace("//", "http://www.");
-        //        ImgData data = new ImgData
-        //        {
-        //            oldimg = imgcontent,
-        //            src = src,
-        //            name = RandomOperate.RansdomName(10),
-        //        };
-        //        data.realPath = realPath;
-        //        data.url = "/Img/" + data.name + ".jpg";
-        //        data.path = ConfigHelper.Get("ImgPath") + data.name + ".jpg";
-        //        clist.Add(data);
-        //        res = res.NextMatch();
-        //    }
-        //    return clist;
-        //}
+        public static List<ImgData> FindImgList(string htmlContent)
+        {
+            Regex imglinkreg = new Regex("<img.*?(?<content>[^>]*)");
+            Regex imgurlreg = new Regex("src=\"(?<src>[^\"]*)");
+            var res = imglinkreg.Match(htmlContent);
+            List<ImgData> clist = new List<ImgData>();
+            while (res.Success)
+            {
+                string imgcontent = "<img" + res.Groups["content"].Value + ">";
+                string src = imgurlreg.Match(imgcontent).Groups["src"].ToString();
+                string realPath = WebUtility.UrlDecode(src);
+                if (realPath.StartsWith("//")) realPath = realPath.Replace("//", "http://www.");
+                ImgData data = new ImgData
+                {
+                    oldimg = imgcontent,
+                    src = src,
+                    name = RandomOperate.RansdomName(10),
+                };
+                data.realPath = realPath;
+                data.url = "/Content/Img/Zhihu/" + data.name + ".jpg";
+                data.path = ConfigHelper.Get("ImgPath") + "Zhihu\\" + data.name + ".jpg";
+                clist.Add(data);
+                res = res.NextMatch();
+            }
+            return clist;
+        }
 
 
         public static string FindLinkTitle(string link)

@@ -35,6 +35,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -45,11 +46,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Zhihu\CrawlPage.cs" />
     <Compile Include="Zhihu\ZhihuContent.cs" />
     <Compile Include="Zhihu\ZhihuLogin.cs" />
     <Compile Include="Zhihu\ZhihuLoginRes.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\A_Model\Model\Model.csproj">
+      <Project>{33d17125-9e3e-42e8-95f0-29d2cb9621da}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\B_Framework\ManageCore\Core.csproj">
       <Project>{CB4C1A81-AB9D-4091-A218-E4447DD37AD6}</Project>
       <Name>Core</Name>

@@ -13,8 +13,9 @@ namespace StockApp.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            ZhihuLogin login = new ZhihuLogin();
-            login.TryEmailLogin("617086902@qq.com", "2131402780");
+            CrawlPage cp = new CrawlPage();
+            string htmlcontent = cp.Crawl("https://www.zhihu.com/");
+            var qalist = cp.PageQuestionListHandel(htmlcontent);
             return View();
         }
 

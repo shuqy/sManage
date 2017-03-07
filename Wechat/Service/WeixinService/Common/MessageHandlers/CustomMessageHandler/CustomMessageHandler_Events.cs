@@ -189,6 +189,5 @@ namespace WeixinService.Common.MessageHandlers.CustomMessageHandler {
             responseMessage.Content = "事件之弹出地理位置选择器";
             return responseMessage;
         }
-
     }
 }

@@ -82,7 +82,9 @@
     <Compile Include="Util\ConfigHelper.cs" />
     <Compile Include="Util\CookieHelper.cs" />
     <Compile Include="Util\CSharpHelper.cs" />
+    <Compile Include="Util\DownloadImg.cs" />
     <Compile Include="Util\Encryptor.cs" />
+    <Compile Include="Util\FileOperate.cs" />
     <Compile Include="Util\HttpHelper.cs" />
     <Compile Include="Util\LogHelper.cs" />
     <Compile Include="Util\MD5.cs" />
@@ -90,6 +92,7 @@
     <Compile Include="Util\NPOIHelper.cs" />
     <Compile Include="Util\ParamHelper.cs" />
     <Compile Include="Util\PyHelper.cs" />
+    <Compile Include="Util\RandomOperate.cs" />
     <Compile Include="Util\RequestHelper.cs" />
     <Compile Include="Util\SqlHelper.cs" />
     <Compile Include="Util\StockHelper.cs" />
