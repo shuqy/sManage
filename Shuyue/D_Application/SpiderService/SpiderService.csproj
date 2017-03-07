@@ -61,6 +61,20 @@
       <DependentUpon>ZhihuSpider.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\A_Model\Model\Model.csproj">
+      <Project>{33d17125-9e3e-42e8-95f0-29d2cb9621da}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\B_Framework\ManageCore\Core.csproj">
+      <Project>{cb4c1a81-ab9d-4091-a218-e4447dd37ad6}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\C_BLL\YaoService\YaoService.csproj">
+      <Project>{b183557b-a80e-4375-b552-7ccf67c8e2a8}</Project>
+      <Name>YaoService</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
