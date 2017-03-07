@@ -63,6 +63,7 @@
     <Compile Include="Application\ApplicationBase.cs" />
     <Compile Include="Application\IApplication.cs" />
     <Compile Include="Application\ManageApplication.cs" />
+    <Compile Include="Application\ServiceApplication.cs" />
     <Compile Include="Entities\BaseUser.cs" />
     <Compile Include="Entities\JsonData.cs" />
     <Compile Include="Entities\SessionKey.cs" />

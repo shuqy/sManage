@@ -11,11 +11,13 @@ namespace StockApp.Controllers
     public class HomeController : ControllerBase
     {
         // GET: Home
-        public ActionResult Index()
+        public ActionResult Index(int id = 1)
         {
-            CrawlPage cp = new CrawlPage();
-            string htmlcontent = cp.Crawl("https://www.zhihu.com/");
-            var qalist = cp.PageQuestionListHandel(htmlcontent);
+            var nqalist = Core.AppContext.Current.ESqlUtil(Core.Enum.DbConnEnum.ZhiHu).Get<Model.ViewModel.Zhihu.ZhihuAnswer>();
+            ViewBag.nqalist = nqalist;
+            var answer = Core.AppContext.Current.ESqlUtil(Core.Enum.DbConnEnum.ZhiHu).FirstOrDefault<Model.ViewModel.Zhihu.ZhihuAnswer>(a => a.Id == id) ?? new Model.ViewModel.Zhihu.ZhihuAnswer();
+            answer.Content = FileOperate.ReadFile(answer.Content);
+            ViewBag.answer = answer;
             return View();
         }
 

@@ -50,8 +50,7 @@ namespace YaoService.Zhihu
 
         public List<ZhihuAnswer> PageQuestionListHandel(string html)
         {
-            var dbcontext = AppContext.Current.ESqlUtil(Core.Enum.DbConnEnum.ZhiHu);
-            var nqalist = dbcontext.Get<ZhihuAnswer>().ToList();
+            var nqalist = AppContext.Current.ESqlUtil(Core.Enum.DbConnEnum.ZhiHu).Get<ZhihuAnswer>() ?? new List<ZhihuAnswer>();
             List<ZhihuAnswer> answerList = new List<ZhihuAnswer>();
             List<string> contentList = MelonReg.FindList(html, "<div class=\"feed-item-inner\">", "<div class=\"feed-meta\">");
             foreach (var content in contentList)
@@ -78,7 +77,7 @@ namespace YaoService.Zhihu
                 foreach (var img in imgList)
                 {
                     DownloadImg.Load(img.realPath, img.path);
-                    contentbody = contentbody.Replace(img.src, img.url);
+                    contentbody = contentbody.Replace(img.src, img.path);
                 }
                 //改图片样式
                 contentbody = MelonReg.ChangeWidth(contentbody);
@@ -97,14 +96,13 @@ namespace YaoService.Zhihu
                     Author = author,
                     Bio = bio,
                     Summary = summary,
-                    Content = "/Content/TxtFile/" + txtfile,
+                    Content = txtfile,
                     ZanCount = Convert.ToInt32(zan),
                     CreatedOn = DateTime.Now,
                     Deleted = false,
                     ViewCount = 0,
                     Recommended = false
                 };
-
                 answerList.Add(ans);
             }
             return answerList;

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Core;
+using Core.Application;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceProcess;
@@ -14,6 +16,7 @@ namespace SpiderService
         /// </summary>
         static void Main()
         {
+            AppContext.Start(new ServiceApplication());
 #if DEBUG
             ZhihuSpider zs = new ZhihuSpider();
             zs.GetZhihuAnswer(null);

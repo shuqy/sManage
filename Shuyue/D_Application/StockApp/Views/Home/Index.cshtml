@@ -1,8 +1,20 @@
 ﻿@{
     ViewBag.Title = "首页";
+    List<Model.ViewModel.Zhihu.ZhihuAnswer> nqalist = ViewBag.nqalist;
+    Model.ViewModel.Zhihu.ZhihuAnswer qa = ViewBag.answer;
 }
-
 <div class="page__bd" style="margin:20px;">
-    welcome
+    <ul>
+        @if (nqalist != null && nqalist.Any())
+        {
+            foreach (var item in nqalist)
+            {
+                <li><a href="/home/index/@item.Id">@item.Question</a></li>
+            }
+        }
+    </ul>
+    <hr />
+    <div>
+        @Html.Raw(qa.Content)
+    </div>
 </div>
-

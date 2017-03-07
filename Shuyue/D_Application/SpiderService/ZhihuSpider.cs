@@ -41,20 +41,21 @@ namespace SpiderService
                 try
                 {
                     CrawlPage cp = new CrawlPage();
-                    string htmlcontent = cp.Crawl("https://www.zhihu.com/");
-                    var qalist = cp.PageQuestionListHandel(htmlcontent);
-                    var dbcontext = Core.AppContext.Current.ESqlUtil(Core.Enum.DbConnEnum.ZhiHu);
+                    var qalist = cp.PageQuestionListHandel(cp.Crawl("https://www.zhihu.com/"));
                     StringBuilder sqlsb = new StringBuilder();
                     sqlsb.Append("insert into ZhihuAnswer (QuestionId,AnswerId,Question,Author,Bio,Summary,Content,ZanCount,ViewCount) ");
                     int addIndex = 0;
                     foreach (var item in qalist)
                     {
-                        sqlsb.Append(string.Format("select '{0}','{1}','{2}','{3}','{4}','{5}','{6}',{7},{8}'",
+                        sqlsb.Append(string.Format("select '{0}','{1}','{2}','{3}','{4}','{5}','{6}',{7},{8}",
                             item.QuestionId, item.AnswerId, item.Question, item.Author, item.Bio, item.Summary, item.Content
                             , item.ZanCount, item.ViewCount));
-                        if (++addIndex < qalist.Count) sqlsb.Append(" union ");
+                        if (++addIndex < qalist.Count)
+                        {
+                            sqlsb.Append(" union ");
+                        }
                     }
-                    dbcontext.RunSql(sqlsb.ToString());
+                    Core.AppContext.Current.ESqlUtil(Core.Enum.DbConnEnum.ZhiHu).RunSql(sqlsb.ToString());
                 }
                 catch (Exception ex)
                 {
