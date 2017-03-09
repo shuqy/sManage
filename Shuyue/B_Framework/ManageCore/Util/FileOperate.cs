@@ -7,6 +7,33 @@ namespace Core.Util
 {
     public class FileOperate
     {
+
+        /// <summary>
+        /// 获取服务器文件路径
+        /// </summary>
+        /// <param name="imgName"></param>
+        /// <param name="folderName"></param>
+        /// <returns></returns>
+        public static string GetFileServerUrl(string fileName, string folderName)
+        {
+            return $"{ConfigHelper.Get("TxtServerPath")}{folderName}/{fileName}";
+        }
+        /// <summary>
+        /// 获取文件物理路径
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="folderName"></param>
+        /// <returns></returns>
+        public static string GetFilePath(string fileName, string folderName)
+        {
+            //如果不存在就创建file文件夹
+            if (Directory.Exists($"{ConfigHelper.Get("TxtPath")}{folderName}") == false)
+            {
+                Directory.CreateDirectory($"{ConfigHelper.Get("TxtPath")}{folderName}");
+            }
+            return $"{ConfigHelper.Get("TxtPath")}{folderName}\\{fileName}";
+        }
+
         #region 写文件
         protected void Write_Txt(string FileName, string Content)
         {

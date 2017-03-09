@@ -85,8 +85,9 @@ namespace YaoService.Zhihu
                 contentbody = MelonReg.RemoveEditDateLink(contentbody);
                 //将文件内容写入txt文件，节省数据库空间
                 string txtName = RandomOperate.RansdomName(10) + ".txt";
-                string txtfile = ConfigHelper.Get("TxtPath") + txtName;
-                FileOperate.WriteFile(txtfile, contentbody);
+                //string txtfile = FileOperate.GetFileServerUrl(txtName, "z");
+                string txtfile = FileOperate.GetFilePath(txtName, "z");
+                FileOperate.WriteFile(FileOperate.GetFilePath(txtName, "z"), contentbody);
                 //获得知乎答案对象
                 ZhihuAnswer ans = new ZhihuAnswer
                 {
