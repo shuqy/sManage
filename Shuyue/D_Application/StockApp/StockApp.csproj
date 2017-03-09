@@ -177,6 +177,7 @@
     <Content Include="Views\Summary\ImportData.cshtml" />
     <Content Include="Views\Summary\DeliveryOrder.cshtml" />
     <Content Include="Views\Prophesy\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\stockapp.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
