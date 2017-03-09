@@ -99,8 +99,6 @@ namespace Core.Html
                     name = RandomOperate.RansdomName(10),
                 };
                 data.realPath = realPath;
-                data.url = "/Content/Img/Zhihu/" + data.name + ".jpg";
-                data.path = ConfigHelper.Get("ImgPath") + "Zhihu\\" + data.name + ".jpg";
                 clist.Add(data);
                 res = res.NextMatch();
             }

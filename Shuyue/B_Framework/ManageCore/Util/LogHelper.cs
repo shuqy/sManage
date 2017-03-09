@@ -135,21 +135,18 @@ namespace Core.Util
                 {
                     FileOpen();
                 }
-                else
+                //判断文件到期标志，如果当前文件到期则关闭当前文件创建新的日志文件
+                if (DateTime.Now >= TimeSign)
                 {
-                    //判断文件到期标志，如果当前文件到期则关闭当前文件创建新的日志文件
-                    if (DateTime.Now >= TimeSign)
-                    {
-                        FileClose();
-                        FileOpen();
-                    }
-                    writer.Write(msg.Datetime);
-                    writer.Write('\t');
-                    writer.Write(msg.Type);
-                    writer.Write('\t');
-                    writer.WriteLine(msg.Text);
-                    writer.Flush();
+                    FileClose();
+                    FileOpen();
                 }
+                writer.Write(msg.Datetime);
+                writer.Write('\t');
+                writer.Write(msg.Type);
+                writer.Write('\t');
+                writer.WriteLine(msg.Text);
+                writer.Flush();
             }
             catch (Exception e)
             {

@@ -5,6 +5,18 @@ namespace Core.Util
 {
     public class DownloadImg
     {
+        public static string GetFileServerUrl(string imgName, string folderName)
+        {
+            return $"{ConfigHelper.Get("ImgServerPath")}{folderName}/{imgName}.jpg";
+        }
+        public static string GetFilePath(string imgName, string folderName)
+        {
+            return $"{ConfigHelper.Get("ImgPath")}{folderName}\\{imgName}.jpg";
+        }
+        public static void Load(string url,string imgName,string folderName)
+        {
+            Load(url, GetFilePath(imgName,folderName));
+        }
         public static void Load(string url, string imgPath)
         {
             WebRequest request = WebRequest.Create(url);

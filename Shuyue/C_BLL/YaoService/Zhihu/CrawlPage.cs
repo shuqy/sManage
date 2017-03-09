@@ -76,8 +76,8 @@ namespace YaoService.Zhihu
                 List<ImgData> imgList = MelonReg.FindImgList(contentbody);
                 foreach (var img in imgList)
                 {
-                    DownloadImg.Load(img.realPath, img.path);
-                    contentbody = contentbody.Replace(img.src, img.path);
+                    DownloadImg.Load(img.realPath, img.name, "z");
+                    contentbody = contentbody.Replace(img.src, DownloadImg.GetFileServerUrl(img.name, "z"));
                 }
                 //改图片样式
                 contentbody = MelonReg.ChangeWidth(contentbody);
