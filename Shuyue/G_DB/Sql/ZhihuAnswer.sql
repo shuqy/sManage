@@ -12,6 +12,8 @@ create table ZhihuAnswer(
 	ZanCount int null,
 	Recommended bit default 0,
 	ViewCount int null,
+	OriginalURL varchar(500),
+	Classification nvarchar(100),
 	CreatedOn datetime default getdate(),
 	Deleted bit default 0,
 )

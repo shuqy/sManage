@@ -53,6 +53,14 @@ namespace Model.ViewModel.Zhihu
         /// </summary>
         public Nullable<int> ViewCount { get; set; }
         /// <summary>
+        /// 原文地址
+        /// </summary>
+        public string OriginalURL { get; set; }
+        /// <summary>
+        /// 所属分类
+        /// </summary>
+        public string Classification { get; set; }
+        /// <summary>
         /// 创建时间
         /// </summary>
         public Nullable<System.DateTime> CreatedOn { get; set; }
