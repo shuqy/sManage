@@ -16,7 +16,9 @@ namespace Core.Util
 
         public static ConnectionStringSettings GetConn(string key)
         {
-            return ConfigurationManager.ConnectionStrings[key];
+            var values = ConfigurationManager.ConnectionStrings[key];
+            if (values == null) throw new Exception();
+            return values;
         }
 
         public static string GetConnStr(string key)

@@ -131,10 +131,20 @@ namespace Core.Application
                     sqlHelper = new CommonSqlUtility(ConfigHelper.GetConn("ZhiHuConnStr").ConnectionString);
                     break;
                 default:
-                    sqlHelper = new CommonSqlUtility(ConfigHelper.GetConn("ZhiHuConnStr").ConnectionString);
+                    sqlHelper = new CommonSqlUtility(ConfigHelper.GetConn(dbConnEnum.ToString()).ConnectionString);
                     break;
             }
             return sqlHelper;
+        }
+
+        /// <summary>
+        /// Dapper帮助类
+        /// </summary>
+        /// <param name="dbConnEnum"></param>
+        /// <returns></returns>
+        public DapperHelper Dapper(DbConnEnum dbConnEnum)
+        {
+            return new DapperHelper(dbConnEnum);
         }
     }
 }

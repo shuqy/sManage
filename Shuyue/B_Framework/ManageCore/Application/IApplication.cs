@@ -25,5 +25,12 @@ namespace Core.Application
         /// <param name="dbConnEnum"></param>
         /// <returns></returns>
         CommonSqlUtility ESqlUtil(DbConnEnum dbConnEnum);
+
+        /// <summary>
+        /// Dapper帮助类
+        /// </summary>
+        /// <param name="dbConnEnum"></param>
+        /// <returns></returns>
+        DapperHelper Dapper(DbConnEnum dbConnEnum);
     }
 }

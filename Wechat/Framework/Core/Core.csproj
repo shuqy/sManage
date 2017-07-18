@@ -89,6 +89,8 @@
     <Compile Include="Utilities\HttpHelper.cs" />
     <Compile Include="Utilities\IpHelper.cs" />
     <Compile Include="Utilities\LogHelper.cs" />
+    <Compile Include="Utilities\NBFS.cs" />
+    <Compile Include="Utilities\NGraph.cs" />
     <Compile Include="Utilities\RandomOperate.cs" />
     <Compile Include="Utilities\TxtFile.cs" />
     <Compile Include="Utilities\SymbolGraph.cs" />

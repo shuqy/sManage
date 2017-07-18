@@ -12,5 +12,6 @@ namespace Core.Enum
     public enum DbConnEnum
     {
         ZhiHu = 0,
+        Monitor = 1,
     }
 }
