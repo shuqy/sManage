@@ -36,12 +36,13 @@ namespace Core.Util
         {
             using (var conn = new MySqlConnection(_sqlConnectionStr))
             {
+                conn.Open();
                 int records = 0;
                 using (var trans = conn.BeginTransaction())
                 {
                     try
                     {
-                        conn.Execute(sql, entities, transaction, commandTimeout, commandType);
+                        records = conn.Execute(sql, entities, transaction, commandTimeout, commandType);
                     }
                     catch (DataException ex)
                     {

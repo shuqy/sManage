@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Core.Utilities {
+namespace Core.Util{
     /// <summary>
     /// 汉字拼音转换类
     /// </summary>

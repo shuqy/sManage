@@ -99,6 +99,7 @@
     <Compile Include="Util\DownloadImg.cs" />
     <Compile Include="Util\Encryptor.cs" />
     <Compile Include="Util\FileOperate.cs" />
+    <Compile Include="Util\HtmlHelper.cs" />
     <Compile Include="Util\HttpHelper.cs" />
     <Compile Include="Util\LogHelper.cs" />
     <Compile Include="Util\MD5.cs" />
