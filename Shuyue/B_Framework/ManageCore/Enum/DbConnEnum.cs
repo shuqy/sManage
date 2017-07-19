@@ -13,5 +13,6 @@ namespace Core.Enum
     {
         ZhiHu = 0,
         Monitor = 1,
+        ff = 2,
     }
 }
